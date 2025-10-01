@@ -16,41 +16,49 @@ export default function Home() {
     const { followers, following } = await getFollows(token, username);
     if (!(followers.length > 50)) {
       followers.forEach((follower) => {
-        setNodes((currentNodes) => [
-          ...currentNodes,
-          {
-            id: follower.username,
-            label: follower.name,
-          },
-        ]);
-        setEdges((currentEdges) => [
-          ...currentEdges,
-          {
-            source: follower.username,
-            target: username,
-            id: `${follower.username}-${username}`,
-            label: "Follower",
-          },
-        ]);
+        setNodes((currentNodes) => {
+          return [
+            ...currentNodes,
+            {
+              id: follower.username,
+              label: follower.name,
+            },
+          ];
+        });
+        setEdges((currentEdges) => {
+          return [
+            ...currentEdges,
+            {
+              source: follower.username,
+              target: username,
+              id: `${follower.username}-${username}`,
+              label: "Follower",
+            },
+          ];
+        });
         addUserFollowsToGraph(follower.username);
       });
       following.forEach((user) => {
-        setNodes((currentNodes) => [
-          ...currentNodes,
-          {
-            id: user.username,
-            label: user.name,
-          },
-        ]);
-        setEdges((currentEdges) => [
-          ...currentEdges,
-          {
-            source: username,
-            target: user.username,
-            id: `${username}-${user.username}`,
-            label: "Following",
-          },
-        ]);
+        setNodes((currentNodes) => {
+          return [
+            ...currentNodes,
+            {
+              id: user.username,
+              label: user.name,
+            },
+          ];
+        });
+        setEdges((currentEdges) => {
+          return [
+            ...currentEdges,
+            {
+              source: username,
+              target: user.username,
+              id: `${username}-${user.username}`,
+              label: "Following",
+            },
+          ];
+        });
         addUserFollowsToGraph(user.username);
       });
     } else {
