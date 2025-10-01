@@ -1,21 +1,4 @@
-export async function POST(req: Request) {
-  const reqBody = await req.text();
-  try {
-    JSON.parse(reqBody);
-  } catch (error) {
-    return Response.json(
-      { error: true, response: "Invalid JSON" },
-      { status: 400 },
-    );
-  }
-  const { token } = await JSON.parse(reqBody);
-  if (!token) {
-    return Response.json(
-      { error: true, response: "Token not provided" },
-      { status: 400 },
-    );
-  }
-
+async function getCurrentUsername(token: string): Promise<string> {
   const request = await fetch(
     "https://api-partner.spotify.com/pathfinder/v2/query",
     {
@@ -40,15 +23,38 @@ export async function POST(req: Request) {
   const data = await request.text();
   try {
     const parsedData = JSON.parse(data);
-    if (parsedData.data.me.profile) {
-      return Response.json({
-        error: false,
-        response: parsedData.data.me.profile,
-      });
+    if (parsedData.data.me.profile.username) {
+      return parsedData.data.me.profile.username;
     } else {
-      return Response.json({ error: true, response: parsedData });
+      throw new Error("Username not found");
     }
   } catch (error) {
-    return Response.json({ error: true, response: data });
+    throw new Error("Failed to parse response");
+  }
+}
+
+export async function POST(req: Request) {
+  const reqBody = await req.text();
+  try {
+    JSON.parse(reqBody);
+  } catch (error) {
+    return Response.json(
+      { error: true, response: "Invalid JSON" },
+      { status: 400 },
+    );
+  }
+  const { token } = await JSON.parse(reqBody);
+  if (!token) {
+    return Response.json(
+      { error: true, response: "Token not provided" },
+      { status: 400 },
+    );
+  }
+
+  try {
+    const username = await getCurrentUsername(token);
+    return Response.json({ error: false, username: username });
+  } catch (error) {
+    return Response.json({ error: true }, { status: 500 });
   }
 }
