@@ -60,32 +60,32 @@ export default function Home() {
 
   return (
     <>
-      Token
-      <input
-        className="p-2 border"
-        type="text"
-        value={token}
-        onChange={(e) => setToken(e.target.value)}
-      />
-      <br />
-      <button
-        onClick={async () => {
-          const data = await getUser(token);
-          setNodes((currentNodes) => [
-            ...currentNodes,
-            {
-              id: data.username,
-              label: data.name,
-            },
-          ]);
-          addUserFollowsToGraph(data.username);
-        }}
-      >
-        test
-      </button>
-      <div style={{ position: "fixed", width: "75%", height: "75%" }}>
-        <GraphCanvas nodes={nodes} edges={edges} />
+      <div className="top-0 left-0 p-4 bg-black fixed z-10">
+        Token
+        <input
+          className="p-2 border"
+          type="text"
+          value={token}
+          onChange={(e) => setToken(e.target.value)}
+        />
+        <br />
+        <button
+          onClick={async () => {
+            const data = await getUser(token);
+            setNodes((currentNodes) => [
+              ...currentNodes,
+              {
+                id: data.username,
+                label: data.name,
+              },
+            ]);
+            addUserFollowsToGraph(data.username);
+          }}
+        >
+          Run
+        </button>
       </div>
+      <GraphCanvas nodes={nodes} edges={edges} />
     </>
   );
 }
