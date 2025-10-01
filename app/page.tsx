@@ -81,8 +81,6 @@ export default function Home() {
       >
         test
       </button>
-      <br />
-      {JSON.stringify(nodes)}
       <div style={{ position: "fixed", width: "75%", height: "75%" }}>
         <GraphCanvas nodes={nodes} edges={edges} />
       </div>
