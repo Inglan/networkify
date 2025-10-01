@@ -1,5 +1,5 @@
 import {
-  getCurrentUsername,
+  getCurrentUser,
   getUserFollowing,
   getUserFollowers,
 } from "@/lib/utils";
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const username = await getCurrentUsername(token);
+    const username = await getCurrentUser(token);
     return Response.json({
       error: false,
       username: username,

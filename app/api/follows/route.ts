@@ -1,5 +1,5 @@
 import {
-  getCurrentUsername,
+  getCurrentUser,
   getUserFollowing,
   getUserFollowers,
 } from "@/lib/utils";

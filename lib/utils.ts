@@ -1,4 +1,4 @@
-export async function getCurrentUsername(token: string): Promise<string> {
+export async function getCurrentUser(token: string): Promise<string> {
   const request = await fetch(
     "https://api-partner.spotify.com/pathfinder/v2/query",
     {
