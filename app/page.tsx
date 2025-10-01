@@ -22,6 +22,15 @@ export default function Home() {
           label: follower.name,
         },
       ]);
+      setEdges((currentEdges) => [
+        ...currentEdges,
+        {
+          source: follower.username,
+          target: username,
+          id: `${follower.username}-${username}`,
+          label: "Follower",
+        },
+      ]);
     });
     following.forEach((user) => {
       setNodes((currentNodes) => [
@@ -29,6 +38,15 @@ export default function Home() {
         {
           id: user.username,
           label: user.name,
+        },
+      ]);
+      setEdges((currentEdges) => [
+        ...currentEdges,
+        {
+          source: username,
+          target: user.username,
+          id: `${username}-${user.username}`,
+          label: "Following",
         },
       ]);
     });
