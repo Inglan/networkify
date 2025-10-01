@@ -37,11 +37,9 @@ export async function getUserFollowers(
   username: string,
 ): Promise<
   {
-    uri: string;
+    username: string;
     name: string;
     image_url: string;
-    followers_count: number;
-    color: number;
   }[]
 > {
   const request = await fetch(
@@ -65,7 +63,13 @@ export async function getUserFollowers(
           followers_count: number;
           color: number;
         }[]
-      ).filter((profile) => profile.uri.startsWith("spotify:user:"));
+      )
+        .filter((profile) => profile.uri.startsWith("spotify:user:"))
+        .map((profile) => ({
+          username: profile.uri.split(":")[2],
+          name: profile.name,
+          image_url: profile.image_url,
+        }));
     } else {
       throw new Error("Something went wrong");
     }
@@ -78,11 +82,9 @@ export async function getUserFollowing(
   username: string,
 ): Promise<
   {
-    uri: string;
+    username: string;
     name: string;
     image_url: string;
-    followers_count: number;
-    is_following: boolean;
   }[]
 > {
   const request = await fetch(
@@ -106,7 +108,13 @@ export async function getUserFollowing(
           followers_count: number;
           is_following: boolean;
         }[]
-      ).filter((profile) => profile.uri.startsWith("spotify:user:"));
+      )
+        .filter((profile) => profile.uri.startsWith("spotify:user:"))
+        .map((profile) => ({
+          username: profile.uri.split(":")[2],
+          name: profile.name,
+          image_url: profile.image_url,
+        }));
     } else {
       throw new Error("Something went wrong");
     }
