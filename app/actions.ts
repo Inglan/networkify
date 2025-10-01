@@ -26,11 +26,11 @@ export async function getUser(token: string) {
   }
 
   try {
-    const username = await getCurrentUser(token);
+    const userInfo = await getCurrentUser(token);
     return {
-      username: username,
-      following: await getUserFollowing(token, username),
-      followers: await getUserFollowers(token, username),
+      ...userInfo,
+      following: await getUserFollowing(token, userInfo.username),
+      followers: await getUserFollowers(token, userInfo.username),
     };
   } catch {
     throw new Error("Something went wrong");
