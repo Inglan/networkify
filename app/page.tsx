@@ -12,10 +12,6 @@ export default function Home() {
 
   const [token, setToken] = useState<string>("");
 
-  useEffect(() => {
-    console.log(nodes);
-  }, [nodes]);
-
   return (
     <>
       Token
