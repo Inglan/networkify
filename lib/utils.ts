@@ -1,4 +1,8 @@
-export async function getCurrentUser(token: string): Promise<string> {
+export async function getCurrentUser(token: string): Promise<{
+  username: string;
+  name: string;
+  image_url: string;
+}> {
   const request = await fetch(
     "https://api-partner.spotify.com/pathfinder/v2/query",
     {
@@ -23,8 +27,18 @@ export async function getCurrentUser(token: string): Promise<string> {
   const data = await request.text();
   try {
     const parsedData = JSON.parse(data);
-    if (parsedData.data.me.profile.username) {
-      return parsedData.data.me.profile.username;
+    if (parsedData.data.me.profile) {
+      return {
+        username: parsedData.data.me.profile.username,
+        name: parsedData.data.me.profile.name,
+        image_url: (
+          parsedData.data.me.profile.avatar.sources as {
+            height: number;
+            width: number;
+            url: string;
+          }[]
+        ).slice(-1)[0].url,
+      };
     } else {
       throw new Error("Username not found");
     }
