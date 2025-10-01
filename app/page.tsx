@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { GraphCanvas } from "reagraph";
-import { getUser } from "./actions";
+import { getFollows, getUser } from "./actions";
 
 export default function Home() {
   const [nodes, setNodes] = useState<{ id: string; label: string }[]>([]);
@@ -11,6 +11,28 @@ export default function Home() {
   >([]);
 
   const [token, setToken] = useState<string>("");
+
+  async function addUserFollowsToGraph(username: string) {
+    const { followers, following } = await getFollows(token, username);
+    followers.forEach((follower) => {
+      setNodes((currentNodes) => [
+        ...currentNodes,
+        {
+          id: follower.username,
+          label: follower.name,
+        },
+      ]);
+    });
+    following.forEach((user) => {
+      setNodes((currentNodes) => [
+        ...currentNodes,
+        {
+          id: user.username,
+          label: user.name,
+        },
+      ]);
+    });
+  }
 
   return (
     <>
@@ -23,18 +45,17 @@ export default function Home() {
       />
       <br />
       <button
-        onClick={() =>
-          getUser(token).then((data) => {
-            setNodes([
-              ...nodes,
-              {
-                id: data.username,
-                label: data.name,
-              },
-            ]);
-            console.log(nodes);
-          })
-        }
+        onClick={async () => {
+          const data = await getUser(token);
+          setNodes((currentNodes) => [
+            ...currentNodes,
+            {
+              id: data.username,
+              label: data.name,
+            },
+          ]);
+          addUserFollowsToGraph(data.username);
+        }}
       >
         test
       </button>
