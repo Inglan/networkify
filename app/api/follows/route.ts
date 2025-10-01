@@ -22,6 +22,7 @@ export async function POST(req: Request) {
     );
   }
   return Response.json({
+    error: false,
     following: await getUserFollowing(token, username),
     followers: await getUserFollowers(token, username),
   });
