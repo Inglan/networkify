@@ -58,7 +58,15 @@ async function getUserFollowers(
   try {
     const parsedData = JSON.parse(data);
     if (parsedData.profiles) {
-      return parsedData.profiles;
+      return (
+        parsedData.profiles as {
+          uri: string;
+          name: string;
+          image_url: string;
+          followers_count: number;
+          color: number;
+        }[]
+      ).filter((profile) => profile.uri.startsWith("spotify:user:"));
     } else {
       throw new Error("Something went wrong");
     }
@@ -91,7 +99,15 @@ async function getUserFollowing(
   try {
     const parsedData = JSON.parse(data);
     if (parsedData.profiles) {
-      return parsedData.profiles;
+      return (
+        parsedData.profiles as {
+          uri: string;
+          name: string;
+          image_url: string;
+          followers_count: number;
+          is_following: boolean;
+        }[]
+      ).filter((profile) => profile.uri.startsWith("spotify:user:"));
     } else {
       throw new Error("Something went wrong");
     }
@@ -120,7 +136,12 @@ export async function POST(req: Request) {
 
   try {
     const username = await getCurrentUsername(token);
-    return Response.json({ error: false, username: username });
+    return Response.json({
+      error: false,
+      username: username,
+      following: await getUserFollowing(token, username),
+      followers: await getUserFollowers(token, username),
+    });
   } catch (error) {
     return Response.json({ error: true }, { status: 500 });
   }
