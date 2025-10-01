@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       following: await getUserFollowing(token, username),
       followers: await getUserFollowers(token, username),
     });
-  } catch (error) {
+  } catch {
     return Response.json({ error: true }, { status: 500 });
   }
 }

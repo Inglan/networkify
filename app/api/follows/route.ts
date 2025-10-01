@@ -21,9 +21,13 @@ export async function POST(req: Request) {
       { status: 400 },
     );
   }
-  return Response.json({
-    error: false,
-    following: await getUserFollowing(token, username),
-    followers: await getUserFollowers(token, username),
-  });
+  try {
+    return Response.json({
+      error: false,
+      following: await getUserFollowing(token, username),
+      followers: await getUserFollowers(token, username),
+    });
+  } catch {
+    return Response.json({ error: true }, { status: 500 });
+  }
 }
