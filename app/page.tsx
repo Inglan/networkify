@@ -85,7 +85,12 @@ export default function Home() {
           Run
         </button>
       </div>
-      <GraphCanvas nodes={nodes} edges={edges} />
+      <GraphCanvas
+        labelType="nodes"
+        draggable={true}
+        nodes={nodes}
+        edges={edges}
+      />
     </>
   );
 }
