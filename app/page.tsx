@@ -14,7 +14,7 @@ export default function Home() {
 
   async function addUserFollowsToGraph(username: string) {
     const { followers, following } = await getFollows(token, username);
-    if (!(followers.length > 50)) {
+    if (!(followers.length > 50 || following.length > 50)) {
       followers.forEach((follower) => {
         setNodes((currentNodes) => {
           if (!currentNodes.some((node) => node.id === follower.username)) {
@@ -90,7 +90,9 @@ export default function Home() {
         addUserFollowsToGraph(user.username);
       });
     } else {
-      console.log(username + " has more than 50 followers, skipping");
+      console.log(
+        username + " has more than 50 followers or following, skipping",
+      );
     }
   }
 
