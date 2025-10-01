@@ -53,6 +53,8 @@ export default function Home() {
         ]);
         addUserFollowsToGraph(user.username);
       });
+    } else {
+      console.log(username + " has more than 20 followers, skipping");
     }
   }
 
