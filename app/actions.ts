@@ -1,0 +1,38 @@
+"use server";
+
+import {
+  getCurrentUser,
+  getUserFollowers,
+  getUserFollowing,
+} from "@/lib/utils";
+
+export async function getFollows(token: string, username: string) {
+  if (!(token && username)) {
+    throw new Error("Token or username not provided");
+  }
+  try {
+    return {
+      following: await getUserFollowing(token, username),
+      followers: await getUserFollowers(token, username),
+    };
+  } catch {
+    throw new Error("Something went wrong");
+  }
+}
+
+export async function getUser(token: string) {
+  if (!token) {
+    throw new Error("Token not provided");
+  }
+
+  try {
+    const username = await getCurrentUser(token);
+    return {
+      username: username,
+      following: await getUserFollowing(token, username),
+      followers: await getUserFollowers(token, username),
+    };
+  } catch {
+    throw new Error("Something went wrong");
+  }
+}
