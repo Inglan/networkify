@@ -18,6 +18,7 @@ export default function Home() {
       followers.forEach((follower) => {
         setNodes((currentNodes) => {
           if (!currentNodes.some((node) => node.id === follower.username)) {
+            addUserFollowsToGraph(follower.username);
             return [
               ...currentNodes,
               {
@@ -50,11 +51,11 @@ export default function Home() {
           }
           return currentEdges;
         });
-        addUserFollowsToGraph(follower.username);
       });
       following.forEach((user) => {
         setNodes((currentNodes) => {
           if (!currentNodes.some((node) => node.id === user.username)) {
+            addUserFollowsToGraph(user.username);
             return [
               ...currentNodes,
               {
@@ -87,7 +88,6 @@ export default function Home() {
           }
           return currentEdges;
         });
-        addUserFollowsToGraph(user.username);
       });
     } else {
       console.log(
