@@ -33,6 +33,73 @@ async function getCurrentUsername(token: string): Promise<string> {
   }
 }
 
+async function getUserFollowers(
+  token: string,
+  username: string,
+): Promise<
+  {
+    uri: string;
+    name: string;
+    image_url: string;
+    followers_count: number;
+    color: number;
+  }[]
+> {
+  const request = await fetch(
+    `https://spclient.wg.spotify.com/user-profile-view/v3/profile/${username}/followers`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  const data = await request.text();
+  try {
+    const parsedData = JSON.parse(data);
+    if (parsedData.profiles) {
+      return parsedData.profiles;
+    } else {
+      throw new Error("Something went wrong");
+    }
+  } catch (error) {
+    throw new Error("Failed to parse response");
+  }
+}
+async function getUserFollowing(
+  token: string,
+  username: string,
+): Promise<
+  {
+    uri: string;
+    name: string;
+    image_url: string;
+    followers_count: number;
+    is_following: boolean;
+  }[]
+> {
+  const request = await fetch(
+    `https://spclient.wg.spotify.com/user-profile-view/v3/profile/${username}/following`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  const data = await request.text();
+  try {
+    const parsedData = JSON.parse(data);
+    if (parsedData.profiles) {
+      return parsedData.profiles;
+    } else {
+      throw new Error("Something went wrong");
+    }
+  } catch (error) {
+    throw new Error("Failed to parse response");
+  }
+}
+
 export async function POST(req: Request) {
   const reqBody = await req.text();
   try {
