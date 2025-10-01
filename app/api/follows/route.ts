@@ -1,8 +1,4 @@
-import {
-  getCurrentUser,
-  getUserFollowing,
-  getUserFollowers,
-} from "@/lib/utils";
+import { getUserFollowing, getUserFollowers } from "@/lib/utils";
 
 export async function POST(req: Request) {
   const reqBody = await req.text();
