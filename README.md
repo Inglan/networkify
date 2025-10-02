@@ -15,3 +15,4 @@ Basically just an experiment I made because I could
 - [ ] Setting limits
 - [ ] Stop button
 - [ ] Save/restore state
+- [ ] Show node count
