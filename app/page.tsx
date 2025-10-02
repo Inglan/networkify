@@ -124,8 +124,7 @@ export default function Home() {
         <Button
           onClick={async () => {
             const data = await getUser(token);
-            setNodes((currentNodes) => [
-              ...currentNodes,
+            setNodes([
               {
                 id: data.username,
                 label: data.name,
