@@ -122,6 +122,28 @@ export default function Home() {
         >
           Run
         </button>
+        <button
+          onClick={() => {
+            const data = {
+              nodes: nodes,
+              edges: edges,
+            };
+
+            const blob = new Blob([JSON.stringify(data)], {
+              type: "text/plain;charset=utf-8",
+            });
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "graph_data.json";
+            link.click();
+            URL.revokeObjectURL(url);
+          }}
+        >
+          Save
+        </button>
+        <button>Load</button>
       </div>
       <GraphCanvas
         labelType="nodes"
