@@ -4,7 +4,7 @@ import {
   getCurrentUser,
   getUserFollowers,
   getUserFollowing,
-} from "@/lib/utils";
+} from "@/lib/spotifyUtils";
 
 export async function getFollows(token: string, username: string) {
   if (!(token && username)) {
