@@ -14,11 +14,13 @@ export default function Home() {
   const [edges, setEdges] = useState<
     { source: string; target: string; id: string; label: string }[]
   >([]);
+  const [activeOperations, setActiveOperations] = useState<number>(0);
 
   const [token, setToken] = useState<string>("");
   const [auto, setAuto] = useState<CheckedState>(false);
 
   async function addUserFollowsToGraph(username: string) {
+    setActiveOperations((prev) => prev + 1);
     const { followers, following } = await getFollows(token, username);
     if (!(followers.length > 50 || following.length > 50)) {
       followers.forEach((follower) => {
@@ -100,6 +102,8 @@ export default function Home() {
         username + " has more than 50 followers or following, skipping",
       );
     }
+
+    setActiveOperations((prev) => prev - 1);
   }
 
   return (
@@ -189,6 +193,7 @@ export default function Home() {
         </Button>
         <div>{nodes.length} nodes</div>
         <div>{edges.length} edges</div>
+        <div>{activeOperations} active searches</div>
       </div>
       <GraphCanvas
         labelType="nodes"
