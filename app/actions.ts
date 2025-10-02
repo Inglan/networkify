@@ -16,7 +16,10 @@ export async function getFollows(token: string, username: string) {
       followers: await getUserFollowers(token, username),
     };
   } catch {
-    throw new Error("Something went wrong");
+    return {
+      following: [],
+      followers: [],
+    };
   }
 }
 
