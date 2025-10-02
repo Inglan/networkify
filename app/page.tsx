@@ -100,9 +100,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="top-2 left-2 p-4 bg-card border fixed z-30 rounded-md">
-        Token
+      <div className="top-2 left-2 p-4 bg-card border fixed z-30 rounded-md flex flex-col gap-2">
         <Input
+          placeholder="Token"
           type="text"
           value={token}
           onChange={(e) => setToken(e.target.value)}
