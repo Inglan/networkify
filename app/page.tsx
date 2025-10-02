@@ -114,6 +114,24 @@ export default function Home() {
           type="text"
           value={token}
           onChange={(e) => setToken(e.target.value)}
+          onPaste={(e) => {
+            e.preventDefault();
+            const data = e.clipboardData.getData("text");
+            try {
+              const parsedData = JSON.parse(data);
+              setToken(
+                JSON.parse(
+                  parsedData.log.entries.filter((entry: any) =>
+                    entry.request.url.includes(
+                      "https://open.spotify.com/api/token",
+                    ),
+                  )[0].response.content.text,
+                ).accessToken,
+              );
+            } catch {
+              setToken(data);
+            }
+          }}
         />
 
         <div className="flex items-center gap-3">
