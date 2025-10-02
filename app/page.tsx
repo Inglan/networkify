@@ -172,9 +172,10 @@ export default function Home() {
         draggable={true}
         nodes={nodes}
         edges={edges}
-        onNodeClick={(node) =>
+        onNodeContextMenu={(node) =>
           window.open("https://open.spotify.com/user/" + node.id)
         }
+        onNodeDoubleClick={(node) => addUserFollowsToGraph(node.id)}
       />
     </>
   );
