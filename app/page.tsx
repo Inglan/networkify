@@ -150,6 +150,7 @@ export default function Home() {
         </div>
         <br />
         <Button
+          disabled={!token}
           onClick={async () => {
             const data = await getUser(token);
             setNodes([
@@ -164,6 +165,7 @@ export default function Home() {
           Run
         </Button>
         <Button
+          disabled={!token}
           onClick={async () => {
             nodes.forEach((node) => {
               addUserFollowsToGraph(node.id);
