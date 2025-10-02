@@ -16,3 +16,4 @@ Basically just an experiment I made because I could
 - [ ] Stop button
 - [ ] Save/restore state
 - [ ] Show node count
+- [ ] Search
