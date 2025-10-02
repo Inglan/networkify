@@ -22,7 +22,7 @@ export default function Home() {
   async function addUserFollowsToGraph(username: string) {
     setActiveOperations((prev) => prev + 1);
     const { followers, following } = await getFollows(token, username);
-    if (!(followers.length > 50 || following.length > 50)) {
+    if (!(followers.length > 100 || following.length > 100)) {
       followers.forEach((follower) => {
         setNodes((currentNodes) => {
           if (!currentNodes.some((node) => node.id === follower.username)) {
@@ -99,7 +99,7 @@ export default function Home() {
       });
     } else {
       console.log(
-        username + " has more than 50 followers or following, skipping",
+        username + " has more than 100 followers or following, skipping",
       );
     }
 
