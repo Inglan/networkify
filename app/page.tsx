@@ -214,7 +214,6 @@ export default function Home() {
         <div>{activeOperations} active searches</div>
       </div>
       <GraphCanvas
-        aggregateEdges={true}
         labelType="nodes"
         draggable={true}
         nodes={nodes}
