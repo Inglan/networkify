@@ -98,7 +98,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="top-0 left-0 p-4 bg-black fixed z-10">
+      <div className="top-2 left-2 p-4 bg-card border fixed z-30 rounded-md">
         Token
         <input
           className="p-2 border"
