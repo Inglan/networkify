@@ -24,7 +24,7 @@ export default function Home() {
       followers.forEach((follower) => {
         setNodes((currentNodes) => {
           if (!currentNodes.some((node) => node.id === follower.username)) {
-            addUserFollowsToGraph(follower.username);
+            if (auto) addUserFollowsToGraph(follower.username);
             return [
               ...currentNodes,
               {
@@ -61,7 +61,7 @@ export default function Home() {
       following.forEach((user) => {
         setNodes((currentNodes) => {
           if (!currentNodes.some((node) => node.id === user.username)) {
-            addUserFollowsToGraph(user.username);
+            if (auto) addUserFollowsToGraph(user.username);
             return [
               ...currentNodes,
               {
