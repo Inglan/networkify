@@ -85,7 +85,7 @@ export async function getUserFollowers(
           image_url: profile.image_url,
         }));
     } else {
-      throw new Error("Something went wrong");
+      return [];
     }
   } catch (error) {
     throw new Error("Failed to parse response");
@@ -130,7 +130,7 @@ export async function getUserFollowing(
           image_url: profile.image_url,
         }));
     } else {
-      throw new Error("Something went wrong");
+      return [];
     }
   } catch (error) {
     throw new Error("Failed to parse response");
