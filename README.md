@@ -1,5 +1,5 @@
 # networkify
-A very undocumented, untested, janky program that makes a graph of everyone you know indirectly on spotify.
+A very undocumented, untested, janky program that makes a graph of everyone you know indirectly on spotify, that may also be ~~illegal~~ in violation of ToS.
 
 Basically just an experiment I made because I could
 
