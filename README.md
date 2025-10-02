@@ -14,6 +14,6 @@ Basically just an experiment I made because I could
 - [ ] Showing ongoing lookups
 - [ ] Setting limits
 - [ ] Stop button
-- [ ] Save/restore state
-- [ ] Show node count
+- [x] Save/restore state
+- [x] Show node count
 - [ ] Search
