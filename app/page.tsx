@@ -179,6 +179,8 @@ export default function Home() {
         >
           Load
         </Button>
+        <div>{nodes.length} nodes</div>
+        <div>{edges.length} edges</div>
       </div>
       <GraphCanvas
         labelType="nodes"
