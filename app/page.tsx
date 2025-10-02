@@ -136,6 +136,15 @@ export default function Home() {
           Run
         </Button>
         <Button
+          onClick={async () => {
+            nodes.forEach((node) => {
+              addUserFollowsToGraph(node.id);
+            });
+          }}
+        >
+          Run on all nodes
+        </Button>
+        <Button
           onClick={() => {
             const data = {
               nodes: nodes,
