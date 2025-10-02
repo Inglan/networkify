@@ -144,7 +144,28 @@ export default function Home() {
         >
           Save
         </Button>
-        <Button>Load</Button>
+        <Button
+          onClick={() => {
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = ".json";
+            input.onchange = async (event) => {
+              const file = (event.target as HTMLInputElement).files?.[0];
+              if (!file) return;
+
+              const reader = new FileReader();
+              reader.onload = async (event) => {
+                const data = JSON.parse(event.target?.result as string);
+                setNodes(data.nodes);
+                setEdges(data.edges);
+              };
+              reader.readAsText(file);
+            };
+            input.click();
+          }}
+        >
+          Load
+        </Button>
       </div>
       <GraphCanvas
         labelType="nodes"
