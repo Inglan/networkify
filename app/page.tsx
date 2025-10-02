@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { GraphCanvas } from "reagraph";
 import { getFollows, getUser } from "./actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   const [nodes, setNodes] = useState<{ id: string; label: string }[]>([]);
@@ -100,14 +102,13 @@ export default function Home() {
     <>
       <div className="top-2 left-2 p-4 bg-card border fixed z-30 rounded-md">
         Token
-        <input
-          className="p-2 border"
+        <Input
           type="text"
           value={token}
           onChange={(e) => setToken(e.target.value)}
         />
         <br />
-        <button
+        <Button
           onClick={async () => {
             const data = await getUser(token);
             setNodes((currentNodes) => [
@@ -121,8 +122,8 @@ export default function Home() {
           }}
         >
           Run
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => {
             const data = {
               nodes: nodes,
@@ -142,8 +143,8 @@ export default function Home() {
           }}
         >
           Save
-        </button>
-        <button>Load</button>
+        </Button>
+        <Button>Load</Button>
       </div>
       <GraphCanvas
         labelType="nodes"
