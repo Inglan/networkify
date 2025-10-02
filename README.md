@@ -14,3 +14,4 @@ Basically just an experiment I made because I could
 - [ ] Showing ongoing lookups
 - [ ] Setting limits
 - [ ] Stop button
+- [ ] Save/restore state
