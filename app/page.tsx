@@ -21,89 +21,95 @@ export default function Home() {
 
   async function addUserFollowsToGraph(username: string) {
     setActiveOperations((prev) => prev + 1);
-    const { followers, following } = await getFollows(token, username);
-    if (!(followers.length > 100 || following.length > 100)) {
-      followers.forEach((follower) => {
-        setNodes((currentNodes) => {
-          if (!currentNodes.some((node) => node.id === follower.username)) {
-            if (auto) addUserFollowsToGraph(follower.username);
-            return [
-              ...currentNodes,
-              {
-                id: follower.username,
-                label: follower.name,
-              },
-            ];
-          } else {
-            console.log(`Node ${follower.username} already exists`);
-          }
-          return currentNodes;
+    try {
+      const { followers, following } = await getFollows(token, username);
+      if (!(followers.length > 100 || following.length > 100)) {
+        followers.forEach((follower) => {
+          setNodes((currentNodes) => {
+            if (!currentNodes.some((node) => node.id === follower.username)) {
+              if (auto) addUserFollowsToGraph(follower.username);
+              return [
+                ...currentNodes,
+                {
+                  id: follower.username,
+                  label: follower.name,
+                },
+              ];
+            } else {
+              console.log(`Node ${follower.username} already exists`);
+            }
+            return currentNodes;
+          });
+          setEdges((currentEdges) => {
+            if (
+              !currentEdges.some(
+                (edge) => edge.id === `${follower.username}-${username}`,
+              )
+            ) {
+              return [
+                ...currentEdges,
+                {
+                  source: follower.username,
+                  target: username,
+                  id: `${follower.username}-${username}`,
+                  label: "Follower",
+                },
+              ];
+            } else {
+              console.log(
+                `Edge ${follower.username}-${username} already exists`,
+              );
+            }
+            return currentEdges;
+          });
         });
-        setEdges((currentEdges) => {
-          if (
-            !currentEdges.some(
-              (edge) => edge.id === `${follower.username}-${username}`,
-            )
-          ) {
-            return [
-              ...currentEdges,
-              {
-                source: follower.username,
-                target: username,
-                id: `${follower.username}-${username}`,
-                label: "Follower",
-              },
-            ];
-          } else {
-            console.log(`Edge ${follower.username}-${username} already exists`);
-          }
-          return currentEdges;
+        following.forEach((user) => {
+          setNodes((currentNodes) => {
+            if (!currentNodes.some((node) => node.id === user.username)) {
+              if (auto) addUserFollowsToGraph(user.username);
+              return [
+                ...currentNodes,
+                {
+                  id: user.username,
+                  label: user.name,
+                },
+              ];
+            } else {
+              console.log(`Node ${user.username} already exists`);
+            }
+            return currentNodes;
+          });
+          setEdges((currentEdges) => {
+            if (
+              !currentEdges.some(
+                (edge) => edge.id === `${username}-${user.username}`,
+              )
+            ) {
+              return [
+                ...currentEdges,
+                {
+                  source: username,
+                  target: user.username,
+                  id: `${username}-${user.username}`,
+                  label: "Following",
+                },
+              ];
+            } else {
+              console.log(`Edge ${username}-${user.username} already exists`);
+            }
+            return currentEdges;
+          });
         });
-      });
-      following.forEach((user) => {
-        setNodes((currentNodes) => {
-          if (!currentNodes.some((node) => node.id === user.username)) {
-            if (auto) addUserFollowsToGraph(user.username);
-            return [
-              ...currentNodes,
-              {
-                id: user.username,
-                label: user.name,
-              },
-            ];
-          } else {
-            console.log(`Node ${user.username} already exists`);
-          }
-          return currentNodes;
-        });
-        setEdges((currentEdges) => {
-          if (
-            !currentEdges.some(
-              (edge) => edge.id === `${username}-${user.username}`,
-            )
-          ) {
-            return [
-              ...currentEdges,
-              {
-                source: username,
-                target: user.username,
-                id: `${username}-${user.username}`,
-                label: "Following",
-              },
-            ];
-          } else {
-            console.log(`Edge ${username}-${user.username} already exists`);
-          }
-          return currentEdges;
-        });
-      });
-    } else {
-      console.log(
-        username + " has more than 100 followers or following, skipping",
-      );
+      } else {
+        console.log(
+          username + " has more than 100 followers or following, skipping",
+        );
+      }
+    } catch (error) {
+      console.error("Error occurred while fetching data", error);
+    } finally {
+      setActiveOperations((prev) => prev - 1);
     }
-
-    setActiveOperations((prev) => prev - 1);
   }
 
   return (
