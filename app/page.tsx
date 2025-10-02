@@ -5,6 +5,9 @@ import { GraphCanvas } from "reagraph";
 import { getFollows, getUser } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { CheckedState } from "@radix-ui/react-checkbox";
 
 export default function Home() {
   const [nodes, setNodes] = useState<{ id: string; label: string }[]>([]);
@@ -13,6 +16,7 @@ export default function Home() {
   >([]);
 
   const [token, setToken] = useState<string>("");
+  const [auto, setAuto] = useState<CheckedState>(false);
 
   async function addUserFollowsToGraph(username: string) {
     const { followers, following } = await getFollows(token, username);
@@ -107,6 +111,15 @@ export default function Home() {
           value={token}
           onChange={(e) => setToken(e.target.value)}
         />
+
+        <div className="flex items-center gap-3">
+          <Checkbox
+            id="auto"
+            checked={auto}
+            onCheckedChange={(value) => setAuto(value)}
+          />
+          <Label htmlFor="auto">Auto discover</Label>
+        </div>
         <br />
         <Button
           onClick={async () => {
