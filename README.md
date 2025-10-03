@@ -6,14 +6,19 @@ Basically just an experiment I made because I could
 ## Roadmap
 - [ ] Remove recursion?
 - [ ] Better documentation
+- [ ] better ux. onboarding?
 - [ ] Better error handling
 - [ ] Handling when follows are set to private
-- [ ] Better UI
+- [x] Better UI
 - [ ] Showing pfps in the graph
-- [ ] Showing lookup progress on graph nodes?
-- [ ] Showing ongoing lookups
-- [ ] Setting limits
+- [ ] Showing lookup progress on graph nodes? color coding?
+- [x] Showing ongoing lookups
+- [ ] Setting limits in recursive mode
 - [ ] Stop button
 - [x] Save/restore state
+- [ ] save state in localstorage
 - [x] Show node count
 - [ ] Search
+- [ ] Isolate node
+- [ ] list of nodes
+- [ ] node context menu
