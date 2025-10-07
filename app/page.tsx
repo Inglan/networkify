@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/empty";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -523,7 +524,11 @@ export default function Home() {
                                 key={follower.username}
                                 className="flex items-center gap-2"
                               >
-                                {/*<Avatar src={follower.avatar} />*/}
+                                <Avatar>
+                                  <AvatarFallback>
+                                    {follower.name[0]}
+                                  </AvatarFallback>
+                                </Avatar>
                                 <div className="flex flex-col">
                                   <span className="text-sm font-medium">
                                     {follower.name}
@@ -545,7 +550,11 @@ export default function Home() {
                                 key={following.username}
                                 className="flex items-center gap-2"
                               >
-                                {/*<Avatar src={following.avatar} />*/}
+                                <Avatar>
+                                  <AvatarFallback>
+                                    {following.name[0]}
+                                  </AvatarFallback>
+                                </Avatar>
                                 <div className="flex flex-col">
                                   <span className="text-sm font-medium">
                                     {following.name}
