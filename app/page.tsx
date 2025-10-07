@@ -44,9 +44,7 @@ export default function Home() {
   const [auto, setAuto] = useState<CheckedState>(false);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [accordionValue, setAccordionValue] = useState<
-    "discover" | "search" | undefined
-  >();
+  const [accordionValue, setAccordionValue] = useState<string>("discover");
 
   useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
     preventDefault: true,
@@ -164,7 +162,12 @@ export default function Home() {
           </Button>
         </div>
         <Separator />
-        <Accordion type="single" collapsible>
+        <Accordion
+          type="single"
+          value={accordionValue}
+          onValueChange={setAccordionValue}
+          collapsible
+        >
           <AccordionItem value="discover">
             <AccordionTrigger className="px-2">Discover</AccordionTrigger>
             <AccordionContent className="p-2">
