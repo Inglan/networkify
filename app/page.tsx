@@ -166,12 +166,7 @@ export default function Home() {
           </Button>
         </div>
         <Separator />
-        <Accordion
-          type="single"
-          value={accordionValue}
-          onValueChange={setAccordionValue}
-          collapsible
-        >
+        <Accordion type="multiple">
           <AccordionItem value="discover">
             <AccordionTrigger className="px-2">Discover</AccordionTrigger>
             <AccordionContent className="p-2">
