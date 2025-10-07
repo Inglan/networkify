@@ -358,8 +358,7 @@ export default function Home() {
                 <Button
                   onClick={() => {
                     const data = {
-                      nodes: nodes,
-                      edges: edges,
+                      users,
                     };
 
                     const blob = new Blob([JSON.stringify(data)], {
@@ -389,8 +388,7 @@ export default function Home() {
                       const reader = new FileReader();
                       reader.onload = async (event) => {
                         const data = JSON.parse(event.target?.result as string);
-                        setNodes(data.nodes);
-                        setEdges(data.edges);
+                        setUsers(data.users);
                       };
                       reader.readAsText(file);
                     };
@@ -399,8 +397,12 @@ export default function Home() {
                 >
                   Load
                 </Button>
+                <div>
+                  You need to manually update the graph after loading data.
+                </div>
                 <div>{nodes.length} nodes</div>
                 <div>{edges.length} edges</div>
+                <div>{users.length} users</div>
               </div>
             </AccordionContent>
           </AccordionItem>
