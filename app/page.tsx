@@ -153,8 +153,8 @@ export default function Home() {
   }
 
   function updateGraph() {
-    const updatedNodes: typeof nodes = [];
-    const updatedEdges: typeof edges = [];
+    let updatedNodes: typeof nodes = [];
+    let updatedEdges: typeof edges = [];
     users.forEach((user) => {
       let fillColor: string;
       switch (user.searchState) {
@@ -213,6 +213,16 @@ export default function Home() {
             }
           }
         });
+      }
+    });
+
+    updatedNodes.forEach((node) => {
+      if (
+        !updatedEdges.some(
+          (edge) => edge.source === node.id || edge.target === node.id,
+        )
+      ) {
+        updatedNodes = updatedNodes.filter((n) => n.id !== node.id);
       }
     });
 
