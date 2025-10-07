@@ -144,7 +144,7 @@ export default function Home() {
     <>
       <div
         className={clsx(
-          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 px-4 bg-card",
+          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 px-4 bg-card overflow-auto",
           sidebarOpen && "translate-x-96",
         )}
       >
