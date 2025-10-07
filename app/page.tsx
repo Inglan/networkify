@@ -115,7 +115,12 @@ export default function Home() {
   };
 
   const createUser = (userData: (typeof users)[number]) => {
-    setUsers((prev) => [...prev, userData]);
+    setUsers((prev) => {
+      if (!prev.some((user) => user.username === userData.username)) {
+        return [...prev, userData];
+      }
+      return prev;
+    });
   };
 
   const updateNodeColor = (nodeId: string, color: string) => {
