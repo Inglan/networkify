@@ -247,7 +247,7 @@ export default function Home() {
           sidebarHidden && "translate-x-96",
         )}
       >
-        <div className="flex flex-col gap-4 p-4 sticky top-0 bg-card border-b">
+        <div className="flex flex-col gap-4 p-4 sticky top-0 bg-card border-b z-30">
           <div className="w-full flex flex-row items-center">
             <div className="font-bold">networkify</div>
             <div className="grow"></div>
