@@ -464,6 +464,7 @@ export default function Home() {
       </Button>
       <GraphCanvas
         ref={graphRef}
+        selections={[selectedUserId]}
         labelType="nodes"
         draggable={true}
         nodes={nodes}
