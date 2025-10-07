@@ -44,10 +44,12 @@ export default function Home() {
   const [auto, setAuto] = useState<CheckedState>(false);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [accordionValue, setAccordionValue] = useState<string>("discover");
+  const [accordionValues, setAccordionValues] = useState<string[]>([
+    "discover",
+  ]);
   const [selectedUserId, setSelectedUserId] = useState<string>("");
 
-  useHotkeys(["ctrl+f", "meta+f"], () => setAccordionValue("search"), {
+  useHotkeys(["ctrl+f", "meta+f"], () => setAccordionValues(["search"]), {
     preventDefault: true,
   });
   useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
@@ -166,7 +168,11 @@ export default function Home() {
           </Button>
         </div>
         <Separator />
-        <Accordion type="multiple">
+        <Accordion
+          type="multiple"
+          value={accordionValues}
+          onValueChange={setAccordionValues}
+        >
           <AccordionItem value="discover">
             <AccordionTrigger className="px-2">Discover</AccordionTrigger>
             <AccordionContent className="p-2">
@@ -305,7 +311,7 @@ export default function Home() {
                         onSelect={() => {
                           graphRef.current?.centerGraph([node.id]);
                           setSelectedUserId(node.id);
-                          setAccordionValue("info");
+                          setAccordionValues(["info"]);
                         }}
                         key={node.id}
                       >
@@ -384,7 +390,7 @@ export default function Home() {
         }
         onNodeClick={(node) => {
           setSelectedUserId(node.id);
-          setAccordionValue("info");
+          setAccordionValues(["info"]);
         }}
         onNodeDoubleClick={(node) => addUserFollowsToGraph(node.id)}
       />
