@@ -39,6 +39,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { toast } from "sonner";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -228,6 +229,7 @@ export default function Home() {
 
     setNodes(updatedNodes);
     setEdges(updatedEdges);
+    toast.success("Graph updated");
   }
 
   useEffect(() => {
