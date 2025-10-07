@@ -47,6 +47,9 @@ export default function Home() {
   const [accordionValue, setAccordionValue] = useState<string>("discover");
   const [selectedUserId, setSelectedUserId] = useState<string>("");
 
+  useHotkeys(["ctrl+f", "meta+f"], () => setAccordionValue("search"), {
+    preventDefault: true,
+  });
   useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
     preventDefault: true,
   });
