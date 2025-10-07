@@ -12,8 +12,14 @@ export async function getFollows(token: string, username: string) {
   }
   try {
     return {
-      following: await getUserFollowing(token, username),
-      followers: await getUserFollowers(token, username),
+      following: await getUserFollowing(
+        token,
+        username.replace("spotify:user:", ""),
+      ),
+      followers: await getUserFollowers(
+        token,
+        username.replace("spotify:user:", ""),
+      ),
     };
   } catch {
     return {
