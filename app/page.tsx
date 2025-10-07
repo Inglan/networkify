@@ -98,6 +98,21 @@ export default function Home() {
     preventDefault: true,
   });
 
+  const updateUserState = (
+    username: string,
+    searchState: (typeof users)[number]["searchState"],
+  ) => {
+    setUsers((prev) => {
+      const userIndex = prev.findIndex((user) => user.username === username);
+      if (userIndex === -1) return prev;
+      return [
+        ...prev.slice(0, userIndex),
+        { ...prev[userIndex], searchState },
+        ...prev.slice(userIndex + 1),
+      ];
+    });
+  };
+
   const updateNodeColor = (nodeId: string, color: string) => {
     setNodes((currentNodes) => {
       // Change searchingnode to green
