@@ -528,6 +528,7 @@ export default function Home() {
                                   <AvatarFallback>
                                     {follower.name[0]}
                                   </AvatarFallback>
+                                  <AvatarImage src={follower.image_url} />
                                 </Avatar>
                                 <div className="flex flex-col">
                                   <span className="text-sm font-medium">
@@ -554,6 +555,7 @@ export default function Home() {
                                   <AvatarFallback>
                                     {following.name[0]}
                                   </AvatarFallback>
+                                  <AvatarImage src={following.image_url} />
                                 </Avatar>
                                 <div className="flex flex-col">
                                   <span className="text-sm font-medium">
