@@ -460,7 +460,7 @@ export default function Home() {
                     }
                   </h2>
                   <span className="text-foreground/75">{selectedUserId}</span>
-                  <Command>
+                  <Command className="border">
                     <CommandInput autoFocus placeholder="Actions" />
                     <CommandList>
                       <CommandEmpty>No results found.</CommandEmpty>
