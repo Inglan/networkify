@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { GraphCanvas, GraphCanvasRef } from "reagraph";
+import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
 import { getFollows, getUser } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -439,6 +439,7 @@ export default function Home() {
         draggable={true}
         nodes={nodes}
         edges={edges}
+        theme={darkTheme}
         onNodeContextMenu={(node) =>
           window.open("https://open.spotify.com/user/" + node.id)
         }
