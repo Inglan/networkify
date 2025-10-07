@@ -237,7 +237,7 @@ export default function Home() {
     if (activeOperations === 0) {
       updateGraph();
     }
-  }, [activeOperations]);
+  }, [activeOperations, users.length]);
 
   return (
     <>
