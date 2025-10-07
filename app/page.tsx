@@ -196,8 +196,8 @@ export default function Home() {
       user.followers.forEach((follower) => {
         if (!follower.username.startsWith("spotify:artist")) {
           updatedEdges.push({
-            id: `${follower.username}-${user.username}`,
-            source: follower.username,
+            id: `${follower.username.replace("spotify:user:", "")}-${user.username}`,
+            source: follower.username.replace("spotify:user:", ""),
             target: user.username,
             label: "Following",
           });
@@ -207,9 +207,9 @@ export default function Home() {
       user.following.forEach((following) => {
         if (!following.username.startsWith("spotify:artist")) {
           updatedEdges.push({
-            id: `${user.username}-${following.username}`,
+            id: `${user.username}-${following.username.replace("spotify:user:", "")}`,
             source: user.username,
-            target: following.username,
+            target: following.username.replace("spotify:user:", ""),
             label: "Following",
           });
         }
