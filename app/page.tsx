@@ -134,7 +134,6 @@ export default function Home() {
     if (!token) return;
     setActiveOperations((prev) => prev + 1);
     updateUserState(username, { searchState: "searching" });
-    updateNodeColor(username, "blue");
     try {
       const { followers, following } = await getFollows(token, username);
       updateUserState(username, {
@@ -150,100 +149,44 @@ export default function Home() {
           searchState: "not_searched",
         }),
       );
-      if (!(followers.length > 100 || following.length > 100)) {
-        followers.forEach((follower) => {
-          setNodes((currentNodes) => {
-            if (!currentNodes.some((node) => node.id === follower.username)) {
-              if (auto) discover(follower.username);
-              return [
-                ...currentNodes,
-                {
-                  id: follower.username,
-                  label: follower.name,
-                  fill: "grey",
-                },
-              ];
-            } else {
-              console.log(`Node ${follower.username} already exists`);
-            }
-            return currentNodes;
-          });
-          setEdges((currentEdges) => {
-            if (
-              !currentEdges.some(
-                (edge) => edge.id === `${follower.username}-${username}`,
-              )
-            ) {
-              return [
-                ...currentEdges,
-                {
-                  source: follower.username,
-                  target: username,
-                  id: `${follower.username}-${username}`,
-                  label: "Follower",
-                },
-              ];
-            } else {
-              console.log(
-                `Edge ${follower.username}-${username} already exists`,
-              );
-            }
-            return currentEdges;
-          });
-        });
-        following.forEach((user) => {
-          setNodes((currentNodes) => {
-            if (!currentNodes.some((node) => node.id === user.username)) {
-              if (auto) discover(user.username);
-              return [
-                ...currentNodes,
-                {
-                  id: user.username,
-                  label: user.name,
-                  fill: "grey",
-                },
-              ];
-            } else {
-              console.log(`Node ${user.username} already exists`);
-            }
-            return currentNodes;
-          });
-          setEdges((currentEdges) => {
-            if (
-              !currentEdges.some(
-                (edge) => edge.id === `${username}-${user.username}`,
-              )
-            ) {
-              return [
-                ...currentEdges,
-                {
-                  source: username,
-                  target: user.username,
-                  id: `${username}-${user.username}`,
-                  label: "Following",
-                },
-              ];
-            } else {
-              console.log(`Edge ${username}-${user.username} already exists`);
-            }
-            return currentEdges;
-          });
-        });
-
-        updateNodeColor(username, "green");
-      } else {
-        updateNodeColor(username, "red");
-        console.log(
-          username + " has more than 100 followers or following, skipping",
-        );
-      }
     } catch (error) {
       updateUserState(username, { searchState: "error" });
-      updateNodeColor(username, "red");
       console.error("Error occurred while fetching data", error);
     } finally {
       setActiveOperations((prev) => prev - 1);
     }
+  }
+
+  function updateGraph() {
+    let updatedNodes: typeof nodes = [];
+    let updatedEdges: typeof edges = [];
+    users.forEach((user) => {
+      let fillColor: string;
+      switch (user.searchState) {
+        case "not_searched":
+          fillColor = "gray";
+          break;
+        case "searching":
+          fillColor = "blue";
+          break;
+        case "searched":
+          fillColor = "green";
+          break;
+        case "error":
+          fillColor = "red";
+          break;
+        default:
+          fillColor = "gray";
+      }
+      updatedNodes.push({
+        id: user.username,
+        label: user.name,
+        fill: fillColor,
+      });
+    });
+
+    setNodes(updatedNodes);
+    setEdges(updatedEdges);
   }
 
   return (
@@ -321,13 +264,6 @@ export default function Home() {
                         username: data.username,
                       },
                     ]);
-                    setNodes([
-                      {
-                        id: data.username,
-                        label: data.name,
-                        fill: "grey",
-                      },
-                    ]);
                     discover(data.username);
                   }}
                 >
@@ -345,6 +281,7 @@ export default function Home() {
                 >
                   Run on all nodes
                 </Button>
+                <Button onClick={updateGraph}>Update graph</Button>
                 <div>{activeOperations} active searches</div>
               </div>
             </AccordionContent>
