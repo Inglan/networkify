@@ -161,6 +161,7 @@ export default function Home() {
         );
     } catch (error) {
       updateUserState(username, { searchState: "error" });
+      toast.error("Something went wrong. Maybe aquire another token.");
       console.error("Error occurred while fetching data", error);
     } finally {
       setActiveOperations((prev) => prev - 1);
@@ -303,18 +304,24 @@ export default function Home() {
                 <Button
                   disabled={!token}
                   onClick={async () => {
-                    const data = await getUser(token);
-                    setUsers([
-                      {
-                        followers: [],
-                        following: [],
-                        name: data.name,
-                        searchState: "not_searched",
-                        username: data.username,
-                      },
-                    ]);
-                    discover(data.username);
-                    updateGraph();
+                    try {
+                      const data = await getUser(token);
+                      setUsers([
+                        {
+                          followers: [],
+                          following: [],
+                          name: data.name,
+                          searchState: "not_searched",
+                          username: data.username,
+                        },
+                      ]);
+                      discover(data.username);
+                      updateGraph();
+                    } catch (error) {
+                      toast.error(
+                        "Something went wrong. Maybe aquire another token.",
+                      );
+                    }
                   }}
                 >
                   Run
