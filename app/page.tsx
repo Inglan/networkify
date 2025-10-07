@@ -195,17 +195,14 @@ export default function Home() {
 
       user.followers.forEach((follower) => {
         if (!follower.username.startsWith("spotify:artist")) {
-          if (
-            !edges.some(
-              (edge) =>
-                edge.id ===
-                `${follower.username.replace("spotify:user:", "")}-${user.username}`,
-            )
-          ) {
+          const followerId = follower.username.replace("spotify:user:", "");
+          const userId = user.username.replace("spotify:user:", "");
+          const edgeId = `${followerId}-${userId}`;
+          if (!updatedEdges.some((edge) => edge.id === edgeId)) {
             updatedEdges.push({
-              id: `${follower.username.replace("spotify:user:", "")}-${user.username}`,
-              source: follower.username.replace("spotify:user:", ""),
-              target: user.username,
+              id: edgeId,
+              source: followerId,
+              target: userId,
               label: "Following",
             });
           }
@@ -214,12 +211,17 @@ export default function Home() {
 
       user.following.forEach((following) => {
         if (!following.username.startsWith("spotify:artist")) {
-          updatedEdges.push({
-            id: `${user.username}-${following.username.replace("spotify:user:", "")}`,
-            source: user.username,
-            target: following.username.replace("spotify:user:", ""),
-            label: "Following",
-          });
+          const userId = user.username.replace("spotify:user:", "");
+          const followingId = following.username.replace("spotify:user:", "");
+          const edgeId = `${userId}-${followingId}`;
+          if (!updatedEdges.some((edge) => edge.id === edgeId)) {
+            updatedEdges.push({
+              id: edgeId,
+              source: userId,
+              target: followingId,
+              label: "Following",
+            });
+          }
         }
       });
     });
