@@ -54,7 +54,7 @@ export default function Home() {
   const [token, setToken] = useState<string>("");
   const [auto, setAuto] = useState<CheckedState>(false);
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarHidden, setSidebarHidden] = useState(false);
   const [accordionValues, setAccordionValues] = useState<string[]>([
     "discover",
   ]);
@@ -83,7 +83,7 @@ export default function Home() {
   useHotkeys("mod+f", () => openAccordion("search"), {
     preventDefault: true,
   });
-  useHotkeys("mod+b", () => setSidebarOpen(!sidebarOpen), {
+  useHotkeys("mod+b", () => setSidebarHidden(!sidebarHidden), {
     preventDefault: true,
   });
 
@@ -212,7 +212,7 @@ export default function Home() {
       <div
         className={clsx(
           "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 bg-card overflow-auto",
-          sidebarOpen && "translate-x-96",
+          sidebarHidden && "translate-x-96",
         )}
       >
         <div className="w-full p-2 flex flex-row items-center">
@@ -473,7 +473,7 @@ export default function Home() {
       <Button
         size="icon"
         className="fixed bottom-2 right-2 z-20"
-        onClick={() => setSidebarOpen(!sidebarOpen)}
+        onClick={() => setSidebarHidden(!sidebarHidden)}
       >
         <Sidebar />
       </Button>
