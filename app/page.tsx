@@ -241,25 +241,27 @@ export default function Home() {
         <div>{edges.length} edges</div>
         <div>{activeOperations} active searches</div>
       </div>
-      <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
-        <CommandInput placeholder="Search..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup>
-            {nodes.map((node) => (
-              <CommandItem
-                onSelect={() => {
-                  graphRef.current?.centerGraph([node.id]);
-                  setSearchOpen(false);
-                }}
-                key={node.id}
-              >
-                {node.label}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
+      <div className="sidebar fixed top-0 right-0 h-full w-96 z-10 border-l">
+        <Command>
+          <CommandInput placeholder="Search..." />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup>
+              {nodes.map((node) => (
+                <CommandItem
+                  onSelect={() => {
+                    graphRef.current?.centerGraph([node.id]);
+                    setSearchOpen(false);
+                  }}
+                  key={node.id}
+                >
+                  {node.label}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </div>
       <GraphCanvas
         ref={graphRef}
         labelType="nodes"
