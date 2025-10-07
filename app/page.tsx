@@ -21,13 +21,15 @@ import {
 } from "@/components/ui/command";
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
-import { Sidebar } from "lucide-react";
+import { Code, ExternalLink, Sidebar } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -144,10 +146,21 @@ export default function Home() {
     <>
       <div
         className={clsx(
-          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 px-4 bg-card overflow-auto",
+          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 bg-card overflow-auto",
           sidebarOpen && "translate-x-96",
         )}
       >
+        <div className="w-full p-2 flex flex-row items-center">
+          <div className="font-bold">networkify</div>
+          <div className="grow"></div>
+          <Button variant="ghost" asChild>
+            <Link href="https://github.com/Inglan/networkify" target="_blank">
+              Source code
+              <ExternalLink />
+            </Link>
+          </Button>
+        </div>
+        <Separator />
         <Accordion type="single" collapsible>
           <AccordionItem value="discover">
             <AccordionTrigger>Discover</AccordionTrigger>
