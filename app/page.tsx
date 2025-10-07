@@ -212,16 +212,16 @@ export default function Home() {
           });
         });
 
-        updateUserState(username, "searched");
         updateNodeColor(username, "green");
       } else {
-        updateUserState(username, "error");
         updateNodeColor(username, "red");
         console.log(
           username + " has more than 100 followers or following, skipping",
         );
       }
+      updateUserState(username, "searched");
     } catch (error) {
+      updateUserState(username, "error");
       updateNodeColor(username, "red");
       console.error("Error occurred while fetching data", error);
     } finally {
