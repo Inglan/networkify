@@ -288,9 +288,11 @@ export default function Home() {
                 <Button
                   disabled={!token}
                   onClick={async () => {
-                    nodes.forEach((node) => {
-                      addUserFollowsToGraph(node.id);
-                    });
+                    nodes
+                      .filter((node) => node.fill == "grey")
+                      .forEach((node) => {
+                        addUserFollowsToGraph(node.id);
+                      });
                   }}
                 >
                   Run on all nodes
