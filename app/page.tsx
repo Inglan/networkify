@@ -258,6 +258,10 @@ export default function Home() {
           </Button>
         </div>
         <Separator />
+        <div className=" flex flex-col gap-2 p-4">
+          <Button onClick={updateGraph}>Update graph</Button>
+        </div>
+        <Separator />
         <Accordion
           type="multiple"
           value={accordionValues}
@@ -345,7 +349,6 @@ export default function Home() {
                   }
                   )
                 </Button>
-                <Button onClick={updateGraph}>Update graph</Button>
                 <div>{activeOperations} active searches</div>
               </div>
             </AccordionContent>
