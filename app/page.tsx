@@ -346,7 +346,7 @@ export default function Home() {
                             graphRef.current?.centerGraph([selectedUserId]);
                           }}
                         >
-                          Center graph
+                          Center Graph
                         </CommandItem>
                         <CommandItem
                           onSelect={() => {
