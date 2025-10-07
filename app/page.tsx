@@ -320,11 +320,13 @@ export default function Home() {
                 <Button
                   disabled={!token}
                   onClick={async () => {
-                    nodes
-                      .filter((node) => node.fill == "grey")
-                      .forEach((node) => {
-                        discover(node.id);
+                    users
+                      .filter((user) => user.searchState == "not_searched")
+                      .forEach((user) => {
+                        user.searchState = "searching";
+                        discover(user.username);
                       });
+                    updateGraph();
                   }}
                 >
                   Run on all nodes
