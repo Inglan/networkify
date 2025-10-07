@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/command";
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
-import { Code, ExternalLink, Sidebar } from "lucide-react";
+import { Code, ExternalLink, Sidebar, User } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -30,6 +30,14 @@ import {
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -346,7 +354,7 @@ export default function Home() {
           <AccordionItem value="info">
             <AccordionTrigger className="px-2">User info</AccordionTrigger>
             <AccordionContent className="p-2">
-              {selectedUserId && (
+              {selectedUserId ? (
                 <div className="flex flex-col gap-2">
                   <h2 className="text-lg font-bold">
                     {
@@ -387,6 +395,20 @@ export default function Home() {
                     </CommandList>
                   </Command>
                 </div>
+              ) : (
+                <Empty className="border border-dashed">
+                  <EmptyHeader>
+                    <EmptyMedia variant="icon">
+                      <User />
+                    </EmptyMedia>
+                  </EmptyHeader>
+                  <EmptyTitle>No user selected</EmptyTitle>
+                  <EmptyContent>
+                    <Button onClick={() => openAccordion("search")}>
+                      Search
+                    </Button>
+                  </EmptyContent>
+                </Empty>
               )}
             </AccordionContent>
           </AccordionItem>
