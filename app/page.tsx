@@ -203,8 +203,8 @@ export default function Home() {
           onValueChange={setAccordionValues}
         >
           <AccordionItem value="discover">
-            <AccordionTrigger className="px-2">Discover</AccordionTrigger>
-            <AccordionContent className="p-2">
+            <AccordionTrigger className="px-4">Discover</AccordionTrigger>
+            <AccordionContent className="p-4">
               <div className=" flex flex-col gap-2">
                 <Input
                   placeholder="Token"
@@ -270,8 +270,8 @@ export default function Home() {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="Data">
-            <AccordionTrigger className="px-2">Data</AccordionTrigger>
-            <AccordionContent className="p-2">
+            <AccordionTrigger className="px-4">Data</AccordionTrigger>
+            <AccordionContent className="p-4">
               <div className=" flex flex-col gap-2">
                 <Button
                   onClick={() => {
@@ -323,14 +323,14 @@ export default function Home() {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="search">
-            <AccordionTrigger className="px-2">
+            <AccordionTrigger className="px-4">
               Search
               <KbdGroup>
                 <Kbd>⌘ + F</Kbd>
               </KbdGroup>
               <div className="grow"></div>
             </AccordionTrigger>
-            <AccordionContent className="p-2">
+            <AccordionContent className="p-4">
               <Command>
                 <CommandInput autoFocus placeholder="Search..." />
                 <CommandList>
@@ -359,8 +359,8 @@ export default function Home() {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="info">
-            <AccordionTrigger className="px-2">User info</AccordionTrigger>
-            <AccordionContent className="p-2">
+            <AccordionTrigger className="px-4">User info</AccordionTrigger>
+            <AccordionContent className="p-4">
               {selectedUserId ? (
                 <div className="flex flex-col gap-2">
                   <h2 className="text-lg font-bold">
