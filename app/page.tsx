@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/command";
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
-import { Code, ExternalLink, Sidebar, User } from "lucide-react";
+import { Code, ExternalLink, SearchX, Sidebar, User } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -515,7 +515,7 @@ export default function Home() {
                     </CommandList>
                   </Command>
                   {users.find((user) => user.username == selectedUserId)
-                    ?.searchState == "searched" && (
+                    ?.searchState == "searched" ? (
                     <Accordion
                       type="multiple"
                       className="border rounded-md px-4"
@@ -595,6 +595,20 @@ export default function Home() {
                         );
                       })}
                     </Accordion>
+                  ) : (
+                    <Empty className="border border-dashed">
+                      <EmptyHeader>
+                        <EmptyMedia variant="icon">
+                          <SearchX />
+                        </EmptyMedia>
+                      </EmptyHeader>
+                      <EmptyTitle>Follows not discovered yet</EmptyTitle>
+                      <EmptyContent>
+                        <Button onClick={() => discover(selectedUserId)}>
+                          Discover
+                        </Button>
+                      </EmptyContent>
+                    </Empty>
                   )}
                 </div>
               ) : (
