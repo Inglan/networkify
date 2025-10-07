@@ -247,7 +247,14 @@ export default function Home() {
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup>
             {nodes.map((node) => (
-              <CommandItem key={node.id}>{node.label}</CommandItem>
+              <CommandItem
+                onSelect={() => {
+                  graphRef.current?.centerGraph([node.id]);
+                }}
+                key={node.id}
+              >
+                {node.label}
+              </CommandItem>
             ))}
           </CommandGroup>
         </CommandList>
