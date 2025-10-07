@@ -329,7 +329,12 @@ export default function Home() {
                     updateGraph();
                   }}
                 >
-                  Run on all nodes
+                  Run on all unsearched nodes (
+                  {
+                    users.filter((user) => user.searchState == "not_searched")
+                      .length
+                  }
+                  )
                 </Button>
                 <Button onClick={updateGraph}>Update graph</Button>
                 <div>{activeOperations} active searches</div>
