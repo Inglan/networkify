@@ -326,6 +326,31 @@ export default function Home() {
                         ?.label
                     }
                   </h2>
+                  <span className="text-foreground/75">{selectedUserId}</span>
+                  <Command>
+                    <CommandInput autoFocus placeholder="Actions" />
+                    <CommandList>
+                      <CommandEmpty>No results found.</CommandEmpty>
+                      <CommandGroup>
+                        <CommandItem
+                          onSelect={() => {
+                            window.open(
+                              "https://open.spotify.com/user/" + selectedUserId,
+                            );
+                          }}
+                        >
+                          View on Spotify
+                        </CommandItem>
+                        <CommandItem
+                          onSelect={() => {
+                            graphRef.current?.centerGraph([selectedUserId]);
+                          }}
+                        >
+                          Center graph
+                        </CommandItem>
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
                 </div>
               )}
             </AccordionContent>
