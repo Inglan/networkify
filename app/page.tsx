@@ -294,6 +294,8 @@ export default function Home() {
                       <CommandItem
                         onSelect={() => {
                           graphRef.current?.centerGraph([node.id]);
+                          setSelectedUserId(node.id);
+                          setAccordionValue("info");
                         }}
                         key={node.id}
                       >
