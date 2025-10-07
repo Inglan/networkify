@@ -113,6 +113,10 @@ export default function Home() {
     });
   };
 
+  const createUser = (userData: (typeof users)[number]) => {
+    setUsers((prev) => [...prev, userData]);
+  };
+
   const updateNodeColor = (nodeId: string, color: string) => {
     setNodes((currentNodes) => {
       const nodeIndex = currentNodes.findIndex((node) => node.id === nodeId);
