@@ -235,6 +235,14 @@ export default function Home() {
                 >
                   Run on all nodes
                 </Button>
+                <div>{activeOperations} active searches</div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="Data">
+            <AccordionTrigger className="px-2">Data</AccordionTrigger>
+            <AccordionContent className="p-2">
+              <div className=" flex flex-col gap-2">
                 <Button
                   onClick={() => {
                     const data = {
@@ -281,7 +289,6 @@ export default function Home() {
                 </Button>
                 <div>{nodes.length} nodes</div>
                 <div>{edges.length} edges</div>
-                <div>{activeOperations} active searches</div>
               </div>
             </AccordionContent>
           </AccordionItem>
