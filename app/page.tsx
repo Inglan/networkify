@@ -163,8 +163,8 @@ export default function Home() {
         <Separator />
         <Accordion type="single" collapsible>
           <AccordionItem value="discover">
-            <AccordionTrigger>Discover</AccordionTrigger>
-            <AccordionContent>
+            <AccordionTrigger className="px-2">Discover</AccordionTrigger>
+            <AccordionContent className="p-2">
               <div className=" flex flex-col gap-2">
                 <Input
                   placeholder="Token"
@@ -276,8 +276,8 @@ export default function Home() {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="search">
-            <AccordionTrigger>Search</AccordionTrigger>
-            <AccordionContent>
+            <AccordionTrigger className="px-2">Search</AccordionTrigger>
+            <AccordionContent className="p-2">
               <Command>
                 <CommandInput placeholder="Search..." />
                 <CommandList>
