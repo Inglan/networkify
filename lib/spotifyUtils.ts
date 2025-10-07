@@ -70,20 +70,22 @@ export async function getUserFollowers(
     const parsedData = JSON.parse(data);
     if (parsedData.profiles) {
       return (
-        parsedData.profiles as {
-          uri: string;
-          name: string;
-          image_url: string;
-          followers_count: number;
-          color: number;
-        }[]
-      )
-        .filter((profile) => profile.uri.startsWith("spotify:user:"))
-        .map((profile) => ({
-          username: profile.uri.split(":")[2],
-          name: profile.name,
-          image_url: profile.image_url,
-        }));
+        (
+          parsedData.profiles as {
+            uri: string;
+            name: string;
+            image_url: string;
+            followers_count: number;
+            color: number;
+          }[]
+        )
+          // .filter((profile) => profile.uri.startsWith("spotify:user:"))
+          .map((profile) => ({
+            username: profile.uri.split(":")[2],
+            name: profile.name,
+            image_url: profile.image_url,
+          }))
+      );
     } else {
       return [];
     }
@@ -115,20 +117,22 @@ export async function getUserFollowing(
     const parsedData = JSON.parse(data);
     if (parsedData.profiles) {
       return (
-        parsedData.profiles as {
-          uri: string;
-          name: string;
-          image_url: string;
-          followers_count: number;
-          is_following: boolean;
-        }[]
-      )
-        .filter((profile) => profile.uri.startsWith("spotify:user:"))
-        .map((profile) => ({
-          username: profile.uri.split(":")[2],
-          name: profile.name,
-          image_url: profile.image_url,
-        }));
+        (
+          parsedData.profiles as {
+            uri: string;
+            name: string;
+            image_url: string;
+            followers_count: number;
+            is_following: boolean;
+          }[]
+        )
+          // .filter((profile) => profile.uri.startsWith("spotify:user:"))
+          .map((profile) => ({
+            username: profile.uri.split(":")[2],
+            name: profile.name,
+            image_url: profile.image_url,
+          }))
+      );
     } else {
       return [];
     }
