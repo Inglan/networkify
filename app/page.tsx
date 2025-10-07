@@ -325,9 +325,7 @@ export default function Home() {
           <AccordionItem value="search">
             <AccordionTrigger className="px-4">
               Search
-              <KbdGroup>
-                <Kbd>⌘ + F</Kbd>
-              </KbdGroup>
+              <Kbd>⌘ + F</Kbd>
               <div className="grow"></div>
             </AccordionTrigger>
             <AccordionContent className="p-4">
