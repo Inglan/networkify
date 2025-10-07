@@ -142,6 +142,14 @@ export default function Home() {
         followers,
         following,
       });
+      [...followers, ...following].forEach((user) =>
+        createUser({
+          ...user,
+          followers: [],
+          following: [],
+          searchState: "not_searched",
+        }),
+      );
       if (!(followers.length > 100 || following.length > 100)) {
         followers.forEach((follower) => {
           setNodes((currentNodes) => {
