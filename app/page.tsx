@@ -128,6 +128,7 @@ export default function Home() {
   async function discover(username: string) {
     if (!token) return;
     setActiveOperations((prev) => prev + 1);
+    updateUserState(username, "searching");
     updateNodeColor(username, "blue");
     try {
       const { followers, following } = await getFollows(token, username);
@@ -211,8 +212,10 @@ export default function Home() {
           });
         });
 
+        updateUserState(username, "searched");
         updateNodeColor(username, "green");
       } else {
+        updateUserState(username, "error");
         updateNodeColor(username, "red");
         console.log(
           username + " has more than 100 followers or following, skipping",
