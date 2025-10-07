@@ -250,6 +250,7 @@ export default function Home() {
               <CommandItem
                 onSelect={() => {
                   graphRef.current?.centerGraph([node.id]);
+                  setSearchOpen(false);
                 }}
                 key={node.id}
               >
