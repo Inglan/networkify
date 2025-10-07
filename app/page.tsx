@@ -106,7 +106,7 @@ export default function Home() {
     });
   };
 
-  async function addUserFollowsToGraph(username: string) {
+  async function discover(username: string) {
     if (!token) return;
     setActiveOperations((prev) => prev + 1);
     updateNodeColor(username, "blue");
@@ -116,7 +116,7 @@ export default function Home() {
         followers.forEach((follower) => {
           setNodes((currentNodes) => {
             if (!currentNodes.some((node) => node.id === follower.username)) {
-              if (auto) addUserFollowsToGraph(follower.username);
+              if (auto) discover(follower.username);
               return [
                 ...currentNodes,
                 {
@@ -156,7 +156,7 @@ export default function Home() {
         following.forEach((user) => {
           setNodes((currentNodes) => {
             if (!currentNodes.some((node) => node.id === user.username)) {
-              if (auto) addUserFollowsToGraph(user.username);
+              if (auto) discover(user.username);
               return [
                 ...currentNodes,
                 {
@@ -280,7 +280,7 @@ export default function Home() {
                         fill: "grey",
                       },
                     ]);
-                    addUserFollowsToGraph(data.username);
+                    discover(data.username);
                   }}
                 >
                   Run
@@ -291,7 +291,7 @@ export default function Home() {
                     nodes
                       .filter((node) => node.fill == "grey")
                       .forEach((node) => {
-                        addUserFollowsToGraph(node.id);
+                        discover(node.id);
                       });
                   }}
                 >
@@ -430,7 +430,7 @@ export default function Home() {
                         </CommandItem>
                         <CommandItem
                           onSelect={() => {
-                            addUserFollowsToGraph(selectedUserId);
+                            discover(selectedUserId);
                           }}
                         >
                           Discover
@@ -498,7 +498,7 @@ export default function Home() {
           setSelectedUserId(node.id);
           openAccordion("info");
         }}
-        onNodeDoubleClick={(node) => addUserFollowsToGraph(node.id)}
+        onNodeDoubleClick={(node) => discover(node.id)}
       />
     </>
   );
