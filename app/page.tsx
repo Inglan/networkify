@@ -132,7 +132,7 @@ export default function Home() {
 
   async function discover(username: string) {
     if (!token) return;
-    if (!username.startsWith("spotify:user:")) return;
+    if (username.startsWith("spotify:artist")) return;
     setActiveOperations((prev) => prev + 1);
     updateUserState(username, { searchState: "searching" });
     try {
@@ -142,14 +142,16 @@ export default function Home() {
         followers,
         following,
       });
-      [...followers, ...following].forEach((user) =>
-        createUser({
-          ...user,
-          followers: [],
-          following: [],
-          searchState: "not_searched",
-        }),
-      );
+      [...followers, ...following]
+        .filter((user) => !user.username.startsWith("spotify:artist"))
+        .forEach((user) =>
+          createUser({
+            ...user,
+            followers: [],
+            following: [],
+            searchState: "not_searched",
+          }),
+        );
     } catch (error) {
       updateUserState(username, { searchState: "error" });
       console.error("Error occurred while fetching data", error);
