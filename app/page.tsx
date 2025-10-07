@@ -44,6 +44,9 @@ export default function Home() {
   const [auto, setAuto] = useState<CheckedState>(false);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [accordionValue, setAccordionValue] = useState<
+    "discover" | "search" | undefined
+  >();
 
   useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
     preventDefault: true,
