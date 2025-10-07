@@ -512,7 +512,7 @@ export default function Home() {
                       </CommandGroup>
                     </CommandList>
                   </Command>
-                  <Accordion type="single" collapsible>
+                  <Accordion type="multiple">
                     <AccordionItem value="followers">
                       <AccordionTrigger>Followers</AccordionTrigger>
                       <AccordionContent>
