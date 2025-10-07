@@ -115,19 +115,12 @@ export default function Home() {
 
   const updateNodeColor = (nodeId: string, color: string) => {
     setNodes((currentNodes) => {
-      // Change searchingnode to green
-      const searchingNode = currentNodes.find((node) => node.id === nodeId);
+      const nodeIndex = currentNodes.findIndex((node) => node.id === nodeId);
+      if (nodeIndex === -1) return currentNodes;
       return [
-        ...currentNodes.filter((node) => node.id !== nodeId),
-        ...(searchingNode
-          ? [
-              {
-                id: searchingNode.id,
-                label: searchingNode.label,
-                fill: color,
-              },
-            ]
-          : []),
+        ...currentNodes.slice(0, nodeIndex),
+        { ...currentNodes[nodeIndex], fill: color },
+        ...currentNodes.slice(nodeIndex + 1),
       ];
     });
   };
