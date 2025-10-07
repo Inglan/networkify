@@ -357,6 +357,13 @@ export default function Home() {
               <div className=" flex flex-col gap-2">
                 <Button
                   onClick={() => {
+                    setUsers([]);
+                  }}
+                >
+                  Clear all
+                </Button>
+                <Button
+                  onClick={() => {
                     const data = {
                       users,
                     };
