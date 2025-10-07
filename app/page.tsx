@@ -230,6 +230,12 @@ export default function Home() {
     setEdges(updatedEdges);
   }
 
+  useEffect(() => {
+    if (activeOperations === 0) {
+      updateGraph();
+    }
+  }, [activeOperations]);
+
   return (
     <>
       <div
@@ -306,6 +312,7 @@ export default function Home() {
                       },
                     ]);
                     discover(data.username);
+                    updateGraph();
                   }}
                 >
                   Run
