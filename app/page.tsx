@@ -45,6 +45,7 @@ export default function Home() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [accordionValue, setAccordionValue] = useState<string>("discover");
+  const [selectedUserId, setSelectedUserId] = useState<string>("");
 
   useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
     preventDefault: true,
