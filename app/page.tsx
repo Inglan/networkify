@@ -234,7 +234,7 @@ export default function Home() {
           sidebarHidden && "translate-x-96",
         )}
       >
-        <div className="w-full p-2 flex flex-row items-center">
+        <div className="w-full p-2 px-4 flex flex-row items-center">
           <div className="font-bold">networkify</div>
           <div className="grow"></div>
           <Button variant="ghost" asChild>
