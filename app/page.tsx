@@ -404,7 +404,12 @@ export default function Home() {
                   </EmptyHeader>
                   <EmptyTitle>No user selected</EmptyTitle>
                   <EmptyContent>
-                    <Button onClick={() => openAccordion("search")}>
+                    <Button
+                      onClick={() => {
+                        openAccordion("search");
+                        closeAccordion("info");
+                      }}
+                    >
                       Search
                     </Button>
                   </EmptyContent>
