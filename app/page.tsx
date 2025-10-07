@@ -410,11 +410,13 @@ export default function Home() {
                   <EmptyTitle>No user selected</EmptyTitle>
                   <EmptyContent>
                     <Button
+                      variant="outline"
                       onClick={() => {
                         openAccordion("search");
                         closeAccordion("info");
                       }}
                     >
+                      <Kbd>⌘ + F</Kbd>
                       Search
                     </Button>
                   </EmptyContent>
