@@ -514,61 +514,65 @@ export default function Home() {
                   </Command>
                   {users.find((user) => user.username == selectedUserId)
                     ?.searchState == "searched" && (
-                    <Accordion type="multiple">
-                      <AccordionItem value="followers">
-                        <AccordionTrigger>Followers</AccordionTrigger>
-                        <AccordionContent>
-                          <div className="flex flex-col gap-2">
-                            {users
-                              .find((user) => user.username == selectedUserId)
-                              ?.followers.map((follower) => (
-                                <div
-                                  key={follower.username}
-                                  className="flex items-center gap-2"
-                                >
-                                  <Avatar>
-                                    <AvatarFallback>
-                                      {follower.name[0]}
-                                    </AvatarFallback>
-                                    <AvatarImage src={follower.image_url} />
-                                  </Avatar>
-                                  <div className="flex flex-col">
-                                    <span className="text-sm font-medium">
-                                      {follower.name}
-                                    </span>
+                    <Accordion
+                      type="multiple"
+                      className="border rounded-md px-4"
+                    >
+                      {[
+                        {
+                          title: "Followers",
+                          id: "followers",
+                          value: users.find(
+                            (user) => user.username == selectedUserId,
+                          )?.followers,
+                        },
+                        {
+                          title: "Users Following",
+                          id: "usersfollowing",
+                          value: users
+                            .find((user) => user.username == selectedUserId)
+                            ?.following.filter((user) =>
+                              user.username.startsWith("spotify:user:"),
+                            ),
+                        },
+                        {
+                          title: "Artists Following",
+                          id: "artistsfollowing",
+                          value: users
+                            .find((user) => user.username == selectedUserId)
+                            ?.following.filter((user) =>
+                              user.username.startsWith("spotify:artist:"),
+                            ),
+                        },
+                      ].map(({ title, id, value }) => {
+                        return (
+                          <AccordionItem value={id} key={id}>
+                            <AccordionTrigger>{title}</AccordionTrigger>
+                            <AccordionContent>
+                              <div className="flex flex-col gap-2">
+                                {value?.map((follower) => (
+                                  <div
+                                    key={follower.username}
+                                    className="flex items-center gap-2"
+                                  >
+                                    <Avatar>
+                                      <AvatarFallback>
+                                        {follower.name[0]}
+                                      </AvatarFallback>
+                                      <AvatarImage src={follower.image_url} />
+                                    </Avatar>
+                                    <div className="flex flex-col">
+                                      <span className="text-sm font-medium">
+                                        {follower.name}
+                                      </span>
+                                    </div>
                                   </div>
-                                </div>
-                              ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="following">
-                        <AccordionTrigger>Following</AccordionTrigger>
-                        <AccordionContent>
-                          <div className="flex flex-col gap-2">
-                            {users
-                              .find((user) => user.username == selectedUserId)
-                              ?.following.map((following) => (
-                                <div
-                                  key={following.username}
-                                  className="flex items-center gap-2"
-                                >
-                                  <Avatar>
-                                    <AvatarFallback>
-                                      {following.name[0]}
-                                    </AvatarFallback>
-                                    <AvatarImage src={following.image_url} />
-                                  </Avatar>
-                                  <div className="flex flex-col">
-                                    <span className="text-sm font-medium">
-                                      {following.name}
-                                    </span>
-                                  </div>
-                                </div>
-                              ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
+                                ))}
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        );
+                      })}
                     </Accordion>
                   )}
                 </div>
