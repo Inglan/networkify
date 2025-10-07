@@ -237,7 +237,7 @@ export default function Home() {
         <div className="w-full p-2 px-4 flex flex-row items-center">
           <div className="font-bold">networkify</div>
           <div className="grow"></div>
-          <Button variant="ghost" asChild>
+          <Button variant="link" asChild>
             <Link href="https://github.com/Inglan/networkify" target="_blank">
               Source code
               <ExternalLink />
