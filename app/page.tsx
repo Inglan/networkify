@@ -59,6 +59,16 @@ export default function Home() {
     });
   };
 
+  const closeAccordion = (value: string) => {
+    setAccordionValues((prev) => {
+      if (prev.includes(value)) {
+        return prev.filter((v) => v !== value);
+      } else {
+        return prev;
+      }
+    });
+  };
+
   useHotkeys(["ctrl+f", "meta+f"], () => openAccordion("search"), {
     preventDefault: true,
   });
@@ -321,7 +331,7 @@ export default function Home() {
                         onSelect={() => {
                           graphRef.current?.centerGraph([node.id]);
                           setSelectedUserId(node.id);
-                          setAccordionValues(["info"]);
+                          openAccordion("info");
                         }}
                         key={node.id}
                       >
@@ -400,7 +410,7 @@ export default function Home() {
         }
         onNodeClick={(node) => {
           setSelectedUserId(node.id);
-          setAccordionValues(["info"]);
+          openAccordion("info");
         }}
         onNodeDoubleClick={(node) => addUserFollowsToGraph(node.id)}
       />
