@@ -51,6 +51,7 @@ export default function Home() {
       error?: string;
       following: { username: string; name: string }[];
       followers: { username: string; name: string }[];
+      image_url?: string;
     }[]
   >([]);
 
