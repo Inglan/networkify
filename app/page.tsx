@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { GraphCanvas } from "reagraph";
+import { useEffect, useRef, useState } from "react";
+import { GraphCanvas, GraphCanvasRef } from "reagraph";
 import { getFollows, getUser } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +22,8 @@ import {
 import { useHotkeys } from "react-hotkeys-hook";
 
 export default function Home() {
+  const graphRef = useRef<GraphCanvasRef | null>(null);
+
   const [nodes, setNodes] = useState<{ id: string; label: string }[]>([]);
   const [edges, setEdges] = useState<
     { source: string; target: string; id: string; label: string }[]
@@ -251,6 +253,7 @@ export default function Home() {
         </CommandList>
       </CommandDialog>
       <GraphCanvas
+        ref={graphRef}
         labelType="nodes"
         draggable={true}
         nodes={nodes}
