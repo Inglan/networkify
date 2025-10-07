@@ -348,6 +348,13 @@ export default function Home() {
                         >
                           Center graph
                         </CommandItem>
+                        <CommandItem
+                          onSelect={() => {
+                            navigator.clipboard.writeText(selectedUserId);
+                          }}
+                        >
+                          Copy User ID
+                        </CommandItem>
                       </CommandGroup>
                     </CommandList>
                   </Command>
