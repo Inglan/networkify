@@ -247,18 +247,17 @@ export default function Home() {
           sidebarHidden && "translate-x-96",
         )}
       >
-        <div className="w-full p-2 px-4 flex flex-row items-center">
-          <div className="font-bold">networkify</div>
-          <div className="grow"></div>
-          <Button variant="link" asChild>
-            <Link href="https://github.com/Inglan/networkify" target="_blank">
-              Source code
-              <ExternalLink />
-            </Link>
-          </Button>
-        </div>
-        <Separator />
-        <div className=" flex flex-col gap-2 p-4">
+        <div className="flex flex-col gap-4 p-4">
+          <div className="w-full flex flex-row items-center">
+            <div className="font-bold">networkify</div>
+            <div className="grow"></div>
+            <Button variant="outline" asChild>
+              <Link href="https://github.com/Inglan/networkify" target="_blank">
+                Source code
+                <ExternalLink />
+              </Link>
+            </Button>
+          </div>
           <Button onClick={updateGraph}>Update graph</Button>
         </div>
         <Separator />
