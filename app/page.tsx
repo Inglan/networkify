@@ -289,7 +289,7 @@ export default function Home() {
             <AccordionTrigger className="px-2">Search</AccordionTrigger>
             <AccordionContent className="p-2">
               <Command>
-                <CommandInput placeholder="Search..." />
+                <CommandInput autoFocus placeholder="Search..." />
                 <CommandList>
                   <CommandEmpty>No results found.</CommandEmpty>
                   <CommandGroup>
