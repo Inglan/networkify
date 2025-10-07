@@ -305,6 +305,21 @@ export default function Home() {
               </Command>
             </AccordionContent>
           </AccordionItem>
+          <AccordionItem value="info">
+            <AccordionTrigger className="px-2">User info</AccordionTrigger>
+            <AccordionContent className="p-2">
+              {selectedUserId && (
+                <div className="flex flex-col gap-2">
+                  <h2 className="text-lg font-bold">
+                    {
+                      nodes.filter((node) => node.id === selectedUserId)[0]
+                        ?.label
+                    }
+                  </h2>
+                </div>
+              )}
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
       </div>
       <Button
