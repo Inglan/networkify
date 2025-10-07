@@ -506,6 +506,17 @@ export default function Home() {
                         </CommandItem>
                         <CommandItem
                           onSelect={() => {
+                            setUsers(
+                              users.filter(
+                                (user) => user.username == selectedUserId,
+                              ),
+                            );
+                          }}
+                        >
+                          Isolate
+                        </CommandItem>
+                        <CommandItem
+                          onSelect={() => {
                             setSelectedUserId("");
                           }}
                         >
