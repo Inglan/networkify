@@ -107,6 +107,7 @@ export default function Home() {
   };
 
   async function addUserFollowsToGraph(username: string) {
+    if (!token) return;
     setActiveOperations((prev) => prev + 1);
     updateNodeColor(username, "blue");
     try {
