@@ -511,6 +511,42 @@ export default function Home() {
                       </CommandGroup>
                     </CommandList>
                   </Command>
+                  <h2 className="text-lg font-bold">Followers</h2>
+                  <div className="flex flex-col gap-2">
+                    {users
+                      .find((user) => user.username == selectedUserId)
+                      ?.followers.map((follower) => (
+                        <div
+                          key={follower.username}
+                          className="flex items-center gap-2"
+                        >
+                          {/*<Avatar src={follower.avatar} />*/}
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium">
+                              {follower.name}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                  <h2 className="text-lg font-bold">Following</h2>
+                  <div className="flex flex-col gap-2">
+                    {users
+                      .find((user) => user.username == selectedUserId)
+                      ?.following.map((following) => (
+                        <div
+                          key={following.username}
+                          className="flex items-center gap-2"
+                        >
+                          {/*<Avatar src={following.avatar} />*/}
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium">
+                              {following.name}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               ) : (
                 <Empty className="border border-dashed">
