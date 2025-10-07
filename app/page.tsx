@@ -43,7 +43,9 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd";
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
 
-  const [nodes, setNodes] = useState<{ id: string; label: string }[]>([]);
+  const [nodes, setNodes] = useState<
+    { id: string; label: string; fill: string }[]
+  >([]);
   const [edges, setEdges] = useState<
     { source: string; target: string; id: string; label: string }[]
   >([]);
@@ -87,6 +89,22 @@ export default function Home() {
 
   async function addUserFollowsToGraph(username: string) {
     setActiveOperations((prev) => prev + 1);
+    setNodes((currentNodes) => {
+      // Change searchingnode to green
+      const searchingNode = currentNodes.find((node) => node.id === username);
+      return [
+        ...currentNodes.filter((node) => node.id !== username),
+        ...(searchingNode
+          ? [
+              {
+                id: searchingNode.id,
+                label: searchingNode.label,
+                fill: "blue",
+              },
+            ]
+          : []),
+      ];
+    });
     try {
       const { followers, following } = await getFollows(token, username);
       if (!(followers.length > 100 || following.length > 100)) {
@@ -99,6 +117,7 @@ export default function Home() {
                 {
                   id: follower.username,
                   label: follower.name,
+                  fill: "grey",
                 },
               ];
             } else {
@@ -138,6 +157,7 @@ export default function Home() {
                 {
                   id: user.username,
                   label: user.name,
+                  fill: "grey",
                 },
               ];
             } else {
@@ -165,6 +185,25 @@ export default function Home() {
             }
             return currentEdges;
           });
+        });
+
+        setNodes((currentNodes) => {
+          // Change searchingnode to green
+          const searchingNode = currentNodes.find(
+            (node) => node.id === username,
+          );
+          return [
+            ...currentNodes.filter((node) => node.id !== username),
+            ...(searchingNode
+              ? [
+                  {
+                    id: searchingNode.id,
+                    label: searchingNode.label,
+                    fill: "green",
+                  },
+                ]
+              : []),
+          ];
         });
       } else {
         console.log(
@@ -248,6 +287,7 @@ export default function Home() {
                       {
                         id: data.username,
                         label: data.name,
+                        fill: "grey",
                       },
                     ]);
                     addUserFollowsToGraph(data.username);
