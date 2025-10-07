@@ -51,8 +51,8 @@ export default function Home() {
       name: string;
       searchState: "searched" | "searching" | "not_searched" | "error";
       error?: string;
-      following: { username: string; name: string }[];
-      followers: { username: string; name: string }[];
+      following: { username: string; name: string; image_url?: string }[];
+      followers: { username: string; name: string; image_url?: string }[];
       image_url?: string;
     }[]
   >([]);
