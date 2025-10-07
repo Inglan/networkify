@@ -292,6 +292,15 @@ export default function Home() {
                   disabled={!token}
                   onClick={async () => {
                     const data = await getUser(token);
+                    setUsers([
+                      {
+                        followers: [],
+                        following: [],
+                        name: data.name,
+                        searchState: "not_searched",
+                        username: data.username,
+                      },
+                    ]);
                     setNodes([
                       {
                         id: data.username,
