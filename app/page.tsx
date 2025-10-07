@@ -132,6 +132,7 @@ export default function Home() {
 
   async function discover(username: string) {
     if (!token) return;
+    if (!username.startsWith("spotify:user:")) return;
     setActiveOperations((prev) => prev + 1);
     updateUserState(username, { searchState: "searching" });
     try {
