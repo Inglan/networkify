@@ -19,6 +19,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
+import { useHotkeys } from "react-hotkeys-hook";
 
 export default function Home() {
   const [nodes, setNodes] = useState<{ id: string; label: string }[]>([]);
@@ -29,6 +30,12 @@ export default function Home() {
 
   const [token, setToken] = useState<string>("");
   const [auto, setAuto] = useState<CheckedState>(false);
+
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useHotkeys(["ctrl+k", "meta+k"], () => setSearchOpen(true), {
+    preventDefault: true,
+  });
 
   async function addUserFollowsToGraph(username: string) {
     setActiveOperations((prev) => prev + 1);
@@ -232,6 +239,23 @@ export default function Home() {
         <div>{edges.length} edges</div>
         <div>{activeOperations} active searches</div>
       </div>
+      <CommandDialog open={searchOpen} onOpenChange={setSearchOpen}>
+        <CommandInput placeholder="Search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Suggestions">
+            <CommandItem>Calendar</CommandItem>
+            <CommandItem>Search Emoji</CommandItem>
+            <CommandItem>Calculator</CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Settings">
+            <CommandItem>Profile</CommandItem>
+            <CommandItem>Billing</CommandItem>
+            <CommandItem>Settings</CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
       <GraphCanvas
         labelType="nodes"
         draggable={true}
