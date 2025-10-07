@@ -539,7 +539,7 @@ export default function Home() {
         theme={{
           ...darkTheme,
           node: { ...darkTheme.node, inactiveOpacity: 1 },
-          canvas: { ...darkTheme.canvas, background: "#000000" },
+          canvas: { ...darkTheme.canvas, background: "#171717" },
           edge: { ...darkTheme.edge, fill: "#ffffff" },
           arrow: { ...darkTheme.arrow, fill: "#ffffff" },
         }}
