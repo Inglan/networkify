@@ -80,10 +80,10 @@ export default function Home() {
     });
   };
 
-  useHotkeys(["ctrl+f", "meta+f"], () => openAccordion("search"), {
+  useHotkeys("mod+f", () => openAccordion("search"), {
     preventDefault: true,
   });
-  useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
+  useHotkeys("mod+b", () => setSidebarOpen(!sidebarOpen), {
     preventDefault: true,
   });
 
