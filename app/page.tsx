@@ -152,6 +152,7 @@ export default function Home() {
         .forEach((user) =>
           createUser({
             ...user,
+            username: user.username.replace("spotify:user:", ""),
             followers: [],
             following: [],
             searchState: "not_searched",
