@@ -20,6 +20,8 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import { useHotkeys } from "react-hotkeys-hook";
+import clsx from "clsx";
+import { Sidebar } from "lucide-react";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -33,9 +35,9 @@ export default function Home() {
   const [token, setToken] = useState<string>("");
   const [auto, setAuto] = useState<CheckedState>(false);
 
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  useHotkeys(["ctrl+k", "meta+k"], () => setSearchOpen(true), {
+  useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
     preventDefault: true,
   });
 
@@ -241,7 +243,12 @@ export default function Home() {
         <div>{edges.length} edges</div>
         <div>{activeOperations} active searches</div>
       </div>
-      <div className="sidebar fixed top-0 right-0 h-full w-96 z-10 border-l">
+      <div
+        className={clsx(
+          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300",
+          sidebarOpen && "translate-x-96",
+        )}
+      >
         <Command>
           <CommandInput placeholder="Search..." />
           <CommandList>
@@ -251,7 +258,6 @@ export default function Home() {
                 <CommandItem
                   onSelect={() => {
                     graphRef.current?.centerGraph([node.id]);
-                    setSearchOpen(false);
                   }}
                   key={node.id}
                 >
@@ -262,6 +268,13 @@ export default function Home() {
           </CommandList>
         </Command>
       </div>
+      <Button
+        size="icon"
+        className="fixed bottom-2 right-2 z-20"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <Sidebar />
+      </Button>
       <GraphCanvas
         ref={graphRef}
         labelType="nodes"
