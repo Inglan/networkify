@@ -120,18 +120,6 @@ export default function Home() {
     });
   };
 
-  const updateNodeColor = (nodeId: string, color: string) => {
-    setNodes((currentNodes) => {
-      const nodeIndex = currentNodes.findIndex((node) => node.id === nodeId);
-      if (nodeIndex === -1) return currentNodes;
-      return [
-        ...currentNodes.slice(0, nodeIndex),
-        { ...currentNodes[nodeIndex], fill: color },
-        ...currentNodes.slice(nodeIndex + 1),
-      ];
-    });
-  };
-
   async function discover(username: string) {
     if (!token) return;
     if (username.startsWith("spotify:artist")) return;
