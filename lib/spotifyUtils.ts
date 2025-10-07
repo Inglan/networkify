@@ -81,7 +81,7 @@ export async function getUserFollowers(
         )
           // .filter((profile) => profile.uri.startsWith("spotify:user:"))
           .map((profile) => ({
-            username: profile.uri.split(":")[2],
+            username: profile.uri,
             name: profile.name,
             image_url: profile.image_url,
           }))
@@ -128,7 +128,7 @@ export async function getUserFollowing(
         )
           // .filter((profile) => profile.uri.startsWith("spotify:user:"))
           .map((profile) => ({
-            username: profile.uri.split(":")[2],
+            username: profile.uri,
             name: profile.name,
             image_url: profile.image_url,
           }))
