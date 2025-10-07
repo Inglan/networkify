@@ -292,6 +292,11 @@ export default function Home() {
                   <CommandGroup>
                     {nodes.map((node) => (
                       <CommandItem
+                        className={
+                          selectedUserId === node.id
+                            ? "!bg-primary !text-primary-foreground"
+                            : ""
+                        }
                         onSelect={() => {
                           graphRef.current?.centerGraph([node.id]);
                           setSelectedUserId(node.id);
