@@ -87,24 +87,28 @@ export default function Home() {
     preventDefault: true,
   });
 
-  async function addUserFollowsToGraph(username: string) {
-    setActiveOperations((prev) => prev + 1);
+  const updateNodeColor = (nodeId: string, color: string) => {
     setNodes((currentNodes) => {
       // Change searchingnode to green
-      const searchingNode = currentNodes.find((node) => node.id === username);
+      const searchingNode = currentNodes.find((node) => node.id === nodeId);
       return [
-        ...currentNodes.filter((node) => node.id !== username),
+        ...currentNodes.filter((node) => node.id !== nodeId),
         ...(searchingNode
           ? [
               {
                 id: searchingNode.id,
                 label: searchingNode.label,
-                fill: "blue",
+                fill: color,
               },
             ]
           : []),
       ];
     });
+  };
+
+  async function addUserFollowsToGraph(username: string) {
+    setActiveOperations((prev) => prev + 1);
+    updateNodeColor(username, "blue");
     try {
       const { followers, following } = await getFollows(token, username);
       if (!(followers.length > 100 || following.length > 100)) {
@@ -187,30 +191,15 @@ export default function Home() {
           });
         });
 
-        setNodes((currentNodes) => {
-          // Change searchingnode to green
-          const searchingNode = currentNodes.find(
-            (node) => node.id === username,
-          );
-          return [
-            ...currentNodes.filter((node) => node.id !== username),
-            ...(searchingNode
-              ? [
-                  {
-                    id: searchingNode.id,
-                    label: searchingNode.label,
-                    fill: "green",
-                  },
-                ]
-              : []),
-          ];
-        });
+        updateNodeColor(username, "green");
       } else {
+        updateNodeColor(username, "red");
         console.log(
           username + " has more than 100 followers or following, skipping",
         );
       }
     } catch (error) {
+      updateNodeColor(username, "red");
       console.error("Error occurred while fetching data", error);
     } finally {
       setActiveOperations((prev) => prev - 1);
