@@ -340,6 +340,10 @@ export default function Home() {
         onNodeContextMenu={(node) =>
           window.open("https://open.spotify.com/user/" + node.id)
         }
+        onNodeClick={(node) => {
+          setSelectedUserId(node.id);
+          setAccordionValue("info");
+        }}
         onNodeDoubleClick={(node) => addUserFollowsToGraph(node.id)}
       />
     </>
