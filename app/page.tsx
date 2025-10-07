@@ -22,6 +22,12 @@ import {
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
 import { Sidebar } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -136,137 +142,150 @@ export default function Home() {
 
   return (
     <>
-      <div className="top-2 left-2 p-4 bg-card border fixed z-30 rounded-md flex flex-col gap-2">
-        <Input
-          placeholder="Token"
-          type="text"
-          value={token}
-          onChange={(e) => setToken(e.target.value)}
-          onPaste={(e) => {
-            e.preventDefault();
-            const data = e.clipboardData.getData("text");
-            try {
-              const parsedData = JSON.parse(data);
-              setToken(
-                JSON.parse(
-                  parsedData.log.entries.filter((entry: any) =>
-                    entry.request.url.includes(
-                      "https://open.spotify.com/api/token",
-                    ),
-                  )[0].response.content.text,
-                ).accessToken,
-              );
-            } catch {
-              setToken(data);
-            }
-          }}
-        />
-
-        <div className="flex items-center gap-3">
-          <Checkbox
-            id="auto"
-            checked={auto}
-            onCheckedChange={(value) => setAuto(value)}
-          />
-          <Label htmlFor="auto">Auto discover</Label>
-        </div>
-        <br />
-        <Button
-          disabled={!token}
-          onClick={async () => {
-            const data = await getUser(token);
-            setNodes([
-              {
-                id: data.username,
-                label: data.name,
-              },
-            ]);
-            addUserFollowsToGraph(data.username);
-          }}
-        >
-          Run
-        </Button>
-        <Button
-          disabled={!token}
-          onClick={async () => {
-            nodes.forEach((node) => {
-              addUserFollowsToGraph(node.id);
-            });
-          }}
-        >
-          Run on all nodes
-        </Button>
-        <Button
-          onClick={() => {
-            const data = {
-              nodes: nodes,
-              edges: edges,
-            };
-
-            const blob = new Blob([JSON.stringify(data)], {
-              type: "text/plain;charset=utf-8",
-            });
-
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = "graph_data.json";
-            link.click();
-            URL.revokeObjectURL(url);
-          }}
-        >
-          Save
-        </Button>
-        <Button
-          onClick={() => {
-            const input = document.createElement("input");
-            input.type = "file";
-            input.accept = ".json";
-            input.onchange = async (event) => {
-              const file = (event.target as HTMLInputElement).files?.[0];
-              if (!file) return;
-
-              const reader = new FileReader();
-              reader.onload = async (event) => {
-                const data = JSON.parse(event.target?.result as string);
-                setNodes(data.nodes);
-                setEdges(data.edges);
-              };
-              reader.readAsText(file);
-            };
-            input.click();
-          }}
-        >
-          Load
-        </Button>
-        <div>{nodes.length} nodes</div>
-        <div>{edges.length} edges</div>
-        <div>{activeOperations} active searches</div>
-      </div>
       <div
         className={clsx(
-          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300",
+          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 px-4",
           sidebarOpen && "translate-x-96",
         )}
       >
-        <Command>
-          <CommandInput placeholder="Search..." />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup>
-              {nodes.map((node) => (
-                <CommandItem
-                  onSelect={() => {
-                    graphRef.current?.centerGraph([node.id]);
+        <Accordion type="single" collapsible>
+          <AccordionItem value="discover">
+            <AccordionTrigger>Discover</AccordionTrigger>
+            <AccordionContent>
+              <div className=" flex flex-col gap-2">
+                <Input
+                  placeholder="Token"
+                  type="text"
+                  value={token}
+                  onChange={(e) => setToken(e.target.value)}
+                  onPaste={(e) => {
+                    e.preventDefault();
+                    const data = e.clipboardData.getData("text");
+                    try {
+                      const parsedData = JSON.parse(data);
+                      setToken(
+                        JSON.parse(
+                          parsedData.log.entries.filter((entry: any) =>
+                            entry.request.url.includes(
+                              "https://open.spotify.com/api/token",
+                            ),
+                          )[0].response.content.text,
+                        ).accessToken,
+                      );
+                    } catch {
+                      setToken(data);
+                    }
                   }}
-                  key={node.id}
+                />
+
+                <div className="flex items-center gap-3">
+                  <Checkbox
+                    id="auto"
+                    checked={auto}
+                    onCheckedChange={(value) => setAuto(value)}
+                  />
+                  <Label htmlFor="auto">Auto discover</Label>
+                </div>
+                <br />
+                <Button
+                  disabled={!token}
+                  onClick={async () => {
+                    const data = await getUser(token);
+                    setNodes([
+                      {
+                        id: data.username,
+                        label: data.name,
+                      },
+                    ]);
+                    addUserFollowsToGraph(data.username);
+                  }}
                 >
-                  {node.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
+                  Run
+                </Button>
+                <Button
+                  disabled={!token}
+                  onClick={async () => {
+                    nodes.forEach((node) => {
+                      addUserFollowsToGraph(node.id);
+                    });
+                  }}
+                >
+                  Run on all nodes
+                </Button>
+                <Button
+                  onClick={() => {
+                    const data = {
+                      nodes: nodes,
+                      edges: edges,
+                    };
+
+                    const blob = new Blob([JSON.stringify(data)], {
+                      type: "text/plain;charset=utf-8",
+                    });
+
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.download = "graph_data.json";
+                    link.click();
+                    URL.revokeObjectURL(url);
+                  }}
+                >
+                  Save
+                </Button>
+                <Button
+                  onClick={() => {
+                    const input = document.createElement("input");
+                    input.type = "file";
+                    input.accept = ".json";
+                    input.onchange = async (event) => {
+                      const file = (event.target as HTMLInputElement)
+                        .files?.[0];
+                      if (!file) return;
+
+                      const reader = new FileReader();
+                      reader.onload = async (event) => {
+                        const data = JSON.parse(event.target?.result as string);
+                        setNodes(data.nodes);
+                        setEdges(data.edges);
+                      };
+                      reader.readAsText(file);
+                    };
+                    input.click();
+                  }}
+                >
+                  Load
+                </Button>
+                <div>{nodes.length} nodes</div>
+                <div>{edges.length} edges</div>
+                <div>{activeOperations} active searches</div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="search">
+            <AccordionTrigger>Search</AccordionTrigger>
+            <AccordionContent>
+              <Command>
+                <CommandInput placeholder="Search..." />
+                <CommandList>
+                  <CommandEmpty>No results found.</CommandEmpty>
+                  <CommandGroup>
+                    {nodes.map((node) => (
+                      <CommandItem
+                        onSelect={() => {
+                          graphRef.current?.centerGraph([node.id]);
+                        }}
+                        key={node.id}
+                      >
+                        {node.label}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
       <Button
         size="icon"
