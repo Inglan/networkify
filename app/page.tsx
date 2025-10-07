@@ -165,8 +165,8 @@ export default function Home() {
   }
 
   function updateGraph() {
-    let updatedNodes: typeof nodes = [];
-    let updatedEdges: typeof edges = [];
+    const updatedNodes: typeof nodes = [];
+    const updatedEdges: typeof edges = [];
     users.forEach((user) => {
       let fillColor: string;
       switch (user.searchState) {
