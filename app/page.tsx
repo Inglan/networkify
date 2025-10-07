@@ -59,7 +59,7 @@ export default function Home() {
     });
   };
 
-  useHotkeys(["ctrl+f", "meta+f"], () => setAccordionValues(["search"]), {
+  useHotkeys(["ctrl+f", "meta+f"], () => openAccordion("search"), {
     preventDefault: true,
   });
   useHotkeys(["ctrl+b", "meta+b"], () => setSidebarOpen(true), {
