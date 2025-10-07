@@ -132,6 +132,11 @@ export default function Home() {
     updateNodeColor(username, "blue");
     try {
       const { followers, following } = await getFollows(token, username);
+      updateUserState(username, {
+        searchState: "searched",
+        followers,
+        following,
+      });
       if (!(followers.length > 100 || following.length > 100)) {
         followers.forEach((follower) => {
           setNodes((currentNodes) => {
@@ -219,7 +224,6 @@ export default function Home() {
           username + " has more than 100 followers or following, skipping",
         );
       }
-      updateUserState(username, { searchState: "searched" });
     } catch (error) {
       updateUserState(username, { searchState: "error" });
       updateNodeColor(username, "red");
