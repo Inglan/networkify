@@ -38,6 +38,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -322,7 +323,13 @@ export default function Home() {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="search">
-            <AccordionTrigger className="px-2">Search</AccordionTrigger>
+            <AccordionTrigger className="px-2">
+              Search
+              <KbdGroup>
+                <Kbd>⌘ + F</Kbd>
+              </KbdGroup>
+              <div className="grow"></div>
+            </AccordionTrigger>
             <AccordionContent className="p-2">
               <Command>
                 <CommandInput autoFocus placeholder="Search..." />
