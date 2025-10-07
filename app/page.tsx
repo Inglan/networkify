@@ -191,6 +191,28 @@ export default function Home() {
         label: user.name,
         fill: fillColor,
       });
+
+      user.followers.forEach((follower) => {
+        if (!follower.username.startsWith("spotify:artist")) {
+          updatedEdges.push({
+            id: `${follower.username}-${user.username}`,
+            source: follower.username,
+            target: user.username,
+            label: "Following",
+          });
+        }
+      });
+
+      user.following.forEach((following) => {
+        if (!following.username.startsWith("spotify:artist")) {
+          updatedEdges.push({
+            id: `${user.username}-${following.username}`,
+            source: user.username,
+            target: following.username,
+            label: "Following",
+          });
+        }
+      });
     });
 
     setNodes(updatedNodes);
