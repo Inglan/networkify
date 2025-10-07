@@ -100,14 +100,14 @@ export default function Home() {
 
   const updateUserState = (
     username: string,
-    searchState: (typeof users)[number]["searchState"],
+    newState: Partial<(typeof users)[number]>,
   ) => {
     setUsers((prev) => {
       const userIndex = prev.findIndex((user) => user.username === username);
       if (userIndex === -1) return prev;
       return [
         ...prev.slice(0, userIndex),
-        { ...prev[userIndex], searchState },
+        { ...prev[userIndex], ...newState },
         ...prev.slice(userIndex + 1),
       ];
     });
@@ -128,7 +128,7 @@ export default function Home() {
   async function discover(username: string) {
     if (!token) return;
     setActiveOperations((prev) => prev + 1);
-    updateUserState(username, "searching");
+    updateUserState(username, { searchState: "searching" });
     updateNodeColor(username, "blue");
     try {
       const { followers, following } = await getFollows(token, username);
@@ -219,9 +219,9 @@ export default function Home() {
           username + " has more than 100 followers or following, skipping",
         );
       }
-      updateUserState(username, "searched");
+      updateUserState(username, { searchState: "searched" });
     } catch (error) {
-      updateUserState(username, "error");
+      updateUserState(username, { searchState: "error" });
       updateNodeColor(username, "red");
       console.error("Error occurred while fetching data", error);
     } finally {
