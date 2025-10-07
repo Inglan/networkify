@@ -243,16 +243,10 @@ export default function Home() {
         <CommandInput placeholder="Search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            <CommandItem>Calendar</CommandItem>
-            <CommandItem>Search Emoji</CommandItem>
-            <CommandItem>Calculator</CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem>Profile</CommandItem>
-            <CommandItem>Billing</CommandItem>
-            <CommandItem>Settings</CommandItem>
+          <CommandGroup>
+            {nodes.map((node) => (
+              <CommandItem key={node.id}>{node.label}</CommandItem>
+            ))}
           </CommandGroup>
         </CommandList>
       </CommandDialog>
