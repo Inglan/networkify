@@ -425,6 +425,20 @@ export default function Home() {
                         >
                           Copy User ID
                         </CommandItem>
+                        <CommandItem
+                          onSelect={() => {
+                            addUserFollowsToGraph(selectedUserId);
+                          }}
+                        >
+                          Discover
+                        </CommandItem>
+                        <CommandItem
+                          onSelect={() => {
+                            setSelectedUserId("");
+                          }}
+                        >
+                          Deselect
+                        </CommandItem>
                       </CommandGroup>
                     </CommandList>
                   </Command>
