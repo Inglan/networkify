@@ -469,7 +469,11 @@ export default function Home() {
         draggable={true}
         nodes={nodes}
         edges={edges}
-        theme={darkTheme}
+        theme={{
+          ...darkTheme,
+          node: { ...darkTheme.node, inactiveOpacity: 1 },
+        }}
+        onCanvasClick={() => setSelectedUserId("")}
         onNodeContextMenu={(node) =>
           window.open("https://open.spotify.com/user/" + node.id)
         }
