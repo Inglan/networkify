@@ -490,6 +490,7 @@ export default function Home() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+        {JSON.stringify(users)}
       </div>
       <Button
         size="icon"
