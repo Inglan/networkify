@@ -379,7 +379,7 @@ export default function Home() {
               <Kbd>⌘ + F</Kbd>
               <div className="grow"></div>
             </AccordionTrigger>
-            <AccordionContent className="p-4">
+            <AccordionContent>
               <Command>
                 <CommandInput autoFocus placeholder="Search..." />
                 <CommandList>
