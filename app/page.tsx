@@ -465,7 +465,14 @@ export default function Home() {
                         </CommandItem>
                         <CommandItem
                           onSelect={() => {
-                            navigator.clipboard.writeText(selectedUserId);
+                            toast.promise(
+                              navigator.clipboard.writeText(selectedUserId),
+                              {
+                                loading: "Copying...",
+                                success: "Copied!",
+                                error: "Failed to copy",
+                              },
+                            );
                           }}
                         >
                           Copy User ID
