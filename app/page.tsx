@@ -527,6 +527,11 @@ export default function Home() {
                           value: users.find(
                             (user) => user.username == selectedUserId,
                           )?.followers,
+                          onclick: (username: string) => {
+                            setSelectedUserId(
+                              username.replace("spotify:user:", ""),
+                            );
+                          },
                         },
                         {
                           title: "Users Following",
@@ -536,6 +541,11 @@ export default function Home() {
                             ?.following.filter((user) =>
                               user.username.startsWith("spotify:user:"),
                             ),
+                          onclick: (username: string) => {
+                            setSelectedUserId(
+                              username.replace("spotify:user:", ""),
+                            );
+                          },
                         },
                         {
                           title: "Artists Following",
@@ -545,8 +555,14 @@ export default function Home() {
                             ?.following.filter((user) =>
                               user.username.startsWith("spotify:artist:"),
                             ),
+                          onclick: (username: string) => {
+                            window.open(
+                              "https://open.spotify.com/artist/" +
+                                username.replace("spotify:artist:", ""),
+                            );
+                          },
                         },
-                      ].map(({ title, id, value }) => {
+                      ].map(({ title, id, value, onclick }) => {
                         return (
                           <AccordionItem value={id} key={id}>
                             <AccordionTrigger>{title}</AccordionTrigger>
@@ -554,8 +570,11 @@ export default function Home() {
                               <div className="flex flex-col gap-2">
                                 {value?.map((follower) => (
                                   <div
+                                    onClick={() => {
+                                      onclick(follower.username);
+                                    }}
                                     key={follower.username}
-                                    className="flex items-center gap-2"
+                                    className="flex items-center gap-2 cursor-pointer"
                                   >
                                     <Avatar>
                                       <AvatarFallback>
