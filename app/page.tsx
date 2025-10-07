@@ -538,7 +538,15 @@ export default function Home() {
         edges={edges}
         theme={{
           ...darkTheme,
-          node: { ...darkTheme.node, inactiveOpacity: 1 },
+          node: {
+            ...darkTheme.node,
+            inactiveOpacity: 1,
+            label: {
+              ...darkTheme.node.label,
+              strokeWidth: 0,
+              stroke: "#171717",
+            },
+          },
           canvas: { ...darkTheme.canvas, background: "#171717" },
           edge: { ...darkTheme.edge, fill: "#ffffff" },
           arrow: { ...darkTheme.arrow, fill: "#ffffff" },
