@@ -453,13 +453,15 @@ export default function Home() {
             <AccordionContent className="p-4">
               {selectedUserId ? (
                 <div className="flex flex-col gap-2">
-                  <h2 className="text-lg font-bold">
-                    {
-                      nodes.filter((node) => node.id === selectedUserId)[0]
-                        ?.label
-                    }
-                  </h2>
-                  <span className="text-foreground/75">{selectedUserId}</span>
+                  <div className="border rounded-md p-4">
+                    <h2 className="text-lg font-bold">
+                      {
+                        nodes.filter((node) => node.id === selectedUserId)[0]
+                          ?.label
+                      }
+                    </h2>
+                    <span className="text-foreground/75">{selectedUserId}</span>
+                  </div>
                   <Command className="border">
                     <CommandInput autoFocus placeholder="Actions" />
                     <CommandList>
