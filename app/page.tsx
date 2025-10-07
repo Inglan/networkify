@@ -327,7 +327,7 @@ export default function Home() {
                   Run
                 </Button>
                 <Button
-                  disabled={!token}
+                  disabled={!token || activeOperations > 0}
                   onClick={async () => {
                     users
                       .filter((user) => user.searchState == "not_searched")
