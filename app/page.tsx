@@ -43,6 +43,17 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd";
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
 
+  const [users, setUsers] = useState<
+    {
+      username: string;
+      name: string;
+      searchState: "searched" | "searching" | "not_searched" | "error";
+      error?: string;
+      following: { username: string; name: string }[];
+      followers: { username: string; name: string }[];
+    }[]
+  >([]);
+
   const [nodes, setNodes] = useState<
     { id: string; label: string; fill: string }[]
   >([]);
