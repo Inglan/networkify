@@ -49,6 +49,16 @@ export default function Home() {
   ]);
   const [selectedUserId, setSelectedUserId] = useState<string>("");
 
+  const openAccordion = (value: string) => {
+    setAccordionValues((prev) => {
+      if (prev.includes(value)) {
+        return prev;
+      } else {
+        return [...prev, value];
+      }
+    });
+  };
+
   useHotkeys(["ctrl+f", "meta+f"], () => setAccordionValues(["search"]), {
     preventDefault: true,
   });
