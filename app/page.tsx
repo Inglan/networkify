@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
 import { getFollows, getUser } from "./actions";
 import { Button } from "@/components/ui/button";
@@ -129,120 +129,17 @@ export default function Home() {
           <AccordionItem value="discover">
             <AccordionTrigger className="px-4">Discover</AccordionTrigger>
             <AccordionContent className="p-4">
-              <div className=" flex flex-col gap-2">
-                <Input
-                  placeholder="Token"
-                  type="text"
-                  value={token}
-                  onChange={(e) => setToken(e.target.value)}
-                  onPaste={(e) => {
-                    e.preventDefault();
-                    const data = e.clipboardData.getData("text");
-                    try {
-                      const parsedData = JSON.parse(data);
-                      setToken(
-                        JSON.parse(
-                          parsedData.log.entries.filter(
-                            (entry: { request: { url: string } }) =>
-                              entry.request.url.includes(
-                                "https://open.spotify.com/api/token",
-                              ),
-                          )[0].response.content.text,
-                        ).accessToken,
-                      );
-                    } catch {
-                      setToken(data);
-                    }
-                  }}
-                />
-
-                <div className="flex items-center gap-3">
-                  <Checkbox
-                    id="auto"
-                    checked={auto}
-                    onCheckedChange={(value) => setAuto(value)}
-                  />
-                  <Label htmlFor="auto">Auto discover</Label>
-                </div>
-                <br />
-                <Button
-                  disabled={!token}
-                  onClick={async () => {
-                    try {
-                      const data = await getUser(token);
-                      setUsers([
-                        {
-                          followers: [],
-                          following: [],
-                          name: data.name,
-                          searchState: "not_searched",
-                          username: data.username,
-                          exclude_from_graph: false,
-                        },
-                      ]);
-                      updateGraph();
-                    } catch {
-                      toast.error(
-                        "Something went wrong. Maybe aquire another token.",
-                      );
-                    }
-                  }}
-                >
-                  Add user node
-                </Button>
-                <Button
-                  disabled={!token || activeOperations > 0}
-                  onClick={async () => {
-                    users
-                      .filter(
-                        (user) =>
-                          user.searchState == "not_searched" &&
-                          !user.exclude_from_graph,
-                      )
-                      .forEach((user) => {
-                        user.searchState = "searching";
-                        discover(user.username);
-                      });
-                    updateGraph();
-                  }}
-                >
-                  Run on all unsearched nodes (
-                  {
-                    users.filter(
-                      (user) =>
-                        user.searchState == "not_searched" &&
-                        !user.exclude_from_graph,
-                    ).length
-                  }
-                  )
-                </Button>
-                <Button
-                  disabled={!token || activeOperations > 0}
-                  onClick={async () => {
-                    users
-                      .filter(
-                        (user) =>
-                          user.searchState == "error" &&
-                          !user.exclude_from_graph,
-                      )
-                      .forEach((user) => {
-                        user.searchState = "searching";
-                        discover(user.username);
-                      });
-                    updateGraph();
-                  }}
-                >
-                  Rerun on all errored nodes (
-                  {
-                    users.filter(
-                      (user) =>
-                        user.searchState == "error" && !user.exclude_from_graph,
-                    ).length
-                  }
-                  )
-                </Button>
-                <div>{activeOperations} active searches</div>
-              </div>
+              <Discover
+                activeOperations={activeOperations}
+                auto={auto}
+                discover={discover}
+                setAuto={setAuto}
+                setToken={setToken}
+                setUsers={setUsers}
+                token={token}
+                updateGraph={updateGraph}
+                users={users}
+              />
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="Data">
@@ -644,6 +541,138 @@ function Header({ updateGraph }: { updateGraph: () => void }) {
         </Button>
       </div>
       <Button onClick={updateGraph}>Update graph</Button>
+    </div>
+  );
+}
+
+function Discover({
+  setToken,
+  token,
+  setAuto,
+  auto,
+  setUsers,
+  updateGraph,
+  users,
+  activeOperations,
+  discover,
+}: {
+  setToken: Dispatch<SetStateAction<string>>;
+  token: string;
+  setAuto: Dispatch<SetStateAction<CheckedState>>;
+  auto: CheckedState;
+  setUsers: Dispatch<SetStateAction<Users>>;
+  updateGraph: () => void;
+  users: Users;
+  activeOperations: number;
+  discover: (id: string) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <Input
+        placeholder="Token"
+        type="text"
+        value={token}
+        onChange={(e) => setToken(e.target.value)}
+        onPaste={(e) => {
+          e.preventDefault();
+          const data = e.clipboardData.getData("text");
+          try {
+            const parsedData = JSON.parse(data);
+            setToken(
+              JSON.parse(
+                parsedData.log.entries.filter(
+                  (entry: { request: { url: string } }) =>
+                    entry.request.url.includes(
+                      "https://open.spotify.com/api/token",
+                    ),
+                )[0].response.content.text,
+              ).accessToken,
+            );
+          } catch {
+            setToken(data);
+          }
+        }}
+      />
+
+      <div className="flex items-center gap-3">
+        <Checkbox
+          id="auto"
+          checked={auto}
+          onCheckedChange={(value) => setAuto(value)}
+        />
+        <Label htmlFor="auto">Auto discover</Label>
+      </div>
+      <br />
+      <Button
+        disabled={!token}
+        onClick={async () => {
+          try {
+            const data = await getUser(token);
+            setUsers([
+              {
+                followers: [],
+                following: [],
+                name: data.name,
+                searchState: "not_searched",
+                username: data.username,
+                exclude_from_graph: false,
+              },
+            ]);
+            updateGraph();
+          } catch {
+            toast.error("Something went wrong. Maybe aquire another token.");
+          }
+        }}
+      >
+        Add user node
+      </Button>
+      <Button
+        disabled={!token || activeOperations > 0}
+        onClick={async () => {
+          users
+            .filter(
+              (user) =>
+                user.searchState == "not_searched" && !user.exclude_from_graph,
+            )
+            .forEach((user) => {
+              user.searchState = "searching";
+              discover(user.username);
+            });
+          updateGraph();
+        }}
+      >
+        Run on all unsearched nodes (
+        {
+          users.filter(
+            (user) =>
+              user.searchState == "not_searched" && !user.exclude_from_graph,
+          ).length
+        }
+        )
+      </Button>
+      <Button
+        disabled={!token || activeOperations > 0}
+        onClick={async () => {
+          users
+            .filter(
+              (user) => user.searchState == "error" && !user.exclude_from_graph,
+            )
+            .forEach((user) => {
+              user.searchState = "searching";
+              discover(user.username);
+            });
+          updateGraph();
+        }}
+      >
+        Rerun on all errored nodes (
+        {
+          users.filter(
+            (user) => user.searchState == "error" && !user.exclude_from_graph,
+          ).length
+        }
+        )
+      </Button>
+      <div>{activeOperations} active searches</div>
     </div>
   );
 }
