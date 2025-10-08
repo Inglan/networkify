@@ -23,3 +23,4 @@ Basically just an experiment I made because I could
 - [x] list of nodes
 - [x] node context menu
 - [ ] better mobile support
+- [ ] Seperate everything into components
