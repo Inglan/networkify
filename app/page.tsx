@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
 import { getFollows, getUser } from "./actions";
 import { Button } from "@/components/ui/button";
@@ -149,7 +149,12 @@ export default function Home() {
     }
   }
 
-  function updateGraph() {
+  function updateGraph(
+    nodes: Nodes,
+    setNodes: Dispatch<SetStateAction<Nodes>>,
+    edges: Edges,
+    setEdges: Dispatch<SetStateAction<Edges>>,
+  ) {
     let updatedNodes: typeof nodes = [];
     let updatedEdges: typeof edges = [];
     users.forEach((user) => {
