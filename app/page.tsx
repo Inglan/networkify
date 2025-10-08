@@ -129,20 +129,30 @@ export default function Home() {
       });
       [...followers, ...following]
         .filter((user) => !user.username.startsWith("spotify:artist"))
-        .forEach((user) =>
-          createUser({
-            ...user,
-            username: user.username.replace("spotify:user:", ""),
-            followers: [],
-            following: [],
-            searchState: "not_searched",
-            exclude_from_graph:
-              followers.length > 100 ||
-              following.filter(
-                (user) => !user.username.startsWith("spotify:artist"),
-              ).length > 100,
-          }),
-        );
+        .forEach((user) => {
+          if (
+            !createUser({
+              ...user,
+              username: user.username.replace("spotify:user:", ""),
+              followers: [],
+              following: [],
+              searchState: "not_searched",
+              exclude_from_graph:
+                followers.length > 100 ||
+                following.filter(
+                  (user) => !user.username.startsWith("spotify:artist"),
+                ).length > 100,
+            })
+          ) {
+            updateUserState(user.username, {
+              exclude_from_graph:
+                followers.length > 100 ||
+                following.filter(
+                  (user) => !user.username.startsWith("spotify:artist"),
+                ).length > 100,
+            });
+          }
+        });
     } catch (error) {
       updateUserState(username, { searchState: "error" });
       toast.error("Something went wrong. Maybe aquire another token.");
