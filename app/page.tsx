@@ -382,6 +382,13 @@ export default function Home() {
                     <span className="text-foreground/75">{selectedUserId}</span>
                     <br />
                     <span className="text-foreground/75">
+                      {users.find((user) => user.username === selectedUserId)
+                        ?.exclude_from_graph
+                        ? "Excluded from graph"
+                        : "Included in graph"}
+                    </span>
+                    <br />
+                    <span className="text-foreground/75">
                       {
                         users.find((user) => user.username === selectedUserId)
                           ?.searchState
