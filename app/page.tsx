@@ -229,7 +229,7 @@ export default function Home() {
                       ]);
                       discover(data.username);
                       updateGraph();
-                    } catch (error) {
+                    } catch {
                       toast.error(
                         "Something went wrong. Maybe aquire another token.",
                       );
