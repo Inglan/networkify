@@ -288,6 +288,31 @@ export default function Home() {
                   }
                   )
                 </Button>
+                <Button
+                  disabled={!token || activeOperations > 0}
+                  onClick={async () => {
+                    users
+                      .filter(
+                        (user) =>
+                          user.searchState == "error" &&
+                          !user.exclude_from_graph,
+                      )
+                      .forEach((user) => {
+                        user.searchState = "searching";
+                        discover(user.username);
+                      });
+                    updateGraph();
+                  }}
+                >
+                  Rerun on all errored nodes (
+                  {
+                    users.filter(
+                      (user) =>
+                        user.searchState == "error" && !user.exclude_from_graph,
+                    ).length
+                  }
+                  )
+                </Button>
                 <div>{activeOperations} active searches</div>
               </div>
             </AccordionContent>
