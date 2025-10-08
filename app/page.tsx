@@ -489,23 +489,25 @@ export default function Home() {
                             <AccordionTrigger>{title}</AccordionTrigger>
                             <AccordionContent>
                               <div className="flex flex-col gap-2">
-                                {value?.map((follower) => (
+                                {value?.map((user) => (
                                   <div
                                     onClick={() => {
-                                      onclick(follower.username);
+                                      onclick(user?.username || "");
                                     }}
-                                    key={follower.username}
+                                    key={user?.username || ""}
                                     className="flex items-center gap-2 cursor-pointer"
                                   >
                                     <Avatar>
                                       <AvatarFallback>
-                                        {follower.name[0]}
+                                        {user?.name[0] || ""}
                                       </AvatarFallback>
-                                      <AvatarImage src={follower.image_url} />
+                                      <AvatarImage
+                                        src={user?.image_url || ""}
+                                      />
                                     </Avatar>
                                     <div className="flex flex-col">
                                       <span className="text-sm font-medium">
-                                        {follower.name}
+                                        {user?.name || ""}
                                       </span>
                                     </div>
                                   </div>
