@@ -37,7 +37,7 @@ import { Kbd } from "@/components/ui/kbd";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Edges, Nodes, Users } from "@/lib/types";
-import { updateGraph as updateGraphFunction } from "@/lib/graphUtils";
+import * as graph from "@/lib/graphUtils";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -78,7 +78,7 @@ export default function Home() {
   };
 
   const updateGraph = () =>
-    updateGraphFunction(nodes, setNodes, edges, setEdges, users);
+    graph.update(nodes, setNodes, edges, setEdges, users);
 
   useHotkeys("mod+f", () => openAccordion("search"), {
     preventDefault: true,
