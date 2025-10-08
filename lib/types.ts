@@ -10,3 +10,13 @@ export type Edges = {
   id: string;
   label: string;
 }[];
+
+export type Users = {
+  username: string;
+  name: string;
+  searchState: "searched" | "searching" | "not_searched" | "error";
+  error?: string;
+  following: { username: string; name: string; image_url?: string }[];
+  followers: { username: string; name: string; image_url?: string }[];
+  image_url?: string;
+}[];

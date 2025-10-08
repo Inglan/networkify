@@ -36,22 +36,12 @@ import {
 import { Kbd } from "@/components/ui/kbd";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Edges, Nodes } from "@/lib/types";
+import { Edges, Nodes, Users } from "@/lib/types";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
 
-  const [users, setUsers] = useState<
-    {
-      username: string;
-      name: string;
-      searchState: "searched" | "searching" | "not_searched" | "error";
-      error?: string;
-      following: { username: string; name: string; image_url?: string }[];
-      followers: { username: string; name: string; image_url?: string }[];
-      image_url?: string;
-    }[]
-  >([]);
+  const [users, setUsers] = useState<Users>([]);
 
   const [nodes, setNodes] = useState<Nodes>([]);
   const [edges, setEdges] = useState<Edges>([]);
