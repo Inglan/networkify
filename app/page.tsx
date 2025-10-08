@@ -133,7 +133,11 @@ export default function Home() {
             followers: [],
             following: [],
             searchState: "not_searched",
-            exclude_from_graph: false,
+            exclude_from_graph:
+              followers.length > 100 ||
+              following.filter(
+                (user) => !user.username.startsWith("spotify:artist"),
+              ).length > 100,
           }),
         );
     } catch (error) {
