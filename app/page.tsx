@@ -39,6 +39,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Edges, Nodes, Users } from "@/lib/types";
 import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
+import * as spotify from "@/lib/spotifyClientUtils";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
