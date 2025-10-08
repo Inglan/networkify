@@ -373,7 +373,7 @@ export default function Home() {
                     const url = URL.createObjectURL(blob);
                     const link = document.createElement("a");
                     link.href = url;
-                    link.download = "graph_data.json";
+                    link.download = `networkify-${new Date().toISOString()}.json`;
                     link.click();
                     URL.revokeObjectURL(url);
                   }}
