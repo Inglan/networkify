@@ -11,14 +11,15 @@ Basically just an experiment I made because I could
 - [ ] Handling when follows are set to private
 - [x] Better UI
 - [ ] Showing pfps in the graph
-- [ ] Showing lookup progress on graph nodes? color coding?
+- [x] Showing lookup progress on graph nodes? color coding?
 - [x] Showing ongoing lookups
 - [ ] Setting limits in recursive mode
 - [ ] Stop button
 - [x] Save/restore state
 - [ ] save state in localstorage
 - [x] Show node count
-- [ ] Search
-- [ ] Isolate node
-- [ ] list of nodes
-- [ ] node context menu
+- [x] Search
+- [x] Isolate node
+- [x] list of nodes
+- [x] node context menu
+- [ ] better mobile support
