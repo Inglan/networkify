@@ -144,6 +144,7 @@ export default function Home() {
     setNodes: Dispatch<SetStateAction<Nodes>>,
     edges: Edges,
     setEdges: Dispatch<SetStateAction<Edges>>,
+    users: Users,
   ) {
     let updatedNodes: typeof nodes = [];
     let updatedEdges: typeof edges = [];
