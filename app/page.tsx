@@ -473,7 +473,7 @@ export default function Home() {
                           Deselect
                         </CommandItem>
                         <CommandItem
-                          onClick={() => {
+                          onSelect={() => {
                             const user = users.find(
                               (user) => user.username == selectedUserId,
                             );
