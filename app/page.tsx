@@ -472,6 +472,22 @@ export default function Home() {
                         >
                           Deselect
                         </CommandItem>
+                        <CommandItem
+                          onClick={() => {
+                            const user = users.find(
+                              (user) => user.username == selectedUserId,
+                            );
+                            updateUserState(selectedUserId, {
+                              exclude_from_graph: !user?.exclude_from_graph,
+                            });
+                          }}
+                        >
+                          {users.find(
+                            (user) => user.username === selectedUserId,
+                          )?.exclude_from_graph
+                            ? "Include"
+                            : "Exclude"}
+                        </CommandItem>
                       </CommandGroup>
                     </CommandList>
                   </Command>
