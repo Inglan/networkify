@@ -191,10 +191,11 @@ export default function Home() {
                       const parsedData = JSON.parse(data);
                       setToken(
                         JSON.parse(
-                          parsedData.log.entries.filter((entry: any) =>
-                            entry.request.url.includes(
-                              "https://open.spotify.com/api/token",
-                            ),
+                          parsedData.log.entries.filter(
+                            (entry: { request: { url: string } }) =>
+                              entry.request.url.includes(
+                                "https://open.spotify.com/api/token",
+                              ),
                           )[0].response.content.text,
                         ).accessToken,
                       );
