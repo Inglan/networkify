@@ -42,7 +42,7 @@ export async function getCurrentUser(token: string): Promise<{
     } else {
       throw new Error("Username not found");
     }
-  } catch (error) {
+  } catch {
     throw new Error("Failed to parse response");
   }
 }
@@ -89,7 +89,7 @@ export async function getUserFollowers(
     } else {
       return [];
     }
-  } catch (error) {
+  } catch {
     throw new Error("Failed to parse response");
   }
 }
@@ -136,7 +136,7 @@ export async function getUserFollowing(
     } else {
       return [];
     }
-  } catch (error) {
+  } catch {
     throw new Error("Failed to parse response");
   }
 }
