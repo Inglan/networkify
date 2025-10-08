@@ -266,7 +266,11 @@ export default function Home() {
                   disabled={!token || activeOperations > 0}
                   onClick={async () => {
                     users
-                      .filter((user) => user.searchState == "not_searched")
+                      .filter(
+                        (user) =>
+                          user.searchState == "not_searched" &&
+                          !user.exclude_from_graph,
+                      )
                       .forEach((user) => {
                         user.searchState = "searching";
                         discover(user.username);
@@ -276,8 +280,11 @@ export default function Home() {
                 >
                   Run on all unsearched nodes (
                   {
-                    users.filter((user) => user.searchState == "not_searched")
-                      .length
+                    users.filter(
+                      (user) =>
+                        user.searchState == "not_searched" &&
+                        !user.exclude_from_graph,
+                    ).length
                   }
                   )
                 </Button>
