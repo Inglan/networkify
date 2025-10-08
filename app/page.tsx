@@ -118,7 +118,8 @@ export default function Home() {
     updateUserState(username, { searchState: "searching" });
     try {
       const { followers, following } = await getFollows(token, username);
-      if (!(followers.length > 100 || following.length > 100)) {
+      // Todo: Limit following (users only, not artists)
+      if (!(followers.length > 100)) {
         updateUserState(username, {
           searchState: "searched",
           followers,
