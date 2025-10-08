@@ -36,6 +36,7 @@ import {
 import { Kbd } from "@/components/ui/kbd";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Edges, Nodes } from "@/lib/types";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -52,12 +53,8 @@ export default function Home() {
     }[]
   >([]);
 
-  const [nodes, setNodes] = useState<
-    { id: string; label: string; fill: string }[]
-  >([]);
-  const [edges, setEdges] = useState<
-    { source: string; target: string; id: string; label: string }[]
-  >([]);
+  const [nodes, setNodes] = useState<Nodes>([]);
+  const [edges, setEdges] = useState<Edges>([]);
   const [activeOperations, setActiveOperations] = useState<number>(0);
 
   const [token, setToken] = useState<string>("");
