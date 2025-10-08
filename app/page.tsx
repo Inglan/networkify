@@ -236,7 +236,6 @@ export default function Home() {
                           username: data.username,
                         },
                       ]);
-                      discover(data.username);
                       updateGraph();
                     } catch {
                       toast.error(
@@ -245,7 +244,7 @@ export default function Home() {
                     }
                   }}
                 >
-                  Run
+                  Add user node
                 </Button>
                 <Button
                   disabled={!token || activeOperations > 0}
