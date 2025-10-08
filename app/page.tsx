@@ -499,7 +499,7 @@ export default function Home() {
                                   >
                                     <Avatar>
                                       <AvatarFallback>
-                                        {user?.name[0] || ""}
+                                        {user.name ? user?.name[0] : ""}
                                       </AvatarFallback>
                                       <AvatarImage
                                         src={user?.image_url || ""}
