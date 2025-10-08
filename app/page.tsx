@@ -92,7 +92,9 @@ export default function Home() {
     newState: Partial<(typeof users)[number]>,
   ) => {
     setUsers((prev) => {
-      const userIndex = prev.findIndex((user) => user.username === username);
+      const userIndex = prev.findIndex(
+        (user) => user.username === username.replace("spotify:user:", ""),
+      );
       if (userIndex === -1) return prev;
       return [
         ...prev.slice(0, userIndex),
