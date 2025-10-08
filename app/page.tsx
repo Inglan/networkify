@@ -133,7 +133,7 @@ export default function Home() {
         .filter((user) => !user.username.startsWith("spotify:artist"))
         .forEach((user) => {
           if (
-            (!createUser({
+            !createUser({
               ...user,
               username: user.username.replace("spotify:user:", ""),
               followers: [],
@@ -145,10 +145,12 @@ export default function Home() {
                   (user) => !user.username.startsWith("spotify:artist"),
                 ).length > 100,
             }) &&
-              followers.length > 100) ||
-            following.filter(
-              (user) => !user.username.startsWith("spotify:artist"),
-            ).length > 100
+            !(
+              followers.length > 100 ||
+              following.filter(
+                (user) => !user.username.startsWith("spotify:artist"),
+              ).length > 100
+            )
           ) {
             updateUserState(user.username, {
               exclude_from_graph: false,
