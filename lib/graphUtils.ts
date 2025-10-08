@@ -10,7 +10,7 @@ export function updateGraph(
   users: Users,
 ) {
   let updatedNodes: typeof nodes = [];
-  let updatedEdges: typeof edges = [];
+  const updatedEdges: typeof edges = [];
   users.forEach((user) => {
     let fillColor: string;
     switch (user.searchState) {
