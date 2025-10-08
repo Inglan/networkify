@@ -378,6 +378,18 @@ export default function Home() {
                       }
                     </h2>
                     <span className="text-foreground/75">{selectedUserId}</span>
+                    <br />
+                    <span className="text-foreground/75">
+                      {
+                        users.find((user) => user.username === selectedUserId)
+                          ?.searchState
+                      }
+                      {users.find((user) => user.username === selectedUserId)
+                        ?.searchState == "error" &&
+                        " - " +
+                          users.find((user) => user.username === selectedUserId)
+                            ?.error}
+                    </span>
                   </div>
                   <Command className="border">
                     <CommandInput autoFocus placeholder="Actions" />
