@@ -119,30 +119,23 @@ export default function Home() {
     try {
       const { followers, following } = await getFollows(token, username);
       // Todo: Limit following (users only, not artists)
-      if (!(followers.length > 100)) {
-        updateUserState(username, {
-          searchState: "searched",
-          followers,
-          following,
-        });
-        [...followers, ...following]
-          .filter((user) => !user.username.startsWith("spotify:artist"))
-          .forEach((user) =>
-            createUser({
-              ...user,
-              username: user.username.replace("spotify:user:", ""),
-              followers: [],
-              following: [],
-              searchState: "not_searched",
-              exclude_from_graph: false,
-            }),
-          );
-      } else {
-        updateUserState(username, {
-          searchState: "error",
-          error: "Followers or following more than 100",
-        });
-      }
+      updateUserState(username, {
+        searchState: "searched",
+        followers,
+        following,
+      });
+      [...followers, ...following]
+        .filter((user) => !user.username.startsWith("spotify:artist"))
+        .forEach((user) =>
+          createUser({
+            ...user,
+            username: user.username.replace("spotify:user:", ""),
+            followers: [],
+            following: [],
+            searchState: "not_searched",
+            exclude_from_graph: false,
+          }),
+        );
     } catch (error) {
       updateUserState(username, { searchState: "error" });
       toast.error("Something went wrong. Maybe aquire another token.");
