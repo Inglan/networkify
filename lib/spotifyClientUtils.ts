@@ -3,7 +3,7 @@ import { Users } from "./types";
 import { getFollows } from "@/app/actions";
 import { toast } from "sonner";
 
-async function discover(
+export async function discover(
   username: string,
   token: string,
   setActiveOperations: Dispatch<SetStateAction<number>>,
