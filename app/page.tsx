@@ -1,6 +1,13 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
 import { getFollows, getUser } from "./actions";
 import { Button } from "@/components/ui/button";
@@ -160,34 +167,14 @@ export default function Home() {
               <div className="grow"></div>
             </AccordionTrigger>
             <AccordionContent>
-              <Command>
-                <CommandInput autoFocus placeholder="Search..." />
-                <CommandList>
-                  <CommandEmpty>No results found.</CommandEmpty>
-                  <CommandGroup>
-                    {users.map((user) => (
-                      <CommandItem
-                        className={
-                          selectedUserId === user.username
-                            ? "!bg-primary !text-primary-foreground"
-                            : ""
-                        }
-                        onSelect={() => {
-                          // if nodes has username
-                          if (nodes.some((node) => node.id === user.username)) {
-                            graphRef.current?.centerGraph([user.username]);
-                          }
-                          setSelectedUserId(user.username);
-                          openAccordion("info");
-                        }}
-                        key={user.username}
-                      >
-                        {user.name}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
+              <Search
+                graphRef={graphRef}
+                nodes={nodes}
+                openAccordion={openAccordion}
+                selectedUserId={selectedUserId}
+                setSelectedUserId={setSelectedUserId}
+                users={users}
+              />
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="info">
@@ -692,5 +679,52 @@ function Data({
       <div>{edges.length} edges</div>
       <div>{users.length} users</div>
     </div>
+  );
+}
+
+function Search({
+  users,
+  nodes,
+  selectedUserId,
+  setSelectedUserId,
+  openAccordion,
+  graphRef,
+}: {
+  users: Users;
+  nodes: Nodes;
+  selectedUserId: string;
+  setSelectedUserId: (userId: string) => void;
+  openAccordion: (id: string) => void;
+  graphRef: RefObject<GraphCanvasRef | null>;
+}) {
+  return (
+    <Command>
+      <CommandInput autoFocus placeholder="Search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup>
+          {users.map((user) => (
+            <CommandItem
+              className={
+                selectedUserId === user.username
+                  ? "!bg-primary !text-primary-foreground"
+                  : ""
+              }
+              onSelect={() => {
+                // if nodes has username
+                if (nodes.some((node) => node.id === user.username)) {
+                  graphRef.current?.centerGraph([user.username]);
+                }
+                setSelectedUserId(user.username);
+                openAccordion("info");
+              }}
+              key={user.username}
+            >
+              {user.name}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
   );
 }
