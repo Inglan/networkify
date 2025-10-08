@@ -72,16 +72,6 @@ export function updateGraph(
     }
   });
 
-  updatedNodes.forEach((node) => {
-    if (
-      !updatedEdges.some(
-        (edge) => edge.source === node.id || edge.target === node.id,
-      )
-    ) {
-      updatedNodes = updatedNodes.filter((n) => n.id !== node.id);
-    }
-  });
-
   setNodes(updatedNodes);
   setEdges(updatedEdges);
   toast.success("Graph updated");
