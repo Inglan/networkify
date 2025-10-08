@@ -103,12 +103,15 @@ export default function Home() {
   };
 
   const createUser = (userData: (typeof users)[number]) => {
+    let created = false;
     setUsers((prev) => {
       if (!prev.some((user) => user.username === userData.username)) {
+        created = true;
         return [...prev, userData];
       }
       return prev;
     });
+    return created;
   };
 
   async function discover(username: string) {
