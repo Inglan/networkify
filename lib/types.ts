@@ -19,4 +19,5 @@ export type Users = {
   following: { username: string; name: string; image_url?: string }[];
   followers: { username: string; name: string; image_url?: string }[];
   image_url?: string;
+  exclude_from_graph: boolean;
 }[];

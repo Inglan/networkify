@@ -134,6 +134,7 @@ export default function Home() {
               followers: [],
               following: [],
               searchState: "not_searched",
+              exclude_from_graph: false,
             }),
           );
       } else {
@@ -234,6 +235,7 @@ export default function Home() {
                           name: data.name,
                           searchState: "not_searched",
                           username: data.username,
+                          exclude_from_graph: false,
                         },
                       ]);
                       updateGraph();
