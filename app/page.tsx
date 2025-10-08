@@ -38,6 +38,7 @@ import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Edges, Nodes, Users } from "@/lib/types";
 import * as graph from "@/lib/graphUtils";
+import * as user from "@/lib/userUtils";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -89,32 +90,11 @@ export default function Home() {
 
   const updateUserState = (
     username: string,
-    newState: Partial<(typeof users)[number]>,
-  ) => {
-    setUsers((prev) => {
-      const userIndex = prev.findIndex(
-        (user) => user.username === username.replace("spotify:user:", ""),
-      );
-      if (userIndex === -1) return prev;
-      return [
-        ...prev.slice(0, userIndex),
-        { ...prev[userIndex], ...newState },
-        ...prev.slice(userIndex + 1),
-      ];
-    });
-  };
+    newState: Partial<Users[number]>,
+  ) => user.updateState(username, newState, setUsers);
 
-  const createUser = (userData: (typeof users)[number]) => {
-    let created = false;
-    setUsers((prev) => {
-      if (!prev.some((user) => user.username === userData.username)) {
-        created = true;
-        return [...prev, userData];
-      }
-      return prev;
-    });
-    return created;
-  };
+  const createUser = (userData: (typeof users)[number]) =>
+    user.create(userData, setUsers);
 
   async function discover(username: string) {
     if (!token) return;
