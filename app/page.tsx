@@ -371,8 +371,8 @@ export default function Home() {
                   <div className="border rounded-md p-4">
                     <h2 className="text-lg font-bold">
                       {
-                        nodes.filter((node) => node.id === selectedUserId)[0]
-                          ?.label
+                        users.find((user) => user.username == selectedUserId)
+                          ?.name
                       }
                     </h2>
                     <span className="text-foreground/75">{selectedUserId}</span>
@@ -405,7 +405,11 @@ export default function Home() {
                         </CommandItem>
                         <CommandItem
                           onSelect={() => {
-                            graphRef.current?.centerGraph([selectedUserId]);
+                            if (
+                              nodes.some((node) => node.id === selectedUserId)
+                            ) {
+                              graphRef.current?.centerGraph([selectedUserId]);
+                            }
                           }}
                         >
                           Center Graph
