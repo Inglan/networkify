@@ -139,8 +139,6 @@ export default function Home() {
         updateUserState(username, {
           searchState: "error",
           error: "Followers or following more than 100",
-          followers,
-          following,
         });
       }
     } catch (error) {
