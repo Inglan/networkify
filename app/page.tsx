@@ -81,13 +81,6 @@ export default function Home() {
   const updateGraph = () =>
     graph.update(nodes, setNodes, edges, setEdges, users);
 
-  useHotkeys("mod+f", () => openAccordion("search"), {
-    preventDefault: true,
-  });
-  useHotkeys("mod+b", () => setSidebarHidden(!sidebarHidden), {
-    preventDefault: true,
-  });
-
   const updateUserState = (
     username: string,
     newState: Partial<Users[number]>,
@@ -95,6 +88,13 @@ export default function Home() {
 
   const createUser = (userData: (typeof users)[number]) =>
     user.create(userData, setUsers);
+
+  useHotkeys("mod+f", () => openAccordion("search"), {
+    preventDefault: true,
+  });
+  useHotkeys("mod+b", () => setSidebarHidden(!sidebarHidden), {
+    preventDefault: true,
+  });
 
   async function discover(username: string) {
     if (!token) return;
