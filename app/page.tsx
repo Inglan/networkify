@@ -338,21 +338,24 @@ export default function Home() {
                 <CommandList>
                   <CommandEmpty>No results found.</CommandEmpty>
                   <CommandGroup>
-                    {nodes.map((node) => (
+                    {users.map((user) => (
                       <CommandItem
                         className={
-                          selectedUserId === node.id
+                          selectedUserId === user.username
                             ? "!bg-primary !text-primary-foreground"
                             : ""
                         }
                         onSelect={() => {
-                          graphRef.current?.centerGraph([node.id]);
-                          setSelectedUserId(node.id);
+                          // if nodes has username
+                          if (nodes.some((node) => node.id === user.username)) {
+                            graphRef.current?.centerGraph([user.username]);
+                          }
+                          setSelectedUserId(user.username);
                           openAccordion("info");
                         }}
-                        key={node.id}
+                        key={user.username}
                       >
-                        {node.label}
+                        {user.name}
                       </CommandItem>
                     ))}
                   </CommandGroup>
