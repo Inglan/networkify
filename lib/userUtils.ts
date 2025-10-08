@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Users } from "./types";
 
-export function updateUserState(
+export function updateState(
   username: string,
   newState: Partial<Users[number]>,
   setUsers: Dispatch<SetStateAction<Users>>,
@@ -19,7 +19,7 @@ export function updateUserState(
   });
 }
 
-export function createUser(
+export function create(
   userData: Users[number],
   setUsers: Dispatch<SetStateAction<Users>>,
 ) {
