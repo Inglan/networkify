@@ -507,7 +507,9 @@ export default function Home() {
                       ].map(({ title, id, value, onclick }) => {
                         return (
                           <AccordionItem value={id} key={id}>
-                            <AccordionTrigger>{title}</AccordionTrigger>
+                            <AccordionTrigger>
+                              {title} ({value?.length})
+                            </AccordionTrigger>
                             <AccordionContent>
                               <div className="flex flex-col gap-2">
                                 {value?.map((user) => (
