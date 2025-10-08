@@ -9,7 +9,7 @@ export function updateGraph(
   setEdges: Dispatch<SetStateAction<Edges>>,
   users: Users,
 ) {
-  let updatedNodes: typeof nodes = [];
+  const updatedNodes: typeof nodes = [];
   const updatedEdges: typeof edges = [];
   users
     .filter((user) => !user.exclude_from_graph)
