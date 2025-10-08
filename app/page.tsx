@@ -106,16 +106,8 @@ export default function Home() {
     setUsers((prev) => {
       if (!prev.some((user) => user.username === userData.username)) {
         return [...prev, userData];
-      } else {
-        const userIndex = prev.findIndex(
-          (user) => user.username === userData.username,
-        );
-        return [
-          ...prev.slice(0, userIndex),
-          { ...prev[userIndex], ...userData },
-          ...prev.slice(userIndex + 1),
-        ];
       }
+      return prev;
     });
   };
 
