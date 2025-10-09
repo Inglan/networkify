@@ -469,7 +469,7 @@ function Search({
   users: Users;
   nodes: Nodes;
   selectedUserId: string;
-  setSelectedUserId: (userId: string) => void;
+  setSelectedUserId: React.Dispatch<React.SetStateAction<string>>;
   openAccordion: (id: string) => void;
   graphRef: RefObject<GraphCanvasRef | null>;
 }) {
