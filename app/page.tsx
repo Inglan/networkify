@@ -196,39 +196,69 @@ export default function Home() {
       >
         <Sidebar />
       </Button>
-      <GraphCanvas
-        ref={graphRef}
-        selections={[selectedUserId]}
-        labelType="nodes"
-        draggable={true}
-        nodes={nodes}
+      <Graph
+        discover={discover}
         edges={edges}
-        theme={{
-          ...darkTheme,
-          node: {
-            ...darkTheme.node,
-            inactiveOpacity: 1,
-            label: {
-              ...darkTheme.node.label,
-              strokeWidth: 0,
-              stroke: "#171717",
-            },
-          },
-          canvas: { ...darkTheme.canvas, background: "#171717" },
-          edge: { ...darkTheme.edge, fill: "#ffffff" },
-          arrow: { ...darkTheme.arrow, fill: "#ffffff" },
-        }}
-        onCanvasClick={() => setSelectedUserId("")}
-        onNodeContextMenu={(node) =>
-          window.open("https://open.spotify.com/user/" + node.id)
-        }
-        onNodeClick={(node) => {
-          setSelectedUserId(node.id);
-          openAccordion("info");
-        }}
-        onNodeDoubleClick={(node) => discover(node.id)}
+        graphRef={graphRef}
+        nodes={nodes}
+        openAccordion={openAccordion}
+        selectedUserId={selectedUserId}
+        setSelectedUserId={setSelectedUserId}
       />
     </>
+  );
+}
+
+function Graph({
+  graphRef,
+  selectedUserId,
+  nodes,
+  edges,
+  setSelectedUserId,
+  openAccordion,
+  discover,
+}: {
+  graphRef: RefObject<GraphCanvasRef | null>;
+  selectedUserId: string;
+  nodes: Nodes;
+  edges: Edges;
+  setSelectedUserId: React.Dispatch<React.SetStateAction<string>>;
+  openAccordion: (id: string) => void;
+  discover: (id: string) => void;
+}) {
+  return (
+    <GraphCanvas
+      ref={graphRef}
+      selections={[selectedUserId]}
+      labelType="nodes"
+      draggable={true}
+      nodes={nodes}
+      edges={edges}
+      theme={{
+        ...darkTheme,
+        node: {
+          ...darkTheme.node,
+          inactiveOpacity: 1,
+          label: {
+            ...darkTheme.node.label,
+            strokeWidth: 0,
+            stroke: "#171717",
+          },
+        },
+        canvas: { ...darkTheme.canvas, background: "#171717" },
+        edge: { ...darkTheme.edge, fill: "#ffffff" },
+        arrow: { ...darkTheme.arrow, fill: "#ffffff" },
+      }}
+      onCanvasClick={() => setSelectedUserId("")}
+      onNodeContextMenu={(node) =>
+        window.open("https://open.spotify.com/user/" + node.id)
+      }
+      onNodeClick={(node) => {
+        setSelectedUserId(node.id);
+        openAccordion("info");
+      }}
+      onNodeDoubleClick={(node) => discover(node.id)}
+    />
   );
 }
 
