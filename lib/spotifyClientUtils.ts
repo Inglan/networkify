@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import { Users } from "./types";
 import { getFollows } from "@/app/actions";
 import { toast } from "sonner";
@@ -6,7 +5,7 @@ import { toast } from "sonner";
 export async function discover(
   username: string,
   token: string,
-  setActiveOperations: Dispatch<SetStateAction<number>>,
+  setActiveOperations: React.Dispatch<React.SetStateAction<number>>,
   updateUserState: (username: string, newState: Partial<Users[number]>) => void,
   createUser: (userData: Users[number]) => boolean,
 ) {

@@ -1,10 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch } from "react";
 import { Users } from "./types";
 
 export function updateState(
   username: string,
   newState: Partial<Users[number]>,
-  setUsers: Dispatch<SetStateAction<Users>>,
+  setUsers: Dispatch<React.SetStateAction<Users>>,
 ) {
   setUsers((prev) => {
     const userIndex = prev.findIndex(
@@ -21,7 +21,7 @@ export function updateState(
 
 export function create(
   userData: Users[number],
-  setUsers: Dispatch<SetStateAction<Users>>,
+  setUsers: Dispatch<React.SetStateAction<Users>>,
 ) {
   let created = false;
   setUsers((prev) => {

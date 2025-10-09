@@ -1,12 +1,12 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch } from "react";
 import { Edges, Nodes, Users } from "./types";
 import { toast } from "sonner";
 
 export function update(
   nodes: Nodes,
-  setNodes: Dispatch<SetStateAction<Nodes>>,
+  setNodes: Dispatch<React.SetStateAction<Nodes>>,
   edges: Edges,
-  setEdges: Dispatch<SetStateAction<Edges>>,
+  setEdges: Dispatch<React.SetStateAction<Edges>>,
   users: Users,
 ) {
   const updatedNodes: typeof nodes = [];

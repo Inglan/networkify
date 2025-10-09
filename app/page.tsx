@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
-import { getFollows, getUser } from "./actions";
+import { getUser } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -268,11 +261,11 @@ function Discover({
   activeOperations,
   discover,
 }: {
-  setToken: Dispatch<SetStateAction<string>>;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
   token: string;
-  setAuto: Dispatch<SetStateAction<CheckedState>>;
+  setAuto: React.Dispatch<React.SetStateAction<CheckedState>>;
   auto: CheckedState;
-  setUsers: Dispatch<SetStateAction<Users>>;
+  setUsers: React.Dispatch<React.SetStateAction<Users>>;
   updateGraph: () => void;
   users: Users;
   activeOperations: number;
