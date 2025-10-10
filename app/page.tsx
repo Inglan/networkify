@@ -24,6 +24,16 @@ import { Header } from "./Header";
 import { Discover } from "./Discover";
 import { UserInfo } from "./UserInfo";
 import { Search } from "./Search";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -111,34 +121,37 @@ export default function Home() {
 
   return (
     <>
-      <div
-        className={clsx(
-          "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 bg-card overflow-auto",
-          !sidebarOpen && "translate-x-96",
-        )}
+      <Drawer
+        direction="right"
+        open={sidebarOpen}
+        onOpenChange={setSidebarOpen}
+        modal={false}
       >
-        <SidebarContent
-          accordionValues={accordionValues}
-          activeOperations={activeOperations}
-          auto={auto}
-          closeAccordionAction={closeAccordion}
-          discoverAction={discover}
-          edges={edges}
-          graphRef={graphRef}
-          nodes={nodes}
-          openAccordionAction={openAccordion}
-          selectedUserId={selectedUserId}
-          setAccordionValuesAction={setAccordionValues}
-          setAutoAction={setAuto}
-          setSelectedUserIdAction={setSelectedUserId}
-          setTokenAction={setToken}
-          setUsersAction={setUsers}
-          token={token}
-          updateGraphAction={updateGraph}
-          updateUserStateAction={updateUserState}
-          users={users}
-        />
-      </div>
+        <DrawerContent>
+          <DrawerTitle className="sr-only">Networkify sidebar</DrawerTitle>
+          <SidebarContent
+            accordionValues={accordionValues}
+            activeOperations={activeOperations}
+            auto={auto}
+            closeAccordionAction={closeAccordion}
+            discoverAction={discover}
+            edges={edges}
+            graphRef={graphRef}
+            nodes={nodes}
+            openAccordionAction={openAccordion}
+            selectedUserId={selectedUserId}
+            setAccordionValuesAction={setAccordionValues}
+            setAutoAction={setAuto}
+            setSelectedUserIdAction={setSelectedUserId}
+            setTokenAction={setToken}
+            setUsersAction={setUsers}
+            token={token}
+            updateGraphAction={updateGraph}
+            updateUserStateAction={updateUserState}
+            users={users}
+          />
+        </DrawerContent>
+      </Drawer>
       <Button
         size="icon"
         className="fixed bottom-2 right-2 z-20"
