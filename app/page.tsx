@@ -134,27 +134,29 @@ export default function Home() {
       >
         <DrawerContent className={clsx("!h-screen", isMobile && "!w-screen")}>
           <DrawerTitle className="sr-only">Networkify sidebar</DrawerTitle>
-          <SidebarContent
-            accordionValues={accordionValues}
-            activeOperations={activeOperations}
-            auto={auto}
-            closeAccordionAction={closeAccordion}
-            discoverAction={discover}
-            edges={edges}
-            graphRef={graphRef}
-            nodes={nodes}
-            openAccordionAction={openAccordion}
-            selectedUserId={selectedUserId}
-            setAccordionValuesAction={setAccordionValues}
-            setAutoAction={setAuto}
-            setSelectedUserIdAction={setSelectedUserId}
-            setTokenAction={setToken}
-            setUsersAction={setUsers}
-            token={token}
-            updateGraphAction={updateGraph}
-            updateUserStateAction={updateUserState}
-            users={users}
-          />
+          <div className="w-full h-full overflow-y-auto">
+            <SidebarContent
+              accordionValues={accordionValues}
+              activeOperations={activeOperations}
+              auto={auto}
+              closeAccordionAction={closeAccordion}
+              discoverAction={discover}
+              edges={edges}
+              graphRef={graphRef}
+              nodes={nodes}
+              openAccordionAction={openAccordion}
+              selectedUserId={selectedUserId}
+              setAccordionValuesAction={setAccordionValues}
+              setAutoAction={setAuto}
+              setSelectedUserIdAction={setSelectedUserId}
+              setTokenAction={setToken}
+              setUsersAction={setUsers}
+              token={token}
+              updateGraphAction={updateGraph}
+              updateUserStateAction={updateUserState}
+              users={users}
+            />
+          </div>
         </DrawerContent>
       </Drawer>
       <Button
