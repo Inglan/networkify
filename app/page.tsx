@@ -155,6 +155,7 @@ export default function Home() {
               updateGraphAction={updateGraph}
               updateUserStateAction={updateUserState}
               users={users}
+              setSidebarOpenAction={setSidebarOpen}
             />
           </div>
         </DrawerContent>
@@ -199,6 +200,7 @@ export function SidebarContent({
   discoverAction: discover,
   accordionValues,
   setAccordionValuesAction: setAccordionValues,
+  setSidebarOpenAction: setSidebarOpen,
 }: {
   nodes: Nodes;
   edges: Edges;
@@ -222,10 +224,14 @@ export function SidebarContent({
   discoverAction: (username: string) => Promise<void>;
   accordionValues: string[];
   setAccordionValuesAction: React.Dispatch<React.SetStateAction<string[]>>;
+  setSidebarOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <>
-      <Header updateGraphAction={updateGraph} />
+      <Header
+        updateGraphAction={updateGraph}
+        setSidebarOpenAction={setSidebarOpen}
+      />
       <Accordion
         type="multiple"
         value={accordionValues}
