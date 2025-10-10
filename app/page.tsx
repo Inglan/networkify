@@ -28,20 +28,24 @@ import { Search } from "./Search";
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
 
+  // Data
   const [users, setUsers] = useState<Users>([]);
 
+  // Graph state
   const [nodes, setNodes] = useState<Nodes>([]);
   const [edges, setEdges] = useState<Edges>([]);
-  const [activeOperations, setActiveOperations] = useState<number>(0);
 
-  const [token, setToken] = useState<string>("");
-  const [auto, setAuto] = useState<CheckedState>(false);
-
+  // UI State
   const [sidebarHidden, setSidebarHidden] = useState(false);
   const [accordionValues, setAccordionValues] = useState<string[]>([
     "discover",
   ]);
   const [selectedUserId, setSelectedUserId] = useState<string>("");
+
+  const [activeOperations, setActiveOperations] = useState<number>(0);
+
+  const [token, setToken] = useState<string>("");
+  const [auto, setAuto] = useState<CheckedState>(false);
 
   const openAccordion = (value: string) => {
     setAccordionValues((prev) => {
