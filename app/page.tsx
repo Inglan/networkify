@@ -132,7 +132,7 @@ export default function Home() {
         modal={isMobile}
         key={isMobile ? "mobile" : "desktop"}
       >
-        <DrawerContent>
+        <DrawerContent className={clsx("!h-screen", isMobile && "!w-screen")}>
           <DrawerTitle className="sr-only">Networkify sidebar</DrawerTitle>
           <SidebarContent
             accordionValues={accordionValues}
