@@ -162,7 +162,7 @@ export default function Home() {
       </Drawer>
       <Button
         size="icon"
-        className="fixed bottom-2 right-2 z-20"
+        className="fixed top-2 right-2 z-20"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <Sidebar />
