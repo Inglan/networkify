@@ -162,7 +162,8 @@ export default function Home() {
       </Drawer>
       <Button
         size="icon"
-        className="fixed top-2 right-2 z-20"
+        variant="ghost"
+        className="fixed top-4 right-4 z-[100000]"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <Sidebar />
