@@ -163,7 +163,7 @@ export default function Home() {
       <Button
         size="icon"
         variant="ghost"
-        className="fixed top-4 right-4 z-[100000]"
+        className="fixed top-4 right-4 z-50"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <Sidebar />
