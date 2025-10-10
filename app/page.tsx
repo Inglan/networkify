@@ -47,6 +47,7 @@ export default function Home() {
   const [token, setToken] = useState<string>("");
   const [auto, setAuto] = useState<CheckedState>(false);
 
+  // Opens accordions in sidebar
   const openAccordion = (value: string) => {
     setAccordionValues((prev) => {
       if (prev.includes(value)) {
@@ -57,6 +58,7 @@ export default function Home() {
     });
   };
 
+  // Closes accordions in sidebar
   const closeAccordion = (value: string) => {
     setAccordionValues((prev) => {
       if (prev.includes(value)) {
@@ -67,17 +69,21 @@ export default function Home() {
     });
   };
 
+  // Updates graph with latest data
   const updateGraph = () =>
     graph.update(nodes, setNodes, edges, setEdges, users);
 
+  // Updates state of user by username
   const updateUserState = (
     username: string,
     newState: Partial<Users[number]>,
   ) => user.updateState(username, newState, setUsers);
 
+  // Creates a new user in users array
   const createUser = (userData: (typeof users)[number]) =>
     user.create(userData, setUsers);
 
+  // Discovers user's follows
   const discover = (username: string) =>
     spotify.discover(
       username,
@@ -87,13 +93,16 @@ export default function Home() {
       createUser,
     );
 
+  // Search hotkey
   useHotkeys("mod+f", () => openAccordion("search"), {
     preventDefault: true,
   });
+  // Sidebar hotkey
   useHotkeys("mod+b", () => setSidebarHidden(!sidebarHidden), {
     preventDefault: true,
   });
 
+  // Auto update
   useEffect(() => {
     if (activeOperations === 0) {
       updateGraph();
