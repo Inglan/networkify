@@ -36,7 +36,7 @@ export default function Home() {
   const [edges, setEdges] = useState<Edges>([]);
 
   // UI State
-  const [sidebarHidden, setSidebarHidden] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [accordionValues, setAccordionValues] = useState<string[]>([
     "discover",
   ]);
@@ -98,7 +98,7 @@ export default function Home() {
     preventDefault: true,
   });
   // Sidebar hotkey
-  useHotkeys("mod+b", () => setSidebarHidden(!sidebarHidden), {
+  useHotkeys("mod+b", () => setSidebarOpen(!sidebarOpen), {
     preventDefault: true,
   });
 
@@ -114,7 +114,7 @@ export default function Home() {
       <div
         className={clsx(
           "sidebar fixed top-0 right-0 h-full w-96 z-10 border-l duration-300 bg-card overflow-auto",
-          sidebarHidden && "translate-x-96",
+          !sidebarOpen && "translate-x-96",
         )}
       >
         <SidebarContent
@@ -142,7 +142,7 @@ export default function Home() {
       <Button
         size="icon"
         className="fixed bottom-2 right-2 z-20"
-        onClick={() => setSidebarHidden(!sidebarHidden)}
+        onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <Sidebar />
       </Button>
