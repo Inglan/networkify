@@ -104,6 +104,9 @@ export default function Home() {
   useHotkeys("mod+b", () => setSidebarOpen(!sidebarOpen), {
     preventDefault: true,
   });
+  useHotkeys("mod+r", () => updateGraph(), {
+    preventDefault: true,
+  });
 
   // Auto update
   useEffect(() => {
