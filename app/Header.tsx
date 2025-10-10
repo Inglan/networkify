@@ -13,7 +13,7 @@ export function Header({
   setSidebarOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <div className="flex flex-col gap-4 p-4 sticky top-0 bg-card border-b z-30">
+    <div className="flex flex-col gap-4 p-4 sticky top-0 bg-background border-b z-30">
       <div className="w-full flex flex-row items-center gap-2">
         <div className="font-bold">networkify</div>
         <div className="grow"></div>
