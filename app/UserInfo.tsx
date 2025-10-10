@@ -84,7 +84,7 @@ export function UserInfo({
                   users.find((user) => user.username === selectedUserId)?.error}
             </span>
           </div>
-          <Command className="border">
+          <Command className="bg-transparent border">
             <CommandInput autoFocus placeholder="Actions" />
             <CommandList>
               <CommandEmpty>No results found.</CommandEmpty>

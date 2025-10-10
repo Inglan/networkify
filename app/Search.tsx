@@ -28,7 +28,7 @@ export function Search({
   graphRef: RefObject<GraphCanvasRef | null>;
 }) {
   return (
-    <Command>
+    <Command className="bg-transparent">
       <CommandInput autoFocus placeholder="Search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
