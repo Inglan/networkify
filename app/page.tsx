@@ -117,74 +117,27 @@ export default function Home() {
           sidebarHidden && "translate-x-96",
         )}
       >
-        <Header updateGraphAction={updateGraph} />
-        <Accordion
-          type="multiple"
-          value={accordionValues}
-          onValueChange={setAccordionValues}
-        >
-          <AccordionItem value="discover">
-            <AccordionTrigger className="px-4">Discover</AccordionTrigger>
-            <AccordionContent className="p-4">
-              <Discover
-                activeOperations={activeOperations}
-                auto={auto}
-                discoverAction={discover}
-                setAutoAction={setAuto}
-                setTokenAction={setToken}
-                setUsersAction={setUsers}
-                token={token}
-                updateGraphAction={updateGraph}
-                users={users}
-              />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="Data">
-            <AccordionTrigger className="px-4">Data</AccordionTrigger>
-            <AccordionContent className="p-4">
-              <Data
-                edges={edges}
-                nodes={nodes}
-                setUsersAction={setUsers}
-                users={users}
-              />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="search">
-            <AccordionTrigger className="px-4">
-              Search
-              <Kbd>⌘ + F</Kbd>
-              <div className="grow"></div>
-            </AccordionTrigger>
-            <AccordionContent>
-              <Search
-                graphRef={graphRef}
-                nodes={nodes}
-                openAccordionAction={openAccordion}
-                selectedUserId={selectedUserId}
-                setSelectedUserIdAction={setSelectedUserId}
-                users={users}
-              />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="info">
-            <AccordionTrigger className="px-4">User info</AccordionTrigger>
-            <AccordionContent className="p-4">
-              <UserInfo
-                closeAccordionAction={closeAccordion}
-                discoverAction={discover}
-                graphRef={graphRef}
-                nodes={nodes}
-                openAccordionAction={openAccordion}
-                selectedUserId={selectedUserId}
-                setSelectedUserIdAction={setSelectedUserId}
-                setUsersAction={setUsers}
-                updateUserStateAction={updateUserState}
-                users={users}
-              />
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        <SidebarContent
+          accordionValues={accordionValues}
+          activeOperations={activeOperations}
+          auto={auto}
+          closeAccordionAction={closeAccordion}
+          discoverAction={discover}
+          edges={edges}
+          graphRef={graphRef}
+          nodes={nodes}
+          openAccordionAction={openAccordion}
+          selectedUserId={selectedUserId}
+          setAccordionValuesAction={setAccordionValues}
+          setAutoAction={setAuto}
+          setSelectedUserIdAction={setSelectedUserId}
+          setTokenAction={setToken}
+          setUsersAction={setUsers}
+          token={token}
+          updateGraphAction={updateGraph}
+          updateUserStateAction={updateUserState}
+          users={users}
+        />
       </div>
       <Button
         size="icon"
@@ -202,6 +155,124 @@ export default function Home() {
         selectedUserId={selectedUserId}
         setSelectedUserIdAction={setSelectedUserId}
       />
+    </>
+  );
+}
+
+export function SidebarContent({
+  nodes,
+  edges,
+  setTokenAction: setToken,
+  token,
+  setAutoAction: setAuto,
+  auto,
+  setUsersAction: setUsers,
+  updateGraphAction: updateGraph,
+  users,
+  activeOperations,
+  graphRef,
+  openAccordionAction: openAccordion,
+  closeAccordionAction: closeAccordion,
+  selectedUserId,
+  setSelectedUserIdAction: setSelectedUserId,
+  updateUserStateAction: updateUserState,
+  discoverAction: discover,
+  accordionValues,
+  setAccordionValuesAction: setAccordionValues,
+}: {
+  nodes: Nodes;
+  edges: Edges;
+  setTokenAction: React.Dispatch<React.SetStateAction<string>>;
+  token: string;
+  setAutoAction: React.Dispatch<React.SetStateAction<CheckedState>>;
+  auto: CheckedState;
+  setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
+  updateGraphAction: () => void;
+  users: Users;
+  activeOperations: number;
+  graphRef: React.RefObject<GraphCanvasRef | null>;
+  openAccordionAction: (id: string) => void;
+  closeAccordionAction: (id: string) => void;
+  selectedUserId: string;
+  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string>>;
+  updateUserStateAction: (
+    username: string,
+    newState: Partial<Users[number]>,
+  ) => void;
+  discoverAction: (username: string) => Promise<void>;
+  accordionValues: string[];
+  setAccordionValuesAction: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
+  return (
+    <>
+      <Header updateGraphAction={updateGraph} />
+      <Accordion
+        type="multiple"
+        value={accordionValues}
+        onValueChange={setAccordionValues}
+      >
+        <AccordionItem value="discover">
+          <AccordionTrigger className="px-4">Discover</AccordionTrigger>
+          <AccordionContent className="p-4">
+            <Discover
+              activeOperations={activeOperations}
+              auto={auto}
+              discoverAction={discover}
+              setAutoAction={setAuto}
+              setTokenAction={setToken}
+              setUsersAction={setUsers}
+              token={token}
+              updateGraphAction={updateGraph}
+              users={users}
+            />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="Data">
+          <AccordionTrigger className="px-4">Data</AccordionTrigger>
+          <AccordionContent className="p-4">
+            <Data
+              edges={edges}
+              nodes={nodes}
+              setUsersAction={setUsers}
+              users={users}
+            />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="search">
+          <AccordionTrigger className="px-4">
+            Search
+            <Kbd>⌘ + F</Kbd>
+            <div className="grow"></div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <Search
+              graphRef={graphRef}
+              nodes={nodes}
+              openAccordionAction={openAccordion}
+              selectedUserId={selectedUserId}
+              setSelectedUserIdAction={setSelectedUserId}
+              users={users}
+            />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="info">
+          <AccordionTrigger className="px-4">User info</AccordionTrigger>
+          <AccordionContent className="p-4">
+            <UserInfo
+              closeAccordionAction={closeAccordion}
+              discoverAction={discover}
+              graphRef={graphRef}
+              nodes={nodes}
+              openAccordionAction={openAccordion}
+              selectedUserId={selectedUserId}
+              setSelectedUserIdAction={setSelectedUserId}
+              setUsersAction={setUsers}
+              updateUserStateAction={updateUserState}
+              users={users}
+            />
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </>
   );
 }
