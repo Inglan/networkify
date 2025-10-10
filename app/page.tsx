@@ -34,9 +34,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
+
+  // Mobile device detection hook
+  const isMobile = useIsMobile();
 
   // Data
   const [users, setUsers] = useState<Users>([]);
@@ -125,7 +129,8 @@ export default function Home() {
         direction="right"
         open={sidebarOpen}
         onOpenChange={setSidebarOpen}
-        modal={false}
+        modal={isMobile}
+        key={isMobile ? "mobile" : "desktop"}
       >
         <DrawerContent>
           <DrawerTitle className="sr-only">Networkify sidebar</DrawerTitle>
