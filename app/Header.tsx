@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Kbd } from "@/components/ui/kbd";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ExternalLink, PanelRightClose, X } from "lucide-react";
 import Link from "next/link";
@@ -36,7 +37,9 @@ export function Header({
           {isMobile ? <X /> : <PanelRightClose />}
         </Button>
       </div>
-      <Button onClick={updateGraph}>Update graph</Button>
+      <Button variant="outline" onClick={updateGraph}>
+        Update graph<Kbd>⌘ + R</Kbd>
+      </Button>
     </div>
   );
 }
