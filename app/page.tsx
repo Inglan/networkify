@@ -168,7 +168,7 @@ export default function Home() {
       >
         <Sidebar />
       </Button>
-      <Menubar className="fixed top-2 left-2 z-20">
+      {/*<Menubar className="fixed top-2 left-2 z-20">
         <MenubarMenu>
           <MenubarTrigger>Run</MenubarTrigger>
           <MenubarContent>
@@ -185,7 +185,7 @@ export default function Home() {
             <MenubarItem>Clear all</MenubarItem>
           </MenubarContent>
         </MenubarMenu>
-      </Menubar>
+      </Menubar>*/}
       <Graph
         discoverAction={discover}
         edges={edges}
