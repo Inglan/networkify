@@ -88,7 +88,7 @@ export function Discover({
           }
         }}
       >
-        Add user node
+        Add current user
       </Button>
       <Button
         disabled={!token || activeOperations > 0}
