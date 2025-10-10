@@ -26,6 +26,15 @@ import { UserInfo } from "./UserInfo";
 import { Search } from "./Search";
 import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -159,6 +168,24 @@ export default function Home() {
       >
         <Sidebar />
       </Button>
+      <Menubar className="fixed top-2 left-2 z-20">
+        <MenubarMenu>
+          <MenubarTrigger>Run</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Run on all unsearched nodes</MenubarItem>
+            <MenubarItem>Rerun on all errored nodes</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Data</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Update graph</MenubarItem>
+            <MenubarItem>Save</MenubarItem>
+            <MenubarItem>Load</MenubarItem>
+            <MenubarItem>Clear all</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
       <Graph
         discoverAction={discover}
         edges={edges}
