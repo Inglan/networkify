@@ -126,7 +126,7 @@ export default function Home() {
   return (
     <>
       <Drawer
-        direction="right"
+        direction={isMobile ? "bottom" : "right"}
         open={sidebarOpen}
         onOpenChange={setSidebarOpen}
         modal={isMobile}
@@ -163,7 +163,7 @@ export default function Home() {
       <Button
         size="icon"
         variant="ghost"
-        className="fixed top-4 right-4 z-50"
+        className={clsx("fixed right-4 z-50", isMobile ? "bottom-4" : "top-4")}
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <Sidebar />
