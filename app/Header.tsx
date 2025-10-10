@@ -1,7 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Sidebar, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { ExternalLink, PanelRightClose, X } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 
@@ -12,6 +13,8 @@ export function Header({
   updateGraphAction: () => void;
   setSidebarOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const isMobile = useIsMobile();
+
   return (
     <div className="flex flex-col gap-4 p-4 sticky top-0 bg-background border-b z-30">
       <div className="w-full flex flex-row items-center gap-2">
@@ -30,7 +33,7 @@ export function Header({
             setSidebarOpen(false);
           }}
         >
-          <Sidebar />
+          {isMobile ? <X /> : <PanelRightClose />}
         </Button>
       </div>
       <Button onClick={updateGraph}>Update graph</Button>
