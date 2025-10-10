@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
-import { Sidebar } from "lucide-react";
+import { PanelBottom, PanelRight, Sidebar } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -166,7 +166,7 @@ export default function Home() {
         className={clsx("fixed right-4 z-50", isMobile ? "bottom-4" : "top-4")}
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
-        <Sidebar />
+        {isMobile ? <PanelBottom /> : <PanelRight />}
       </Button>
       {/*<Menubar className="fixed top-2 left-2 z-20">
         <MenubarMenu>
