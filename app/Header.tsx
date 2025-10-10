@@ -14,7 +14,15 @@ export function Header({
 }) {
   return (
     <div className="flex flex-col gap-4 p-4 sticky top-0 bg-card border-b z-30">
-      <div className="w-full flex flex-row items-center gap-1">
+      <div className="w-full flex flex-row items-center gap-2">
+        <div className="font-bold">networkify</div>
+        <div className="grow"></div>
+        <Button variant="outline" asChild>
+          <Link href="https://github.com/Inglan/networkify" target="_blank">
+            Source code
+            <ExternalLink />
+          </Link>
+        </Button>
         <Button
           size="icon"
           variant="ghost"
@@ -23,14 +31,6 @@ export function Header({
           }}
         >
           <Sidebar />
-        </Button>
-        <div className="font-bold">networkify</div>
-        <div className="grow"></div>
-        <Button variant="outline" asChild>
-          <Link href="https://github.com/Inglan/networkify" target="_blank">
-            Source code
-            <ExternalLink />
-          </Link>
         </Button>
       </div>
       <Button onClick={updateGraph}>Update graph</Button>
