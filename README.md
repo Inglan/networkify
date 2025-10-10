@@ -22,5 +22,5 @@ Basically just an experiment I made because I could
 - [x] Isolate node
 - [x] list of nodes
 - [x] node context menu
-- [ ] better mobile support
-- [ ] Seperate everything into components
+- [x] better mobile support
+- [x] Seperate everything into components
