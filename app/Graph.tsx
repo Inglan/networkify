@@ -40,7 +40,7 @@ export function Graph({
             stroke: "#171717",
           },
         },
-        canvas: { ...darkTheme.canvas, background: "#171717" },
+        canvas: { ...darkTheme.canvas, background: "" },
         edge: { ...darkTheme.edge, fill: "#ffffff" },
         arrow: { ...darkTheme.arrow, fill: "#ffffff" },
       }}
