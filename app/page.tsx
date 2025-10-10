@@ -74,13 +74,6 @@ export default function Home() {
   const createUser = (userData: (typeof users)[number]) =>
     user.create(userData, setUsers);
 
-  useHotkeys("mod+f", () => openAccordion("search"), {
-    preventDefault: true,
-  });
-  useHotkeys("mod+b", () => setSidebarHidden(!sidebarHidden), {
-    preventDefault: true,
-  });
-
   const discover = (username: string) =>
     spotify.discover(
       username,
@@ -89,6 +82,13 @@ export default function Home() {
       updateUserState,
       createUser,
     );
+
+  useHotkeys("mod+f", () => openAccordion("search"), {
+    preventDefault: true,
+  });
+  useHotkeys("mod+b", () => setSidebarHidden(!sidebarHidden), {
+    preventDefault: true,
+  });
 
   useEffect(() => {
     if (activeOperations === 0) {
