@@ -24,16 +24,7 @@ import { Header } from "./Header";
 import { Discover } from "./Discover";
 import { UserInfo } from "./UserInfo";
 import { Search } from "./Search";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Home() {
