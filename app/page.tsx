@@ -1,41 +1,19 @@
 "use client";
 
-import { RefObject, useEffect, useRef, useState } from "react";
-import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
-import { getUser } from "./actions";
+import { useEffect, useRef, useState } from "react";
+import { GraphCanvasRef } from "reagraph";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { CheckedState } from "@radix-ui/react-checkbox";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
-import { ExternalLink, SearchX, Sidebar, User } from "lucide-react";
+import { Sidebar } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Link from "next/link";
-import {
-  Empty,
-  EmptyContent,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
 import { Kbd } from "@/components/ui/kbd";
-import { toast } from "sonner";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Edges, Nodes, Users } from "@/lib/types";
 import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
