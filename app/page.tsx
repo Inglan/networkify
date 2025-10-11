@@ -231,7 +231,7 @@ function GettingStartedDialog({
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
         </DialogHeader>
-        <div className="overflow-auto max-h-96">
+        <div className="overflow-auto h-96 flex items-center">
           {page == 0 && (
             <div className="p-14 w-full flex flex-col items-center text-center gap-4">
               <div className="text-3xl">Welcome to networkify</div>
