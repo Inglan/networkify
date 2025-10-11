@@ -134,7 +134,7 @@ export default function Home() {
     <>
       <Drawer
         direction={isMobile ? "bottom" : "right"}
-        open={sidebarOpen}
+        open={!(isMobile && gettingStartedDialogOpen) && sidebarOpen}
         onOpenChange={setSidebarOpen}
         modal={isMobile}
         key={isMobile ? "mobile" : "desktop"}
