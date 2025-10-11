@@ -204,8 +204,8 @@ export default function Home() {
       />
       <Onboarding
         onboardingOpen={onboardingOpen}
-        setOnboardingOpen={setOnboardingOpen}
-        setToken={setToken}
+        setOnboardingOpenAction={setOnboardingOpen}
+        setTokenAction={setToken}
       />
     </>
   );

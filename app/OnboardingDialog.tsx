@@ -39,17 +39,17 @@ import * as tokenUtils from "@/lib/tokenUtils";
 import { toast } from "sonner";
 export function Onboarding({
   onboardingOpen,
-  setOnboardingOpen: setOnboardingOpenAction,
-  setToken: setTokenAction,
+  setOnboardingOpenAction: setOnboardingOpen,
+  setTokenAction: setToken,
 }: {
   onboardingOpen: boolean;
-  setOnboardingOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setToken: React.Dispatch<React.SetStateAction<string>>;
+  setOnboardingOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
+  setTokenAction: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [page, setPage] = useState(0);
 
   return (
-    <Dialog open={onboardingOpen} onOpenChange={setOnboardingOpenAction}>
+    <Dialog open={onboardingOpen} onOpenChange={setOnboardingOpen}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
@@ -66,7 +66,7 @@ export function Onboarding({
                 <div className="flex flex-col md:flex-row gap-4">
                   <Button
                     variant="outline"
-                    onClick={() => setOnboardingOpenAction(false)}
+                    onClick={() => setOnboardingOpen(false)}
                   >
                     I know what I&apos;m doing
                   </Button>
@@ -116,7 +116,7 @@ export function Onboarding({
                   onPaste={(e) => {
                     e.preventDefault();
                     try {
-                      setTokenAction(tokenUtils.getFromClipboard(e));
+                      setToken(tokenUtils.getFromClipboard(e));
                       setPage(3);
                     } catch {
                       toast.error("Invalid data pasted, please try again");
@@ -169,7 +169,7 @@ export function Onboarding({
                 </div>
                 <Button
                   onClick={() => {
-                    setOnboardingOpenAction(false);
+                    setOnboardingOpen(false);
                   }}
                 >
                   Got it
