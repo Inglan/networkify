@@ -24,6 +24,14 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { SidebarContent } from "./SidebarContent";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -189,6 +197,37 @@ export default function Home() {
         selectedUserId={selectedUserId}
         setSelectedUserIdAction={setSelectedUserId}
       />
+      <GettingStartedDialog
+        gettingStartedDialogOpen={gettingStartedDialogOpen}
+        setGettingStartedDialogOpen={setGettingStartedDialogOpen}
+      />
     </>
+  );
+}
+
+function GettingStartedDialog({
+  gettingStartedDialogOpen,
+  setGettingStartedDialogOpen,
+}: {
+  gettingStartedDialogOpen: boolean;
+  setGettingStartedDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const [page, setPage] = useState(0);
+
+  return (
+    <Dialog
+      open={gettingStartedDialogOpen}
+      onOpenChange={setGettingStartedDialogOpen}
+    >
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
   );
 }
