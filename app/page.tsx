@@ -40,6 +40,8 @@ export default function Home() {
 
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [gettingStartedDialogOpen, setGettingStartedDialogOpen] =
+    useState(true);
   const [accordionValues, setAccordionValues] = useState<string[]>([
     "discover",
   ]);
