@@ -203,6 +203,7 @@ export default function Home() {
       <GettingStartedDialog
         gettingStartedDialogOpen={gettingStartedDialogOpen}
         setGettingStartedDialogOpen={setGettingStartedDialogOpen}
+        setToken={setToken}
       />
     </>
   );
@@ -211,9 +212,11 @@ export default function Home() {
 function GettingStartedDialog({
   gettingStartedDialogOpen,
   setGettingStartedDialogOpen,
+  setToken,
 }: {
   gettingStartedDialogOpen: boolean;
   setGettingStartedDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setToken: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [page, setPage] = useState(0);
 
