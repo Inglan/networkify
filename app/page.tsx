@@ -258,7 +258,9 @@ function GettingStartedDialog({
                   <li>
                     Open Spotify web in a Firefox based browser and log in
                   </li>
-                  <li>Open developer tools with ctrl + shift + i</li>
+                  <li>
+                    Open developer tools with <Kbd>Ctrl + Shift + I</Kbd>
+                  </li>
                   <li>Go to the network tab</li>
                   <li>Refresh spotify, then wait a few seconds</li>
                   <li>Right click on one of the entries</li>
