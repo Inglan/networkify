@@ -1,6 +1,6 @@
 import { ClipboardEvent } from "react";
 
-export function getFromClipboard(event: ClipboardEvent<HTMLInputElement>) {
+export function getFromClipboard(event: ClipboardEvent) {
   const data = event.clipboardData.getData("text");
   try {
     const parsedData = JSON.parse(data);
