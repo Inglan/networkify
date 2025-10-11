@@ -101,7 +101,7 @@ export default function Home() {
   const createUser = (userData: (typeof users)[number]) =>
     user.create(userData, setUsers);
 
-  // Discovers user's follows
+  // Discovers user&apos;s follows
   const discover = (username: string) =>
     spotify.discover(
       username,
@@ -245,7 +245,7 @@ function GettingStartedDialog({
                     variant="outline"
                     onClick={() => setGettingStartedDialogOpen(false)}
                   >
-                    I know what I'm doing
+                    I know what I&apos;m doing
                   </Button>
                   <Button onClick={() => setPage(1)}>Get started</Button>
                 </div>
@@ -258,7 +258,7 @@ function GettingStartedDialog({
                 </div>
                 <div className="text-sm">
                   This is due to Spotify API limitations. It expires after a
-                  short amount of time and we don't store it.
+                  short amount of time and we don&apos;t store it.
                 </div>
                 <div className="flex flex-col md:flex-row gap-4">
                   <Button disabled variant="outline">
@@ -305,8 +305,9 @@ function GettingStartedDialog({
                   Disclaimer: It is generally not recommended to do random stuff
                   in devtools because a random website asked you to. This could
                   allow me to get access to your spotify account if I were
-                  collecting tokens on the server. If you don't trust me (theres
-                  no reason you should), then you can audit the code, which is{" "}
+                  collecting tokens on the server. If you don&apos;t trust me
+                  (theres no reason you should), then you can audit the code,
+                  which is{" "}
                   <Link
                     href="https://github.com/Inglan/networkify"
                     target="_blank"
@@ -332,7 +333,7 @@ function GettingStartedDialog({
                   exponentially (assuming you have friends). If there is an
                   issue with a node, it will show as red. If a node has been
                   searched, it will show as green. If a node is currently
-                  searching, it will show as blue. If a node hasn't been
+                  searching, it will show as blue. If a node hasn&apos;t been
                   searched, it will show as gray. You can click a node, or
                   select a user in search show it in the sidebar. This allows
                   you to do things like view followers, and follows, view
