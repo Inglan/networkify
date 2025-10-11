@@ -53,8 +53,7 @@ export default function Home() {
 
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [gettingStartedDialogOpen, setGettingStartedDialogOpen] =
-    useState(true);
+  const [onboardingOpen, setOnboardingOpen] = useState(true);
   const [accordionValues, setAccordionValues] = useState<string[]>([
     "discover",
   ]);
@@ -134,7 +133,7 @@ export default function Home() {
     <>
       <Drawer
         direction={isMobile ? "bottom" : "right"}
-        open={!(isMobile && gettingStartedDialogOpen) && sidebarOpen}
+        open={!(isMobile && onboardingOpen) && sidebarOpen}
         onOpenChange={setSidebarOpen}
         modal={isMobile}
         key={isMobile ? "mobile" : "desktop"}
@@ -202,31 +201,28 @@ export default function Home() {
         selectedUserId={selectedUserId}
         setSelectedUserIdAction={setSelectedUserId}
       />
-      <GettingStartedDialog
-        gettingStartedDialogOpen={gettingStartedDialogOpen}
-        setGettingStartedDialogOpen={setGettingStartedDialogOpen}
+      <Onboarding
+        onboardingOpen={onboardingOpen}
+        setOnboardingOpen={setOnboardingOpen}
         setToken={setToken}
       />
     </>
   );
 }
 
-function GettingStartedDialog({
-  gettingStartedDialogOpen,
-  setGettingStartedDialogOpen,
+function Onboarding({
+  onboardingOpen,
+  setOnboardingOpen,
   setToken,
 }: {
-  gettingStartedDialogOpen: boolean;
-  setGettingStartedDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onboardingOpen: boolean;
+  setOnboardingOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setToken: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [page, setPage] = useState(0);
 
   return (
-    <Dialog
-      open={gettingStartedDialogOpen}
-      onOpenChange={setGettingStartedDialogOpen}
-    >
+    <Dialog open={onboardingOpen} onOpenChange={setOnboardingOpen}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
@@ -243,7 +239,7 @@ function GettingStartedDialog({
                 <div className="flex flex-col md:flex-row gap-4">
                   <Button
                     variant="outline"
-                    onClick={() => setGettingStartedDialogOpen(false)}
+                    onClick={() => setOnboardingOpen(false)}
                   >
                     I know what I&apos;m doing
                   </Button>
@@ -346,7 +342,7 @@ function GettingStartedDialog({
                 </div>
                 <Button
                   onClick={() => {
-                    setGettingStartedDialogOpen(false);
+                    setOnboardingOpen(false);
                   }}
                 >
                   Got it
