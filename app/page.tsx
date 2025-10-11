@@ -232,9 +232,7 @@ function GettingStartedDialog({
                 networkify is a tool for visualizing your Spotify followers and
                 follows
               </div>
-              <Button variant="outline" onClick={() => setPage(1)}>
-                Get started
-              </Button>
+              <Button onClick={() => setPage(1)}>Get started</Button>
             </div>
           )}
           {page == 1 && (
