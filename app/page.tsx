@@ -321,6 +321,37 @@ function GettingStartedDialog({
                 </div>
               </div>
             )}
+            {page == 3 && (
+              <div className="p-5 w-full flex flex-col gap-4 text-left">
+                <div className="text-xl">How to use</div>
+                <div>
+                  Start by pressing add current user, then run on all unsearched
+                  nodes. This will discover all your followers and following.
+                  You can keep pressing run on all unsearched nodes to discover
+                  more users. Be careful, as the amount of users goes up
+                  exponentially (assuming you have friends). If there is an
+                  issue with a node, it will show as red. If a node has been
+                  searched, it will show as green. If a node is currently
+                  searching, it will show as blue. If a node hasn't been
+                  searched, it will show as gray. You can click a node, or
+                  select a user in search show it in the sidebar. This allows
+                  you to do things like view followers, and follows, view
+                  profile, center the graph, run discovery on that user, or
+                  exclude the user from the graph. Users with more than 100
+                  followers or follows will be excluded by default. You can
+                  double click a node to run discover, and right click to view
+                  spotify profile. You can save and load the current state in
+                  the data section of the sidebar.
+                </div>
+                <Button
+                  onClick={() => {
+                    setGettingStartedDialogOpen(false);
+                  }}
+                >
+                  Got it
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </DialogContent>
