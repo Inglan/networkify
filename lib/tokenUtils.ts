@@ -10,6 +10,6 @@ export function getFromClipboard(event: ClipboardEvent) {
       )[0].response.content.text,
     ).accessToken;
   } catch {
-    return data;
+    throw new Error("Failed to parse clipboard data");
   }
 }
