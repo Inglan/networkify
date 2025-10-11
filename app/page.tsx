@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/dialog";
 import { Kbd } from "@/components/ui/kbd";
 import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -274,10 +275,18 @@ function GettingStartedDialog({
                 in devtools because a random website asked you to. This could
                 allow me to get access to your spotify account if I were
                 collecting tokens on the server. If you don't trust me (theres
-                no reason you should), then you can audit the code, which is
-                open source (GPL-v3), and run it locally, or simply not use this
-                tool. This tool may also be against the terms of service of
-                Spotify, so be careful :)
+                no reason you should), then you can audit the code, which is{" "}
+                <Link
+                  href="https://github.com/Inglan/networkify"
+                  target="_blank"
+                  className="underline"
+                  rel="noopener noreferrer"
+                >
+                  open source
+                </Link>{" "}
+                (GPL-v3), and run it locally, or simply not use this tool. This
+                tool may also be against the terms of service of Spotify, so be
+                careful :)
               </div>
             </div>
           )}
