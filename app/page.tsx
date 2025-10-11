@@ -249,6 +249,24 @@ function GettingStartedDialog({
               </div>
             </div>
           )}
+          {page == 2 && (
+            <div className="p-5 w-full flex flex-col gap-4">
+              <div className="text-xl">How to get a Spotify token</div>
+              <div className="text-sm">
+                <ol className="list-decimal">
+                  <li>
+                    Open Spotify web in a Firefox based browser and log in
+                  </li>
+                  <li>Open developer tools with ctrl + shift + i</li>
+                  <li>Go to the network tab</li>
+                  <li>Refresh spotify, then wait a few seconds</li>
+                  <li>Right click on one of the entries</li>
+                  <li>Select Copy Value then Copy All As HAR</li>
+                  <li>Paste in here:</li>
+                </ol>
+              </div>
+            </div>
+          )}
         </DialogHeader>
       </DialogContent>
     </Dialog>
