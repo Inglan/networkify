@@ -245,7 +245,7 @@ function GettingStartedDialog({
                 amount of time and we don't store it.
               </div>
               <div className="flex flex-row gap-4">
-                <Button disabled variant="outline" onClick={() => setPage(2)}>
+                <Button disabled variant="outline">
                   Use example data (coming soon)
                 </Button>
                 <Button onClick={() => setPage(2)}>Show me how</Button>
