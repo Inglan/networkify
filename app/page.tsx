@@ -235,6 +235,23 @@ function GettingStartedDialog({
               </Button>
             </div>
           )}
+          {page == 1 && (
+            <div className="p-5 w-full flex flex-col items-center text-center gap-4">
+              <div className="text-xl">
+                To use networkify, you need a Spotify token
+              </div>
+              <div className="text-md">
+                This is due to Spotify API limitations. It expires after a short
+                amount of time and we don't store it.
+              </div>
+              <div className="flex flex-row gap-4">
+                <Button disabled variant="outline" onClick={() => setPage(2)}>
+                  Use example data (coming soon)
+                </Button>
+                <Button onClick={() => setPage(2)}>Show me how</Button>
+              </div>
+            </div>
+          )}
         </DialogHeader>
       </DialogContent>
     </Dialog>
