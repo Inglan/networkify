@@ -223,7 +223,10 @@ function GettingStartedDialog({
   const [page, setPage] = useState(0);
 
   return (
-    <Dialog open={gettingStartedDialogOpen}>
+    <Dialog
+      open={gettingStartedDialogOpen}
+      onOpenChange={setGettingStartedDialogOpen}
+    >
       <DialogContent showCloseButton={false}>
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
