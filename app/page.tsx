@@ -277,6 +277,7 @@ function GettingStartedDialog({
                   e.preventDefault();
                   try {
                     setToken(tokenUtils.getFromClipboard(e));
+                    setPage(3);
                   } catch {
                     toast.error("Invalid data pasted, please try again");
                   }
