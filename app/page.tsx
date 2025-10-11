@@ -36,6 +36,7 @@ import { Kbd } from "@/components/ui/kbd";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import * as tokenUtils from "@/lib/tokenUtils";
+import { toast } from "sonner";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -274,7 +275,11 @@ function GettingStartedDialog({
               <Textarea
                 onPaste={(e) => {
                   e.preventDefault();
-                  setToken(tokenUtils.getFromClipboard(e));
+                  try {
+                    setToken(tokenUtils.getFromClipboard(e));
+                  } catch {
+                    toast.error("Invalid data pasted, please try again");
+                  }
                 }}
                 placeholder="Paste here"
               />
