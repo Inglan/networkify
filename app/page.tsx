@@ -252,7 +252,7 @@ function GettingStartedDialog({
           {page == 2 && (
             <div className="p-5 w-full flex flex-col gap-4">
               <div className="text-xl">How to get a Spotify token</div>
-              <div className="text-sm">
+              <div>
                 <ol className="list-decimal">
                   <li>
                     Open Spotify web in a Firefox based browser and log in
@@ -264,6 +264,16 @@ function GettingStartedDialog({
                   <li>Select Copy Value then Copy All As HAR</li>
                   <li>Paste in here:</li>
                 </ol>
+              </div>
+              <div className="text-sm">
+                Disclaimer: It is generally not recommended to do random stuff
+                in devtools because a random website asked you to. This could
+                allow me to get access to your spotify account if I were
+                collecting tokens on the server. If you don't trust me (theres
+                no reason you should), then you can audit the code, which is
+                open source (GPL-v3), and run it locally, or simply not use this
+                tool. This tool may also be against the terms of service of
+                Spotify, so be careful :)
               </div>
             </div>
           )}
