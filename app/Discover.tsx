@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { toast } from "sonner";
 import { Users } from "@/lib/types";
+import * as tokenUtils from "@/lib/tokenUtils";
 
 export function Discover({
   setTokenAction: setToken,
@@ -39,22 +40,7 @@ export function Discover({
         onChange={(e) => setToken(e.target.value)}
         onPaste={(e) => {
           e.preventDefault();
-          const data = e.clipboardData.getData("text");
-          try {
-            const parsedData = JSON.parse(data);
-            setToken(
-              JSON.parse(
-                parsedData.log.entries.filter(
-                  (entry: { request: { url: string } }) =>
-                    entry.request.url.includes(
-                      "https://open.spotify.com/api/token",
-                    ),
-                )[0].response.content.text,
-              ).accessToken,
-            );
-          } catch {
-            setToken(data);
-          }
+          setToken(tokenUtils.getFromClipboard(e));
         }}
       />
 
