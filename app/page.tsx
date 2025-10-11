@@ -212,8 +212,8 @@ export default function Home() {
 
 function Onboarding({
   onboardingOpen,
-  setOnboardingOpen,
-  setToken,
+  setOnboardingOpen: setOnboardingOpenAction,
+  setToken: setTokenAction,
 }: {
   onboardingOpen: boolean;
   setOnboardingOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -222,7 +222,7 @@ function Onboarding({
   const [page, setPage] = useState(0);
 
   return (
-    <Dialog open={onboardingOpen} onOpenChange={setOnboardingOpen}>
+    <Dialog open={onboardingOpen} onOpenChange={setOnboardingOpenAction}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
@@ -239,7 +239,7 @@ function Onboarding({
                 <div className="flex flex-col md:flex-row gap-4">
                   <Button
                     variant="outline"
-                    onClick={() => setOnboardingOpen(false)}
+                    onClick={() => setOnboardingOpenAction(false)}
                   >
                     I know what I&apos;m doing
                   </Button>
@@ -289,7 +289,7 @@ function Onboarding({
                   onPaste={(e) => {
                     e.preventDefault();
                     try {
-                      setToken(tokenUtils.getFromClipboard(e));
+                      setTokenAction(tokenUtils.getFromClipboard(e));
                       setPage(3);
                     } catch {
                       toast.error("Invalid data pasted, please try again");
@@ -342,7 +342,7 @@ function Onboarding({
                 </div>
                 <Button
                   onClick={() => {
-                    setOnboardingOpen(false);
+                    setOnboardingOpenAction(false);
                   }}
                 >
                   Got it
