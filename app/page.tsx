@@ -234,13 +234,21 @@ function GettingStartedDialog({
         <div className="h-96 flex items-center">
           <div className="overflow-auto max-h-96">
             {page == 0 && (
-              <div className="p-14 w-full flex flex-col items-center text-center gap-4">
+              <div className="p-5 w-full flex flex-col items-center text-center gap-4">
                 <div className="text-3xl">Welcome to networkify</div>
                 <div className="text-md">
                   networkify is a tool for visualizing your Spotify followers
                   and follows
                 </div>
-                <Button onClick={() => setPage(1)}>Get started</Button>
+                <div className="flex flex-col md:flex-row gap-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => setGettingStartedDialogOpen(false)}
+                  >
+                    I know what I'm doing
+                  </Button>
+                  <Button onClick={() => setPage(1)}>Get started</Button>
+                </div>
               </div>
             )}
             {page == 1 && (
