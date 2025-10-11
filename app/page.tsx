@@ -272,7 +272,10 @@ function GettingStartedDialog({
                   <li>Refresh spotify, then wait a few seconds</li>
                   <li>Right click on one of the entries</li>
                   <li>Select Copy Value then Copy All As HAR</li>
-                  <li>Paste in here:</li>
+                  <li>
+                    Paste in here (or in the token field up the top right later
+                    on):
+                  </li>
                 </ol>
               </div>
               <Textarea
