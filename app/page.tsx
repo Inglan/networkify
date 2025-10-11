@@ -258,7 +258,7 @@ function GettingStartedDialog({
             </div>
           )}
           {page == 2 && (
-            <div className="p-5 w-full flex flex-col gap-4">
+            <div className="p-5 w-full flex flex-col gap-4 text-left">
               <div className="text-xl">How to get a Spotify token</div>
               <div>
                 <ol className="list-decimal list-inside">
