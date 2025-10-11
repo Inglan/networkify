@@ -240,7 +240,7 @@ function GettingStartedDialog({
               <div className="text-xl">
                 To use networkify, you need a Spotify token
               </div>
-              <div className="text-md">
+              <div className="text-sm">
                 This is due to Spotify API limitations. It expires after a short
                 amount of time and we don't store it.
               </div>
