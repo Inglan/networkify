@@ -32,6 +32,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Kbd } from "@/components/ui/kbd";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -222,10 +223,16 @@ function GettingStartedDialog({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
+          <div className="p-14 w-full flex flex-col items-center text-center gap-4">
+            <div className="text-3xl">Welcome to networkify</div>
+            <div className="text-md">
+              Networkify is a tool for visualizing your Spotify followers and
+              follows.
+            </div>
+            <Button variant="outline" onClick={() => setPage(1)}>
+              Get started
+            </Button>
+          </div>
         </DialogHeader>
       </DialogContent>
     </Dialog>
