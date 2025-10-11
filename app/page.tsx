@@ -35,6 +35,7 @@ import {
 import { Kbd } from "@/components/ui/kbd";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import * as tokenUtils from "@/lib/tokenUtils";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -270,7 +271,13 @@ function GettingStartedDialog({
                   <li>Paste in here:</li>
                 </ol>
               </div>
-              <Textarea placeholder="Paste here" />
+              <Textarea
+                onPaste={(e) => {
+                  e.preventDefault();
+                  setToken(tokenUtils.getFromClipboard(e));
+                }}
+                placeholder="Paste here"
+              />
               <div className="text-sm">
                 Disclaimer: It is generally not recommended to do random stuff
                 in devtools because a random website asked you to. This could
