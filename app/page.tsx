@@ -230,6 +230,8 @@ function GettingStartedDialog({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
+        </DialogHeader>
+        <div className="overflow-auto max-h-96">
           {page == 0 && (
             <div className="p-14 w-full flex flex-col items-center text-center gap-4">
               <div className="text-3xl">Welcome to networkify</div>
@@ -249,7 +251,7 @@ function GettingStartedDialog({
                 This is due to Spotify API limitations. It expires after a short
                 amount of time and we don't store it.
               </div>
-              <div className="flex flex-row gap-4">
+              <div className="flex flex-col md:flex-row gap-4">
                 <Button disabled variant="outline">
                   Use example data (coming soon)
                 </Button>
@@ -310,7 +312,7 @@ function GettingStartedDialog({
               </div>
             </div>
           )}
-        </DialogHeader>
+        </div>
       </DialogContent>
     </Dialog>
   );
