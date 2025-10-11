@@ -227,7 +227,7 @@ function GettingStartedDialog({
       open={gettingStartedDialogOpen}
       onOpenChange={setGettingStartedDialogOpen}
     >
-      <DialogContent showCloseButton={false}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle className="sr-only">Getting started</DialogTitle>
           {page == 0 && (
