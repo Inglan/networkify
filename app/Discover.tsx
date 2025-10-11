@@ -40,7 +40,12 @@ export function Discover({
         onChange={(e) => setToken(e.target.value)}
         onPaste={(e) => {
           e.preventDefault();
-          setToken(tokenUtils.getFromClipboard(e));
+          try {
+            const token = tokenUtils.getFromClipboard(e);
+            setToken(token);
+          } catch (error) {
+            setToken(e.clipboardData.getData("text"));
+          }
         }}
       />
 
