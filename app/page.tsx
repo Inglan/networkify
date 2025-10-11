@@ -229,7 +229,7 @@ function GettingStartedDialog({
             <div className="p-14 w-full flex flex-col items-center text-center gap-4">
               <div className="text-3xl">Welcome to networkify</div>
               <div className="text-md">
-                Networkify is a tool for visualizing your Spotify followers and
+                networkify is a tool for visualizing your Spotify followers and
                 follows.
               </div>
               <Button variant="outline" onClick={() => setPage(1)}>
