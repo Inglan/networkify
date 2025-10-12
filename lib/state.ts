@@ -60,13 +60,17 @@ export const useOnboardingDialogState = create<OnboardingDialogState>()(
 
 interface GraphState {
   nodes: Node[];
+  setNodes: (nodes: Node[]) => void;
   edges: Edge[];
+  setEdges: (edges: Edge[]) => void;
 }
 export const useGraphState = create<GraphState>()(
   persist(
     (set, get) => ({
       nodes: [],
+      setNodes: (nodes) => set({ nodes }),
       edges: [],
+      setEdges: (edges) => set({ edges }),
     }),
     {
       name: "networkify-data",
