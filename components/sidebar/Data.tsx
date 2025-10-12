@@ -28,6 +28,8 @@ export function Data({
   setSaveAction: React.Dispatch<React.SetStateAction<Save[]>>;
 }) {
   const saves = useSave((state) => state.save);
+  const createSave = useSave((state) => state.create);
+
   return (
     <div className="flex flex-col gap-2">
       <Button
@@ -71,12 +73,7 @@ export function Data({
           const data = Object.fromEntries(formData.entries());
           const saveName = data.name.toString();
           if (!saveName) return;
-          setSave((current) => {
-            const newSave = current;
-            newSave.push({ name: saveName, date: Date.now(), data: { users } });
-            return newSave;
-          });
-          console.log("saving: ", Date.now());
+          createSave({ users }, saveName);
           formElement.reset();
         }}
       >
