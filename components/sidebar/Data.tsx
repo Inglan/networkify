@@ -86,32 +86,34 @@ export function Data({
         <AccordionItem value="saves">
           <AccordionTrigger>Saves</AccordionTrigger>
           <AccordionContent>
-            {saves.map((s) => (
-              <div
-                className="border p-2 pl-4 rounded-md flex flex-row gap-2 items-center"
-                key={s.id}
-              >
-                {s.name}
-                <div className="grow"></div>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => {
-                    deleteSave(s.id);
-                  }}
+            <div className="flex flex-col gap-2">
+              {saves.map((s) => (
+                <div
+                  className="border p-2 pl-4 rounded-md flex flex-row gap-2 items-center"
+                  key={s.id}
                 >
-                  <Trash />
-                </Button>
-                <Button
-                  size="icon"
-                  onClick={() => {
-                    setUsers(s.data.users);
-                  }}
-                >
-                  <ArchiveRestore />
-                </Button>
-              </div>
-            ))}
+                  {s.name}
+                  <div className="grow"></div>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => {
+                      deleteSave(s.id);
+                    }}
+                  >
+                    <Trash />
+                  </Button>
+                  <Button
+                    size="icon"
+                    onClick={() => {
+                      setUsers(s.data.users);
+                    }}
+                  >
+                    <ArchiveRestore />
+                  </Button>
+                </div>
+              ))}
+            </div>
             {saves.length === 0 && <div>No saves available</div>}
           </AccordionContent>
         </AccordionItem>
