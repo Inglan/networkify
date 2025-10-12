@@ -10,13 +10,12 @@ Basically just an experiment I made because I could
 - [ ] Better error handling
 - [ ] Handling when follows are set to private
 - [x] Better UI
-- [ ] Showing pfps in the graph
 - [x] Showing lookup progress on graph nodes? color coding?
 - [x] Showing ongoing lookups
 - [x] ~~Setting limits in recursive mode~~ recursive mode removed
 - [x] ~~Stop button~~ recursive mode removed
 - [x] Save/restore state
-- [ ] save state in localstorage
+- [x] save state in localstorage
 - [x] Show node count
 - [x] Search
 - [x] Isolate node
