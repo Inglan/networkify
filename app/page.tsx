@@ -11,7 +11,7 @@ import { Edges, Nodes, Users } from "@/lib/types";
 import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
 import * as spotify from "@/lib/spotifyClientUtils";
-import { Graph } from "./Graph";
+import { Graph } from "../components/graph/Graph";
 import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -23,7 +23,7 @@ import {
   MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import { SidebarContent } from "./SidebarContent";
+import { SidebarContent } from "../components/sidebar/SidebarContent";
 import {
   Dialog,
   DialogContent,
@@ -37,7 +37,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import * as tokenUtils from "@/lib/tokenUtils";
 import { toast } from "sonner";
-import { Onboarding } from "./OnboardingDialog";
+import { Onboarding } from "../components/OnboardingDialog";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);

@@ -19,7 +19,7 @@ import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
 import * as spotify from "@/lib/spotifyClientUtils";
 import { Data } from "./Data";
-import { Graph } from "./Graph";
+import { Graph } from "../graph/Graph";
 import { Header } from "./Header";
 import { Discover } from "./Discover";
 import { UserInfo } from "./UserInfo";
