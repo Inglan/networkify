@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { User } from "./types";
+import { Edge, Node, User } from "./types";
 
 interface SaveState {
   save: {
@@ -58,7 +58,11 @@ export const useOnboardingDialogState = create<OnboardingDialogState>()(
   ),
 );
 
-export const useGraphState = create()(
+interface GraphState {
+  nodes: Node[];
+  edges: Edge[];
+}
+export const useGraphState = create<GraphState>()(
   persist(
     (set, get) => ({
       nodes: [],
@@ -71,7 +75,10 @@ export const useGraphState = create()(
   ),
 );
 
-export const useDataState = create()(
+interface DataState {
+  users: User[];
+}
+export const useDataState = create<DataState>()(
   persist(
     (set, get) => ({
       users: [],
@@ -83,19 +90,27 @@ export const useDataState = create()(
   ),
 );
 
-export const usePersistentUIState = create()(
+interface PersistentUIState {
+  sidebarOpen: boolean;
+  accordionValues: string[];
+  selectedUserId: string;
+}
+export const usePersistentUIState = create<PersistentUIState>()(
   persist(
     (set, get) => ({
       sidebarOpen: false,
       accordionValues: ["discover"],
       selectedUserId: "",
-      activeOperations: 0,
     }),
     { name: "networkify-ui", storage: createJSONStorage(() => localStorage) },
   ),
 );
 
-export const useUIState = create((set, get) => ({
+interface UIState {
+  activeOperations: number;
+  token: string;
+}
+export const useUIState = create<UIState>((set, get) => ({
   activeOperations: 0,
   token: "",
 }));
