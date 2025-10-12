@@ -12,7 +12,7 @@ interface SaveState {
   delete: (id: string) => void;
 }
 
-const useSave = create<SaveState>((set) => ({
+export const useSave = create<SaveState>((set) => ({
   save: [],
   create: (data, name) => {
     const id = crypto.randomUUID();
