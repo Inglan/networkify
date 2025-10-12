@@ -13,8 +13,8 @@ Basically just an experiment I made because I could
 - [ ] Showing pfps in the graph
 - [x] Showing lookup progress on graph nodes? color coding?
 - [x] Showing ongoing lookups
-- [ ] Setting limits in recursive mode
-- [ ] Stop button
+- [x] ~~Setting limits in recursive mode~~
+- [x] ~~Stop button~~
 - [x] Save/restore state
 - [ ] save state in localstorage
 - [x] Show node count
