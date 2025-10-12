@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
+import { useSave } from "@/lib/save";
 
 export function Data({
   setUsersAction: setUsers,
@@ -26,6 +27,7 @@ export function Data({
   save: Save[];
   setSaveAction: React.Dispatch<React.SetStateAction<Save[]>>;
 }) {
+  const saves = useSave((state) => state.save);
   return (
     <div className="flex flex-col gap-2">
       <Button
@@ -85,10 +87,10 @@ export function Data({
         <AccordionItem value="saves">
           <AccordionTrigger>Saves</AccordionTrigger>
           <AccordionContent>
-            {save.map((s) => (
-              <div key={s.date}>{s.name}</div>
+            {saves.map((s) => (
+              <div key={s.id}>{s.name}</div>
             ))}
-            {save.length === 0 && <div>No saves available</div>}
+            {saves.length === 0 && <div>No saves available</div>}
           </AccordionContent>
         </AccordionItem>
       </Accordion>
