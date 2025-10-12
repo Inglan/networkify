@@ -7,7 +7,7 @@ import { CheckedState } from "@radix-ui/react-checkbox";
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
 import { PanelBottom, PanelRight } from "lucide-react";
-import { Edges, Nodes, Users } from "@/lib/types";
+import { Edges, Nodes, Save, Users } from "@/lib/types";
 import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
 import * as spotify from "@/lib/spotifyClientUtils";
@@ -68,9 +68,7 @@ export default function Home() {
 
   const [token, setToken] = useState<string>("");
 
-  const [save, setSave] = usePersistedState<
-    { name: string; date: number; data: { users: Users } }[]
-  >("save", []);
+  const [save, setSave] = usePersistedState<Save[]>("save", []);
 
   // Opens accordions in sidebar
   const openAccordion = (value: string) => {

@@ -21,3 +21,5 @@ export type Users = {
   image_url?: string;
   exclude_from_graph: boolean;
 }[];
+
+export type Save = { name: string; date: number; data: { users: Users } };
