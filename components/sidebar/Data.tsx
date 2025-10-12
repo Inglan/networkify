@@ -30,6 +30,7 @@ export function Data({
 }) {
   const saves = useSave((state) => state.save);
   const createSave = useSave((state) => state.create);
+  const deleteSave = useSave((state) => state.delete);
 
   return (
     <div className="flex flex-col gap-2">
@@ -92,10 +93,21 @@ export function Data({
               >
                 {s.name}
                 <div className="grow"></div>
-                <Button size="icon" variant="ghost">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => {
+                    deleteSave(s.id);
+                  }}
+                >
                   <Trash />
                 </Button>
-                <Button size="icon">
+                <Button
+                  size="icon"
+                  onClick={() => {
+                    setUsers(s.data.users);
+                  }}
+                >
                   <ArchiveRestore />
                 </Button>
               </div>
