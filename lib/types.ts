@@ -2,7 +2,7 @@ export type Node = {
   id: string;
   label: string;
   fill: string;
-}[];
+};
 export type Nodes = Node[];
 
 export type Edge = {
@@ -10,7 +10,7 @@ export type Edge = {
   target: string;
   id: string;
   label: string;
-}[];
+};
 export type Edges = Edge[];
 
 export type User = {
