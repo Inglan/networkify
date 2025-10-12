@@ -81,11 +81,13 @@ export const useGraphState = create<GraphState>()(
 
 interface DataState {
   users: User[];
+  setUsers: (users: User[]) => void;
 }
 export const useDataState = create<DataState>()(
   persist(
     (set, get) => ({
       users: [],
+      setUsers: (users) => set({ users }),
     }),
     {
       name: "networkify-data",
