@@ -21,7 +21,7 @@ export const useSave = create<SaveState>()(
         const id = crypto.randomUUID();
         set((state) => {
           return {
-            save: [...state.save, { data, name, timestamp: Date.now(), id }],
+            save: [{ data, name, timestamp: Date.now(), id }, ...state.save],
           };
         });
       },
