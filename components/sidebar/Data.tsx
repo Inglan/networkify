@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { loadFromExport } from "@/lib/dataUtils";
+import * as data from "@/lib/dataUtils";
 import { Edges, Nodes, Users } from "@/lib/types";
 
 export function Data({
@@ -46,7 +46,7 @@ export function Data({
       </Button>
       <Button
         onClick={() => {
-          loadFromExport().then((data) => {
+          data.loadFromExport().then((data) => {
             setUsers(data.users);
           });
         }}
