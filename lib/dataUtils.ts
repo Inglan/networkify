@@ -30,7 +30,7 @@ export const loadFromExport = () =>
       reader.onload = async (event) => {
         try {
           const data = JSON.parse(event.target?.result as string);
-          resolve(data.users);
+          resolve(data);
         } catch (error) {
           reject(error);
         }
