@@ -16,7 +16,7 @@ export function Data({
   edges: Edges;
 }) {
   return (
-    <div className=" flex flex-col gap-2">
+    <div className="flex flex-col gap-2">
       <Button
         onClick={() => {
           setUsers([]);
@@ -30,16 +30,7 @@ export function Data({
             users,
           };
 
-          const blob = new Blob([JSON.stringify(data)], {
-            type: "text/plain;charset=utf-8",
-          });
-
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.href = url;
-          link.download = `networkify-${new Date().toISOString()}.json`;
-          link.click();
-          URL.revokeObjectURL(url);
+          dataUtils.exportData(data);
         }}
       >
         Save
