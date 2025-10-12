@@ -14,7 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Kbd } from "@/components/ui/kbd";
-import { Edges, Nodes, Users } from "@/lib/types";
+import { Edges, Nodes, Save, Users } from "@/lib/types";
 import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
 import * as spotify from "@/lib/spotifyClientUtils";
@@ -55,6 +55,8 @@ export function SidebarContent({
   accordionValues,
   setAccordionValuesAction: setAccordionValues,
   setSidebarOpenAction: setSidebarOpen,
+  save,
+  setSaveAction: setSave,
 }: {
   nodes: Nodes;
   edges: Edges;
@@ -77,6 +79,8 @@ export function SidebarContent({
   accordionValues: string[];
   setAccordionValuesAction: React.Dispatch<React.SetStateAction<string[]>>;
   setSidebarOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
+  save: Save[];
+  setSaveAction: React.Dispatch<React.SetStateAction<Save[]>>;
 }) {
   return (
     <>

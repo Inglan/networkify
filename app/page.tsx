@@ -166,6 +166,8 @@ export default function Home() {
               updateUserStateAction={updateUserState}
               users={users}
               setSidebarOpenAction={setSidebarOpen}
+              save={save}
+              setSaveAction={setSave}
             />
           </div>
         </DrawerContent>
