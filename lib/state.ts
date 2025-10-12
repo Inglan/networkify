@@ -98,15 +98,43 @@ export const useDataState = create<DataState>()(
 
 interface PersistentUIState {
   sidebarOpen: boolean;
+  setSidebarOpen: (sidebarOpen: boolean) => void;
   accordionValues: string[];
+  setAccordionValues: (accordionValues: string[]) => void;
+  openAccordion: (value: string) => void;
+  closeAccordion: (value: string) => void;
   selectedUserId: string;
+  setSelectedUserId: (selectedUserId: string) => void;
 }
 export const usePersistentUIState = create<PersistentUIState>()(
   persist(
     (set, get) => ({
       sidebarOpen: false,
+      setSidebarOpen: (sidebarOpen) => set({ sidebarOpen }),
       accordionValues: ["discover"],
+      setAccordionValues: (accordionValues) => set({ accordionValues }),
+      openAccordion: (value) => {
+        set((prev) => {
+          if (prev.accordionValues.includes(value)) {
+            return prev;
+          } else {
+            return { accordionValues: [...prev.accordionValues, value] };
+          }
+        });
+      },
+      closeAccordion: (value) => {
+        set((prev) => {
+          if (prev.accordionValues.includes(value)) {
+            return {
+              accordionValues: prev.accordionValues.filter((v) => v !== value),
+            };
+          } else {
+            return prev;
+          }
+        });
+      },
       selectedUserId: "",
+      setSelectedUserId: (selectedUserId) => set({ selectedUserId }),
     }),
     { name: "networkify-ui", storage: createJSONStorage(() => localStorage) },
   ),
