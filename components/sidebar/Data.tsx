@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
 import { useSave } from "@/lib/save";
+import { ArchiveRestore, Delete, Trash } from "lucide-react";
 
 export function Data({
   setUsersAction: setUsers,
@@ -85,7 +86,19 @@ export function Data({
           <AccordionTrigger>Saves</AccordionTrigger>
           <AccordionContent>
             {saves.map((s) => (
-              <div key={s.id}>{s.name}</div>
+              <div
+                className="border p-2 pl-4 rounded-md flex flex-row gap-2 items-center"
+                key={s.id}
+              >
+                {s.name}
+                <div className="grow"></div>
+                <Button size="icon" variant="ghost">
+                  <Trash />
+                </Button>
+                <Button size="icon">
+                  <ArchiveRestore />
+                </Button>
+              </div>
             ))}
             {saves.length === 0 && <div>No saves available</div>}
           </AccordionContent>
