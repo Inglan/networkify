@@ -37,7 +37,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import * as tokenUtils from "@/lib/tokenUtils";
 import { toast } from "sonner";
-import { useOnboardingDialogState } from "@/lib/persistentState";
+import { useOnboardingDialogState } from "@/lib/state";
 export function Onboarding({
   setTokenAction: setToken,
 }: {

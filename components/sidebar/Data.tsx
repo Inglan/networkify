@@ -10,7 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
-import { useSave } from "@/lib/persistentState";
+import { useSave } from "@/lib/state";
 import { ArchiveRestore, Delete, Trash } from "lucide-react";
 
 export function Data({

@@ -39,7 +39,7 @@ import * as tokenUtils from "@/lib/tokenUtils";
 import { toast } from "sonner";
 import { Onboarding } from "../components/OnboardingDialog";
 import usePersistedState from "@/lib/hooks";
-import { useOnboardingDialogState } from "@/lib/persistentState";
+import { useOnboardingDialogState } from "@/lib/state";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
