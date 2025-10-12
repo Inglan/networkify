@@ -92,7 +92,10 @@ export function Data({
                   className="border p-2 pl-4 rounded-md flex flex-row gap-2 items-center"
                   key={s.id}
                 >
-                  {s.name}
+                  <div className="flex flex-col">
+                    <div>{s.name}</div>
+                    <div>{new Date(s.timestamp).toLocaleString()}</div>
+                  </div>
                   <div className="grow"></div>
                   <Button
                     size="icon"
