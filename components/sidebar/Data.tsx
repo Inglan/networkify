@@ -9,11 +9,15 @@ export function Data({
   users,
   nodes,
   edges,
+  save,
+  setSaveAction: setSave,
 }: {
   setUsersAction: (users: Users) => void;
   users: Users;
   nodes: Nodes;
   edges: Edges;
+  save: Save[];
+  setSaveAction: React.Dispatch<React.SetStateAction<Save[]>>;
 }) {
   return (
     <div className="flex flex-col gap-2">

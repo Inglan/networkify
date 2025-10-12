@@ -115,6 +115,8 @@ export function SidebarContent({
               nodes={nodes}
               setUsersAction={setUsers}
               users={users}
+              save={save}
+              setSaveAction={setSave}
             />
           </AccordionContent>
         </AccordionItem>
