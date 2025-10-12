@@ -74,6 +74,7 @@ export function Data({
             newSave.push({ name: saveName, date: Date.now(), data: { users } });
             return newSave;
           });
+          console.log("saving: ", Date.now());
           formElement.reset();
         }}
       >
