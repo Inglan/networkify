@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { loadFromExport } from "@/lib/dataUtils";
 import { Edges, Nodes, Users } from "@/lib/types";
 
 export function Data({
@@ -45,21 +46,9 @@ export function Data({
       </Button>
       <Button
         onClick={() => {
-          const input = document.createElement("input");
-          input.type = "file";
-          input.accept = ".json";
-          input.onchange = async (event) => {
-            const file = (event.target as HTMLInputElement).files?.[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = async (event) => {
-              const data = JSON.parse(event.target?.result as string);
-              setUsers(data.users);
-            };
-            reader.readAsText(file);
-          };
-          input.click();
+          loadFromExport().then((data) => {
+            setUsers(data.users);
+          });
         }}
       >
         Load

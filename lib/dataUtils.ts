@@ -17,24 +17,25 @@ export function exportData(data: { users: Users }) {
   URL.revokeObjectURL(url);
 }
 
-export const loadFromExport = new Promise((resolve, reject) => {
-  const input = document.createElement("input");
-  input.type = "file";
-  input.accept = ".json";
-  input.onchange = async (event) => {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (!file) return;
+export const loadFromExport = () =>
+  new Promise<{ users: Users }>((resolve, reject) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
+    input.onchange = async (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+      if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = async (event) => {
-      try {
-        const data = JSON.parse(event.target?.result as string);
-        resolve(data.users);
-      } catch (error) {
-        reject(error);
-      }
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        try {
+          const data = JSON.parse(event.target?.result as string);
+          resolve(data.users);
+        } catch (error) {
+          reject(error);
+        }
+      };
+      reader.readAsText(file);
     };
-    reader.readAsText(file);
-  };
-  input.click();
-});
+    input.click();
+  });
