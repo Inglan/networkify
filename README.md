@@ -4,9 +4,9 @@ A very undocumented, untested, janky program that makes a graph of everyone you 
 Basically just an experiment I made because I could
 
 ## Roadmap
-- [ ] Remove recursion?
+- [x] Remove recursion?
 - [ ] Better documentation
-- [ ] better ux. onboarding?
+- [x] better ux. onboarding?
 - [ ] Better error handling
 - [ ] Handling when follows are set to private
 - [x] Better UI
