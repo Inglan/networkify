@@ -9,6 +9,7 @@ function setItem(key: string, value: unknown) {
 }
 
 function getItem(key: string) {
+  if (typeof window === "undefined") return;
   try {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : undefined;
