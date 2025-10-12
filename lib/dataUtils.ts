@@ -4,7 +4,7 @@ function generateBackupName() {
   return `networkify-${new Date().toISOString()}.json`;
 }
 
-export function exportData(data: { users: Users }) {
+export function export(data: { users: Users }) {
   const blob = new Blob([JSON.stringify(data)], {
     type: "text/plain;charset=utf-8",
   });
