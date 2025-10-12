@@ -57,3 +57,45 @@ export const useOnboardingDialogState = create<OnboardingDialogState>()(
     },
   ),
 );
+
+export const useGraphState = create()(
+  persist(
+    (set, get) => ({
+      nodes: [],
+      edges: [],
+    }),
+    {
+      name: "networkify-data",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+);
+
+export const useDataState = create()(
+  persist(
+    (set, get) => ({
+      users: [],
+    }),
+    {
+      name: "networkify-data",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+);
+
+export const usePersistentUIState = create()(
+  persist(
+    (set, get) => ({
+      sidebarOpen: false,
+      accordionValues: ["discover"],
+      selectedUserId: "",
+      activeOperations: 0,
+    }),
+    { name: "networkify-ui", storage: createJSONStorage(() => localStorage) },
+  ),
+);
+
+export const useUIState = create((set, get) => ({
+  activeOperations: 0,
+  token: "",
+}));
