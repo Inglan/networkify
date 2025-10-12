@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import * as dataUtils from "@/lib/dataUtils";
-import { Edges, Nodes, Save, Users } from "@/lib/types";
+import { Edges, Nodes, Users } from "@/lib/types";
 import {
   Accordion,
   AccordionContent,
@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
 import { useSave } from "@/lib/state";
-import { ArchiveRestore, Delete, Trash } from "lucide-react";
+import { ArchiveRestore, Trash } from "lucide-react";
 
 export function Data({
   setUsersAction: setUsers,

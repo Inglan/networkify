@@ -1,12 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { GraphCanvasRef } from "reagraph";
-import { Button } from "@/components/ui/button";
-import { CheckedState } from "@radix-ui/react-checkbox";
-import { useHotkeys } from "react-hotkeys-hook";
-import clsx from "clsx";
-import { PanelBottom, PanelRight, Sidebar } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -14,27 +8,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Kbd } from "@/components/ui/kbd";
-import { Edges, Nodes, Save, Users } from "@/lib/types";
-import * as graph from "@/lib/graphUtils";
-import * as user from "@/lib/userUtils";
-import * as spotify from "@/lib/spotifyClientUtils";
+import { Edges, Nodes, Users } from "@/lib/types";
 import { Data } from "./Data";
-import { Graph } from "../graph/Graph";
 import { Header } from "./Header";
 import { Discover } from "./Discover";
 import { UserInfo } from "./UserInfo";
 import { Search } from "./Search";
-import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
 
 export function SidebarContent({
   nodes,

@@ -3,9 +3,6 @@
 import { getUser } from "@/lib/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { CheckedState } from "@radix-ui/react-checkbox";
 import { toast } from "sonner";
 import { Users } from "@/lib/types";
 import * as tokenUtils from "@/lib/tokenUtils";
@@ -39,7 +36,7 @@ export function Discover({
           try {
             const token = tokenUtils.getFromClipboard(e);
             setToken(token);
-          } catch (error) {
+          } catch {
             setToken(e.clipboardData.getData("text"));
           }
         }}

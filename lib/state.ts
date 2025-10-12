@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { Edge, Node, User } from "./types";
+import { User } from "./types";
 
 interface SaveState {
   save: {
@@ -15,7 +15,7 @@ interface SaveState {
 
 export const useSave = create<SaveState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       save: [],
       create: (data, name) => {
         const id = crypto.randomUUID();
@@ -47,7 +47,7 @@ interface OnboardingDialogState {
 
 export const useOnboardingDialogState = create<OnboardingDialogState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       open: true,
       setOpen: (open) => set({ open }),
     }),

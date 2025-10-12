@@ -1,36 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { GraphCanvasRef } from "reagraph";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CheckedState } from "@radix-ui/react-checkbox";
-import { useHotkeys } from "react-hotkeys-hook";
-import clsx from "clsx";
-import { PanelBottom, PanelRight } from "lucide-react";
-import { Edges, Nodes, Users } from "@/lib/types";
-import * as graph from "@/lib/graphUtils";
-import * as user from "@/lib/userUtils";
-import * as spotify from "@/lib/spotifyClientUtils";
-import { Graph } from "../components/graph/Graph";
-import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
-import { SidebarContent } from "../components/sidebar/SidebarContent";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Kbd } from "@/components/ui/kbd";
 import { Textarea } from "@/components/ui/textarea";
