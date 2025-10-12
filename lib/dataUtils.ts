@@ -12,7 +12,7 @@ export function exportData(data: { users: Users }) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `networkify-${new Date().toISOString()}.json`;
+  link.download = generateBackupName();
   link.click();
   URL.revokeObjectURL(url);
 }
