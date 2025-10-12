@@ -37,16 +37,15 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import * as tokenUtils from "@/lib/tokenUtils";
 import { toast } from "sonner";
+import { useOnboardingDialogState } from "@/lib/persistentState";
 export function Onboarding({
-  onboardingOpen,
-  setOnboardingOpenAction: setOnboardingOpen,
   setTokenAction: setToken,
 }: {
-  onboardingOpen: boolean;
-  setOnboardingOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
   setTokenAction: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [page, setPage] = useState(0);
+  const onboardingOpen = useOnboardingDialogState((state) => state.open);
+  const setOnboardingOpen = useOnboardingDialogState((state) => state.setOpen);
 
   return (
     <Dialog open={onboardingOpen} onOpenChange={setOnboardingOpen}>
