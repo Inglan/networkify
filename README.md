@@ -1,3 +1,5 @@
+![hackatime](https://hackatime-badge.hackclub.com/U0923H02Y3B/networkify)
+
 # networkify
 Visualize the network of people you know on Spotify as a graph. This app helps you map out your connections by discovering followers and followings and displaying them in a graph.
 
