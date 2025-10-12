@@ -149,23 +149,75 @@ export function Onboarding({
               <div className="p-5 w-full flex flex-col gap-4 text-left">
                 <div className="text-xl">How to use</div>
                 <div>
-                  Start by pressing add current user, then run on all unsearched
-                  nodes. This will discover all your followers and following.
-                  You can keep pressing run on all unsearched nodes to discover
-                  more users. Be careful, as the amount of users goes up
-                  exponentially (assuming you have friends). If there is an
-                  issue with a node, it will show as red. If a node has been
-                  searched, it will show as green. If a node is currently
-                  searching, it will show as blue. If a node hasn&apos;t been
-                  searched, it will show as gray. You can click a node, or
-                  select a user in search show it in the sidebar. This allows
-                  you to do things like view followers, and follows, view
-                  profile, center the graph, run discovery on that user, or
-                  exclude the user from the graph. Users with more than 100
-                  followers or follows will be excluded by default. You can
-                  double click a node to run discover, and right click to view
-                  spotify profile. You can save and load the current state in
-                  the data section of the sidebar.
+                  <ol className="list-decimal list-inside">
+                    <li>
+                      <b>Add your account:</b> Click <i>Add Current User</i> to
+                      start building your network.
+                    </li>
+                    <li>
+                      <b>Discover connections:</b> Click{" "}
+                      <i>Run on all unsearched nodes</i> to find your followers
+                      and who you follow. You can repeat this to explore
+                      further, but note: the number of users can grow quickly!
+                    </li>
+                    <li>
+                      <b>Node colors:</b>
+                      <ul className="list-disc list-inside ml-5">
+                        <li>
+                          <span className="font-semibold text-red-500">
+                            Red:
+                          </span>{" "}
+                          Error with this user
+                        </li>
+                        <li>
+                          <span className="font-semibold text-green-600">
+                            Green:
+                          </span>{" "}
+                          User has been searched
+                        </li>
+                        <li>
+                          <span className="font-semibold text-blue-500">
+                            Blue:
+                          </span>{" "}
+                          Currently searching
+                        </li>
+                        <li>
+                          <span className="font-semibold text-gray-500">
+                            Gray:
+                          </span>{" "}
+                          Not yet searched
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <b>Interact with users:</b> Click a node or search for a
+                      user to view details in the sidebar. Here you can:
+                      <ul className="list-disc list-inside ml-5">
+                        <li>View followers and following</li>
+                        <li>View Spotify profile</li>
+                        <li>Center the graph on this user</li>
+                        <li>Run discovery for this user</li>
+                        <li>Exclude the user from the graph</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <b>Tips & Shortcuts:</b>
+                      <ul className="list-disc list-inside ml-5">
+                        <li>
+                          Users with more than 100 followers/following are
+                          excluded by default
+                        </li>
+                        <li>Double-click a node to run discovery</li>
+                        <li>
+                          Right-click a node to open their Spotify profile
+                        </li>
+                        <li>
+                          Save or load your network in the <b>Data</b> section
+                          of the sidebar
+                        </li>
+                      </ul>
+                    </li>
+                  </ol>
                 </div>
                 <Button
                   onClick={() => {
