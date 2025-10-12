@@ -39,3 +39,21 @@ export const useSave = create<SaveState>()(
     },
   ),
 );
+
+interface OnboardingDialogState {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+export const useOnboardingDialogState = create<OnboardingDialogState>()(
+  persist(
+    (set, get) => ({
+      open: true,
+      setOpen: (open) => set({ open }),
+    }),
+    {
+      name: "networkify-onboaring",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+);
