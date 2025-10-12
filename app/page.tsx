@@ -68,8 +68,6 @@ export default function Home() {
 
   const [token, setToken] = useState<string>("");
 
-  const [save, setSave] = usePersistedState<Save[]>("save", []);
-
   // Opens accordions in sidebar
   const openAccordion = (value: string) => {
     setAccordionValues((prev) => {
@@ -166,8 +164,6 @@ export default function Home() {
               updateUserStateAction={updateUserState}
               users={users}
               setSidebarOpenAction={setSidebarOpen}
-              save={save}
-              setSaveAction={setSave}
             />
           </div>
         </DrawerContent>

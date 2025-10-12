@@ -18,15 +18,11 @@ export function Data({
   users,
   nodes,
   edges,
-  save,
-  setSaveAction: setSave,
 }: {
   setUsersAction: (users: Users) => void;
   users: Users;
   nodes: Nodes;
   edges: Edges;
-  save: Save[];
-  setSaveAction: React.Dispatch<React.SetStateAction<Save[]>>;
 }) {
   const saves = useSave((state) => state.save);
   const createSave = useSave((state) => state.create);

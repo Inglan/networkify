@@ -55,8 +55,6 @@ export function SidebarContent({
   accordionValues,
   setAccordionValuesAction: setAccordionValues,
   setSidebarOpenAction: setSidebarOpen,
-  save,
-  setSaveAction: setSave,
 }: {
   nodes: Nodes;
   edges: Edges;
@@ -79,8 +77,6 @@ export function SidebarContent({
   accordionValues: string[];
   setAccordionValuesAction: React.Dispatch<React.SetStateAction<string[]>>;
   setSidebarOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
-  save: Save[];
-  setSaveAction: React.Dispatch<React.SetStateAction<Save[]>>;
 }) {
   return (
     <>
@@ -115,8 +111,6 @@ export function SidebarContent({
               nodes={nodes}
               setUsersAction={setUsers}
               users={users}
-              save={save}
-              setSaveAction={setSave}
             />
           </AccordionContent>
         </AccordionItem>
