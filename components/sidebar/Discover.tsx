@@ -81,10 +81,38 @@ export function Discover({
           updateGraph();
         }}
       >
-        Run on all nodes with no connections (
+        Run on all nodes with no follows (
         {
           users.filter(
             (user) =>
+              !user.exclude_from_graph &&
+              user.followers.length + user.following.length == 0,
+          ).length
+        }
+        )
+      </Button>
+      <Button
+        disabled={!token || activeOperations > 0}
+        onClick={async () => {
+          users
+            .filter(
+              (user) =>
+                user.searchState == "searched" &&
+                !user.exclude_from_graph &&
+                user.followers.length + user.following.length == 0,
+            )
+            .forEach((user) => {
+              user.searchState = "searching";
+              discover(user.username);
+            });
+          updateGraph();
+        }}
+      >
+        Rerun on all searched nodes w/ no follows (
+        {
+          users.filter(
+            (user) =>
+              user.searchState == "searched" &&
               !user.exclude_from_graph &&
               user.followers.length + user.following.length == 0,
           ).length
