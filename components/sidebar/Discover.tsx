@@ -13,8 +13,6 @@ import * as tokenUtils from "@/lib/tokenUtils";
 export function Discover({
   setTokenAction: setToken,
   token,
-  setAutoAction: setAuto,
-  auto,
   setUsersAction: setUsers,
   updateGraphAction: updateGraph,
   users,
@@ -23,8 +21,6 @@ export function Discover({
 }: {
   setTokenAction: React.Dispatch<React.SetStateAction<string>>;
   token: string;
-  setAutoAction: React.Dispatch<React.SetStateAction<CheckedState>>;
-  auto: CheckedState;
   setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
   updateGraphAction: () => void;
   users: Users;
@@ -49,15 +45,6 @@ export function Discover({
         }}
       />
 
-      <div className="flex items-center gap-3">
-        <Checkbox
-          id="auto"
-          checked={auto}
-          onCheckedChange={(value) => setAuto(value)}
-        />
-        <Label htmlFor="auto">Auto discover</Label>
-      </div>
-      <br />
       <Button
         disabled={!token}
         onClick={async () => {

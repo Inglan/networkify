@@ -63,7 +63,6 @@ export default function Home() {
   const [activeOperations, setActiveOperations] = useState<number>(0);
 
   const [token, setToken] = useState<string>("");
-  const [auto, setAuto] = useState<CheckedState>(false);
 
   // Opens accordions in sidebar
   const openAccordion = (value: string) => {
@@ -145,7 +144,6 @@ export default function Home() {
             <SidebarContent
               accordionValues={accordionValues}
               activeOperations={activeOperations}
-              auto={auto}
               closeAccordionAction={closeAccordion}
               discoverAction={discover}
               edges={edges}
@@ -154,7 +152,6 @@ export default function Home() {
               openAccordionAction={openAccordion}
               selectedUserId={selectedUserId}
               setAccordionValuesAction={setAccordionValues}
-              setAutoAction={setAuto}
               setSelectedUserIdAction={setSelectedUserId}
               setTokenAction={setToken}
               setUsersAction={setUsers}

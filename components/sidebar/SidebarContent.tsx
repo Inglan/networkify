@@ -41,8 +41,6 @@ export function SidebarContent({
   edges,
   setTokenAction: setToken,
   token,
-  setAutoAction: setAuto,
-  auto,
   setUsersAction: setUsers,
   updateGraphAction: updateGraph,
   users,
@@ -62,8 +60,6 @@ export function SidebarContent({
   edges: Edges;
   setTokenAction: React.Dispatch<React.SetStateAction<string>>;
   token: string;
-  setAutoAction: React.Dispatch<React.SetStateAction<CheckedState>>;
-  auto: CheckedState;
   setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
   updateGraphAction: () => void;
   users: Users;
@@ -98,9 +94,7 @@ export function SidebarContent({
           <AccordionContent className="p-4">
             <Discover
               activeOperations={activeOperations}
-              auto={auto}
               discoverAction={discover}
-              setAutoAction={setAuto}
               setTokenAction={setToken}
               setUsersAction={setUsers}
               token={token}
