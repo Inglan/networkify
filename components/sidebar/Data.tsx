@@ -57,7 +57,7 @@ export function Data({
       >
         Load
       </Button>
-      <div>You need to manually update the graph after loading data.</div>
+      <div>You may need to manually update the graph after loading data.</div>
       <div>{nodes.length} nodes</div>
       <div>{edges.length} edges</div>
       <div>{users.length} users</div>
