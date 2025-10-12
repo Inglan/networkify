@@ -142,9 +142,13 @@ export const usePersistentUIState = create<PersistentUIState>()(
 
 interface UIState {
   activeOperations: number;
+  setActiveOperations: (activeOperations: number) => void;
   token: string;
+  setToken: (token: string) => void;
 }
 export const useUIState = create<UIState>((set, get) => ({
   activeOperations: 0,
+  setActiveOperations: (activeOperations) => set({ activeOperations }),
   token: "",
+  setToken: (token) => set({ token }),
 }));
