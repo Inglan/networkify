@@ -1,5 +1,5 @@
 import { Users } from "./types";
-import { getFollows } from "@/app/actions";
+import { getFollows } from "@/lib/actions";
 import { toast } from "sonner";
 
 export async function discover(

@@ -1,6 +1,6 @@
 "use client";
 
-import { getUser } from "./actions";
+import { getUser } from "@/lib/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
