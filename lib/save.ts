@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { User } from "./types";
 
 interface SaveState {
@@ -12,21 +13,29 @@ interface SaveState {
   delete: (id: string) => void;
 }
 
-export const useSave = create<SaveState>((set) => ({
-  save: [],
-  create: (data, name) => {
-    const id = crypto.randomUUID();
-    set((state) => {
-      return {
-        save: [...state.save, { data, name, timestamp: Date.now(), id }],
-      };
-    });
-  },
-  delete: (id) => {
-    set((state) => {
-      return {
-        save: state.save.filter((item) => item.id !== id),
-      };
-    });
-  },
-}));
+export const useSave = create<SaveState>()(
+  persist(
+    (set, get) => ({
+      save: [],
+      create: (data, name) => {
+        const id = crypto.randomUUID();
+        set((state) => {
+          return {
+            save: [...state.save, { data, name, timestamp: Date.now(), id }],
+          };
+        });
+      },
+      delete: (id) => {
+        set((state) => {
+          return {
+            save: state.save.filter((item) => item.id !== id),
+          };
+        });
+      },
+    }),
+    {
+      name: "networkify-save",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+);
