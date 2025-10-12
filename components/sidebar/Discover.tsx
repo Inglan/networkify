@@ -111,6 +111,21 @@ export function Discover({
         }
         )
       </Button>
+      <Button
+        disabled={!token || activeOperations > 0}
+        onClick={async () => {
+          users
+            .filter((user) => !user.exclude_from_graph)
+            .forEach((user) => {
+              user.searchState = "searching";
+              discover(user.username);
+            });
+          updateGraph();
+        }}
+      >
+        Run on all nodes (
+        {users.filter((user) => !user.exclude_from_graph).length})
+      </Button>
       <div>{activeOperations} active searches</div>
     </div>
   );
