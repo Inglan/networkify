@@ -68,6 +68,10 @@ export default function Home() {
 
   const [token, setToken] = useState<string>("");
 
+  const [save, setSave] = usePersistedState<
+    { name: string; date: number; data: { users: Users } }[]
+  >("save", []);
+
   // Opens accordions in sidebar
   const openAccordion = (value: string) => {
     setAccordionValues((prev) => {
