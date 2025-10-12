@@ -38,6 +38,7 @@ import Link from "next/link";
 import * as tokenUtils from "@/lib/tokenUtils";
 import { toast } from "sonner";
 import { Onboarding } from "../components/OnboardingDialog";
+import usePersistedState from "@/lib/hooks";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -54,7 +55,10 @@ export default function Home() {
 
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [onboardingOpen, setOnboardingOpen] = useState(true);
+  const [onboardingOpen, setOnboardingOpen] = usePersistedState(
+    "onboarding-open",
+    true,
+  );
   const [accordionValues, setAccordionValues] = useState<string[]>([
     "discover",
   ]);
