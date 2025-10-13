@@ -26,7 +26,9 @@ export function Discover({
 }) {
   return (
     <div className="flex flex-col gap-2">
+      Token:
       <Input
+        className="blur-sm hover:blur-none focus:blur-none duration-300"
         placeholder="Token"
         type="text"
         value={token}
@@ -41,7 +43,6 @@ export function Discover({
           }
         }}
       />
-
       <Button
         disabled={!token}
         onClick={async () => {
