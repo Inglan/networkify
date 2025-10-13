@@ -1,9 +1,14 @@
 ![hackatime](https://hackatime-badge.hackclub.com/U0923H02Y3B/networkify)
 
+
 # networkify
-Visualize the network of people you know on Spotify as a graph. This app helps you map out your connections by discovering followers and followings and displaying them in a graph.
+
+Visualize the network of people you know on Spotify as a graph. This app maps out your connections by discovering followers and followings and displaying them in a graph.
 
 Important: This is an experimental tool that may violate Spotify’s Terms of Service. It may stop working at any time. Use at your own risk.
+
+## Demo video
+https://github.com/user-attachments/assets/00220411-a1be-4a0c-a3ce-2a3ade7826b9
 
 ## How it works
 - You provide a spotify token (which is generated when spotify loads, and is valid for a short time)
@@ -24,15 +29,32 @@ Important: This is an experimental tool that may violate Spotify’s Terms of Se
 ## Running locally
 ```shell
 pnpm install
+
+
 # Dev server
 pnpm dev
+
+
+
+
 # Build
 pnpm build
+
+
+
+
+
 # Serve
 pnpm start
+
+
+
+
 ```
 
 ## Roadmap
+
+
 - [x] Remove recursion?
 - [x] Better documentation
 - [x] better ux. onboarding?
@@ -52,3 +74,15 @@ pnpm start
 - [x] node context menu
 - [x] better mobile support
 - [x] Seperate everything into components
+
+
+
+
+
+
+
+
+
+
+
+
