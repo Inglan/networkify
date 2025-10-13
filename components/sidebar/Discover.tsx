@@ -72,6 +72,30 @@ export function Discover({
           users
             .filter(
               (user) =>
+                user.searchState == "not_searched" && !user.exclude_from_graph,
+            )
+            .forEach((user) => {
+              user.searchState = "searching";
+              discover(user.username);
+            });
+          updateGraph();
+        }}
+      >
+        Run on all unsearched nodes (
+        {
+          users.filter(
+            (user) =>
+              user.searchState == "not_searched" && !user.exclude_from_graph,
+          ).length
+        }
+        )
+      </Button>
+      <Button
+        disabled={!token || activeOperations > 0}
+        onClick={async () => {
+          users
+            .filter(
+              (user) =>
                 !user.exclude_from_graph &&
                 user.followers.length + user.following.length == 0,
             )
@@ -116,30 +140,6 @@ export function Discover({
               user.searchState == "searched" &&
               !user.exclude_from_graph &&
               user.followers.length + user.following.length == 0,
-          ).length
-        }
-        )
-      </Button>
-      <Button
-        disabled={!token || activeOperations > 0}
-        onClick={async () => {
-          users
-            .filter(
-              (user) =>
-                user.searchState == "not_searched" && !user.exclude_from_graph,
-            )
-            .forEach((user) => {
-              user.searchState = "searching";
-              discover(user.username);
-            });
-          updateGraph();
-        }}
-      >
-        Run on all unsearched nodes (
-        {
-          users.filter(
-            (user) =>
-              user.searchState == "not_searched" && !user.exclude_from_graph,
           ).length
         }
         )
