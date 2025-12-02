@@ -18,8 +18,6 @@ import { Onboarding } from "../components/OnboardingDialog";
 import { useGraphState, useOnboardingDialogState } from "@/lib/state";
 
 export default function Home() {
-  const graphRef = useRef<GraphCanvasRef | null>(null);
-
   // Mobile device detection hook
   const isMobile = useIsMobile();
 
@@ -29,7 +27,7 @@ export default function Home() {
   // Graph state
   // const [nodes, setNodes] = useState<Node[]>([]);
   // const [edges, setEdges] = useState<Edge[]>([]);
-  const { nodes, setNodes, edges, setEdges } = useGraphState();
+  const { nodes, setNodes, edges, setEdges, graphRef } = useGraphState();
 
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);
