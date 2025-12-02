@@ -35,7 +35,7 @@ export default function Home() {
   const [accordionValues, setAccordionValues] = useState<string[]>([
     "discover",
   ]);
-  const [selectedUserId, setSelectedUserId] = useState<string>("");
+  const [selectedUserId, setSelectedUserId] = useState<string[]>([]);
 
   const [activeOperations, setActiveOperations] = useState<number>(0);
 

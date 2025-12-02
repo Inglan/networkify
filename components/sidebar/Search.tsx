@@ -23,7 +23,7 @@ export function Search({
   users: Users;
   nodes: Nodes;
   selectedUserId: string;
-  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedUserIdAction: (userId: string) => void;
   openAccordionAction: (id: string) => void;
   graphRef: RefObject<GraphCanvasRef | null>;
 }) {

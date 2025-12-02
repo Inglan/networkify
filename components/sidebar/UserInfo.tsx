@@ -48,7 +48,7 @@ export function UserInfo({
   graphRef: RefObject<GraphCanvasRef | null>;
   discoverAction: (username: string) => Promise<void>;
   setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
-  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedUserIdAction: (userId: string) => void;
   openAccordionAction: (id: string) => void;
   closeAccordionAction: (id: string) => void;
   updateUserStateAction: (

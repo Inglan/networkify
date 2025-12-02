@@ -14,17 +14,17 @@ export function Graph({
   discoverAction: discover,
 }: {
   graphRef: RefObject<GraphCanvasRef | null>;
-  selectedUserId: string;
+  selectedUserId: string[];
   nodes: Nodes;
   edges: Edges;
-  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string[]>>;
   openAccordionAction: (id: string) => void;
   discoverAction: (id: string) => void;
 }) {
   return (
     <GraphCanvas
       ref={graphRef}
-      selections={[selectedUserId]}
+      selections={selectedUserId}
       labelType="nodes"
       draggable={true}
       nodes={nodes}
@@ -44,15 +44,19 @@ export function Graph({
         edge: { ...darkTheme.edge, fill: "#ffffff" },
         arrow: { ...darkTheme.arrow, fill: "#ffffff" },
       }}
-      onCanvasClick={() => setSelectedUserId("")}
+      onCanvasClick={() => setSelectedUserId([])}
       onNodeContextMenu={(node) =>
         window.open("https://open.spotify.com/user/" + node.id)
       }
       onNodeClick={(node) => {
-        setSelectedUserId(node.id);
+        setSelectedUserId([node.id]);
         openAccordion("info");
       }}
       onNodeDoubleClick={(node) => discover(node.id)}
+      lassoType="node"
+      onLassoEnd={(nodes) => {
+        setSelectedUserId(nodes);
+      }}
     />
   );
 }

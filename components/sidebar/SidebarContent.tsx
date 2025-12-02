@@ -46,8 +46,8 @@ export function SidebarContent({
   graphRef: React.RefObject<GraphCanvasRef | null>;
   openAccordionAction: (id: string) => void;
   closeAccordionAction: (id: string) => void;
-  selectedUserId: string;
-  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string>>;
+  selectedUserId: string[];
+  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string[]>>;
   updateUserStateAction: (
     username: string,
     newState: Partial<Users[number]>,
@@ -104,8 +104,10 @@ export function SidebarContent({
               graphRef={graphRef}
               nodes={nodes}
               openAccordionAction={openAccordion}
-              selectedUserId={selectedUserId}
-              setSelectedUserIdAction={setSelectedUserId}
+              selectedUserId={
+                selectedUserId.length == 1 ? selectedUserId[0] : ""
+              }
+              setSelectedUserIdAction={(userId) => setSelectedUserId([userId])}
               users={users}
             />
           </AccordionContent>
@@ -119,8 +121,10 @@ export function SidebarContent({
               graphRef={graphRef}
               nodes={nodes}
               openAccordionAction={openAccordion}
-              selectedUserId={selectedUserId}
-              setSelectedUserIdAction={setSelectedUserId}
+              selectedUserId={
+                selectedUserId.length == 1 ? selectedUserId[0] : ""
+              }
+              setSelectedUserIdAction={(userId) => setSelectedUserId([userId])}
               setUsersAction={setUsers}
               updateUserStateAction={updateUserState}
               users={users}
