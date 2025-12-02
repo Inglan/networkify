@@ -14,6 +14,7 @@ import { Header } from "./Header";
 import { Discover } from "./Discover";
 import { UserInfo } from "./UserInfo";
 import { Search } from "./Search";
+import { useGraphState } from "@/lib/state";
 
 export function SidebarContent({
   nodes,
@@ -24,7 +25,6 @@ export function SidebarContent({
   updateGraphAction: updateGraph,
   users,
   activeOperations,
-  graphRef,
   openAccordionAction: openAccordion,
   closeAccordionAction: closeAccordion,
   selectedUserId,
@@ -43,7 +43,6 @@ export function SidebarContent({
   updateGraphAction: () => void;
   users: Users;
   activeOperations: number;
-  graphRef: React.RefObject<GraphCanvasRef | null>;
   openAccordionAction: (id: string) => void;
   closeAccordionAction: (id: string) => void;
   selectedUserId: string[];
@@ -57,6 +56,8 @@ export function SidebarContent({
   setAccordionValuesAction: React.Dispatch<React.SetStateAction<string[]>>;
   setSidebarOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const { graphRef } = useGraphState();
+
   return (
     <>
       <Header
@@ -101,7 +102,6 @@ export function SidebarContent({
           </AccordionTrigger>
           <AccordionContent>
             <Search
-              graphRef={graphRef}
               nodes={nodes}
               openAccordionAction={openAccordion}
               selectedUserId={
@@ -118,7 +118,6 @@ export function SidebarContent({
             <UserInfo
               closeAccordionAction={closeAccordion}
               discoverAction={discover}
-              graphRef={graphRef}
               nodes={nodes}
               openAccordionAction={openAccordion}
               selectedUserId={

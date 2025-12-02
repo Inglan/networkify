@@ -125,7 +125,6 @@ export default function Home() {
               closeAccordionAction={closeAccordion}
               discoverAction={discover}
               edges={edges}
-              graphRef={graphRef}
               nodes={nodes}
               openAccordionAction={openAccordion}
               selectedUserId={selectedUserId}

@@ -34,7 +34,6 @@ import { useGraphState } from "@/lib/state";
 export function UserInfo({
   users,
   nodes,
-  graphRef,
   discoverAction: discover,
   setUsersAction: setUsers,
   openAccordionAction: openAccordion,
@@ -43,14 +42,13 @@ export function UserInfo({
 }: {
   users: User[];
   nodes: Node[];
-  graphRef: RefObject<GraphCanvasRef | null>;
   discoverAction: (username: string) => Promise<void>;
   setUsersAction: React.Dispatch<React.SetStateAction<User[]>>;
   openAccordionAction: (id: string) => void;
   closeAccordionAction: (id: string) => void;
   updateUserStateAction: (username: string, newState: Partial<User>) => void;
 }) {
-  const { selected, setSelected } = useGraphState();
+  const { selected, setSelected, graphRef } = useGraphState();
   const selectedUserId = selected.length == 1 ? selected[0] : "";
 
   return (

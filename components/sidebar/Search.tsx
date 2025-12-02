@@ -11,6 +11,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Node, User } from "@/lib/types";
+import { useGraphState } from "@/lib/state";
 
 export function Search({
   users,
@@ -18,15 +19,15 @@ export function Search({
   selectedUserId,
   setSelectedUserIdAction: setSelectedUserId,
   openAccordionAction: openAccordion,
-  graphRef,
 }: {
   users: User[];
   nodes: Node[];
   selectedUserId: string;
   setSelectedUserIdAction: (userId: string) => void;
   openAccordionAction: (id: string) => void;
-  graphRef: RefObject<GraphCanvasRef | null>;
 }) {
+  const { graphRef } = useGraphState();
+
   return (
     <Command className="bg-transparent">
       <CommandInput autoFocus placeholder="Search..." />
