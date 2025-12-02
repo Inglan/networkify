@@ -54,7 +54,7 @@ export function Onboarding() {
                 </div>
                 <div className="text-sm">
                   This is due to Spotify API limitations. It expires after a
-                  short amount of time and we don&apos;t store it.
+                  short amount of time and we only store it on your device.
                 </div>
                 <div className="flex flex-col md:flex-row gap-4">
                   <Button disabled variant="outline">
