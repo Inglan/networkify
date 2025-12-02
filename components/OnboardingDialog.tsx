@@ -13,15 +13,13 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import * as tokenUtils from "@/lib/tokenUtils";
 import { toast } from "sonner";
-import { useOnboardingDialogState } from "@/lib/state";
-export function Onboarding({
-  setTokenAction: setToken,
-}: {
-  setTokenAction: React.Dispatch<React.SetStateAction<string>>;
-}) {
+import { useOnboardingDialogState, usePreferencesState } from "@/lib/state";
+
+export function Onboarding() {
   const [page, setPage] = useState(0);
   const onboardingOpen = useOnboardingDialogState((state) => state.open);
   const setOnboardingOpen = useOnboardingDialogState((state) => state.setOpen);
+  const { setToken } = usePreferencesState();
 
   return (
     <Dialog open={onboardingOpen} onOpenChange={setOnboardingOpen}>

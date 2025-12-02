@@ -14,7 +14,11 @@ import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarContent } from "../components/sidebar/SidebarContent";
 import { Onboarding } from "../components/OnboardingDialog";
-import { useGraphState, useOnboardingDialogState } from "@/lib/state";
+import {
+  useGraphState,
+  useOnboardingDialogState,
+  usePreferencesState,
+} from "@/lib/state";
 import { toast } from "sonner";
 
 export default function Home() {
@@ -30,6 +34,8 @@ export default function Home() {
   const { nodes, setNodes, edges, setEdges, graphRef, update } =
     useGraphState();
 
+  const { token } = usePreferencesState();
+
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [accordionValues, setAccordionValues] = useState<string[]>([
@@ -38,8 +44,6 @@ export default function Home() {
   const [selectedUserId, setSelectedUserId] = useState<string[]>([]);
 
   const [activeOperations, setActiveOperations] = useState<number>(0);
-
-  const [token, setToken] = useState<string>("");
 
   // Opens accordions in sidebar
   const openAccordion = (value: string) => {
@@ -131,9 +135,7 @@ export default function Home() {
               selectedUserId={selectedUserId}
               setAccordionValuesAction={setAccordionValues}
               setSelectedUserIdAction={setSelectedUserId}
-              setTokenAction={setToken}
               setUsersAction={setUsers}
-              token={token}
               updateGraphAction={updateGraph}
               updateUserStateAction={updateUserState}
               users={users}
@@ -169,7 +171,7 @@ export default function Home() {
         </MenubarMenu>
       </Menubar>*/}
       <Graph discoverAction={discover} openAccordionAction={openAccordion} />
-      <Onboarding setTokenAction={setToken} />
+      <Onboarding />
     </>
   );
 }

@@ -17,8 +17,6 @@ import { Search } from "./Search";
 import { useGraphState } from "@/lib/state";
 
 export function SidebarContent({
-  setTokenAction: setToken,
-  token,
   setUsersAction: setUsers,
   updateGraphAction: updateGraph,
   users,
@@ -33,8 +31,6 @@ export function SidebarContent({
   setAccordionValuesAction: setAccordionValues,
   setSidebarOpenAction: setSidebarOpen,
 }: {
-  setTokenAction: React.Dispatch<React.SetStateAction<string>>;
-  token: string;
   setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
   updateGraphAction: () => void;
   users: Users;
@@ -71,9 +67,7 @@ export function SidebarContent({
             <Discover
               activeOperations={activeOperations}
               discoverAction={discover}
-              setTokenAction={setToken}
               setUsersAction={setUsers}
-              token={token}
               updateGraphAction={updateGraph}
               users={users}
             />

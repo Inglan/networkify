@@ -6,24 +6,22 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Users } from "@/lib/types";
 import * as tokenUtils from "@/lib/tokenUtils";
+import { usePreferencesState } from "@/lib/state";
 
 export function Discover({
-  setTokenAction: setToken,
-  token,
   setUsersAction: setUsers,
   updateGraphAction: updateGraph,
   users,
   activeOperations,
   discoverAction: discover,
 }: {
-  setTokenAction: React.Dispatch<React.SetStateAction<string>>;
-  token: string;
   setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
   updateGraphAction: () => void;
   users: Users;
   activeOperations: number;
   discoverAction: (id: string) => void;
 }) {
+  const { setToken, token } = usePreferencesState();
   return (
     <div className="flex flex-col gap-2">
       Token:
