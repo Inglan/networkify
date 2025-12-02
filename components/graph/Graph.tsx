@@ -7,23 +7,20 @@ import { useGraphState } from "@/lib/state";
 
 export function Graph({
   graphRef,
-  selectedUserId,
-  setSelectedUserIdAction: setSelectedUserId,
   openAccordionAction: openAccordion,
   discoverAction: discover,
 }: {
   graphRef: RefObject<GraphCanvasRef | null>;
-  selectedUserId: string[];
-  setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string[]>>;
   openAccordionAction: (id: string) => void;
   discoverAction: (id: string) => void;
 }) {
-  const { actives, setActives, nodes, edges } = useGraphState();
+  const { actives, setActives, nodes, edges, selected, setSelected } =
+    useGraphState();
 
   return (
     <GraphCanvas
       ref={graphRef}
-      selections={selectedUserId}
+      selections={selected}
       labelType="nodes"
       draggable={true}
       nodes={nodes}
@@ -43,18 +40,18 @@ export function Graph({
         edge: { ...darkTheme.edge, fill: "#ffffff" },
         arrow: { ...darkTheme.arrow, fill: "#ffffff" },
       }}
-      onCanvasClick={() => setSelectedUserId([])}
+      onCanvasClick={() => setSelected([])}
       onNodeContextMenu={(node) =>
         window.open("https://open.spotify.com/user/" + node.id)
       }
       onNodeClick={(node) => {
-        setSelectedUserId([node.id]);
+        setSelected([node.id]);
         openAccordion("info");
       }}
       onNodeDoubleClick={(node) => discover(node.id)}
       lassoType="node"
       onLassoEnd={(nodes) => {
-        setSelectedUserId(nodes);
+        setSelected(nodes);
         setActives([]);
       }}
       onLasso={(nodes) => {
