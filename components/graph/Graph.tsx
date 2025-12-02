@@ -6,15 +6,13 @@ import { Edge, Node } from "@/lib/types";
 import { useGraphState } from "@/lib/state";
 
 export function Graph({
-  graphRef,
   openAccordionAction: openAccordion,
   discoverAction: discover,
 }: {
-  graphRef: RefObject<GraphCanvasRef | null>;
   openAccordionAction: (id: string) => void;
   discoverAction: (id: string) => void;
 }) {
-  const { actives, setActives, nodes, edges, selected, setSelected } =
+  const { actives, setActives, nodes, edges, selected, setSelected, graphRef } =
     useGraphState();
 
   return (
