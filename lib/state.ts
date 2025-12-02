@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { User } from "./types";
+import { Edge, Node, User } from "./types";
 
 interface SaveState {
   save: {
@@ -57,6 +57,28 @@ export const useOnboardingDialogState = create<OnboardingDialogState>()(
     },
   ),
 );
+
+interface GraphState {
+  nodes: Node[];
+  setNodes: (nodes: Node[]) => void;
+  edges: Edge[];
+  setEdges: (edges: Edge[]) => void;
+  selected: string[];
+  setSelected: (selected: string[]) => void;
+  actives: string[];
+  setActives: (actives: string[]) => void;
+}
+
+export const useGraphState = create<GraphState>((set) => ({
+  nodes: [],
+  setNodes: (nodes) => set({ nodes }),
+  edges: [],
+  setEdges: (edges) => set({ edges }),
+  selected: [],
+  setSelected: (selected) => set({ selected }),
+  actives: [],
+  setActives: (actives) => set({ actives }),
+}));
 
 // interface GraphState {
 //   nodes: Node[];
