@@ -168,15 +168,7 @@ export default function Home() {
           </MenubarContent>
         </MenubarMenu>
       </Menubar>*/}
-      <Graph
-        discoverAction={discover}
-        edges={edges}
-        graphRef={graphRef}
-        nodes={nodes}
-        openAccordionAction={openAccordion}
-        selectedUserId={selectedUserId}
-        setSelectedUserIdAction={setSelectedUserId}
-      />
+      <Graph discoverAction={discover} openAccordionAction={openAccordion} />
       <Onboarding setTokenAction={setToken} />
     </>
   );
