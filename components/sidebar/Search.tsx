@@ -10,7 +10,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Nodes, Users } from "@/lib/types";
+import { Node, User } from "@/lib/types";
 
 export function Search({
   users,
@@ -20,8 +20,8 @@ export function Search({
   openAccordionAction: openAccordion,
   graphRef,
 }: {
-  users: Users;
-  nodes: Nodes;
+  users: User[];
+  nodes: Node[];
   selectedUserId: string;
   setSelectedUserIdAction: (userId: string) => void;
   openAccordionAction: (id: string) => void;

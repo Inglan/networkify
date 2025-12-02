@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
 import { PanelBottom, PanelRight } from "lucide-react";
-import { Edges, Nodes, Users } from "@/lib/types";
+import { Edge, Node, Users } from "@/lib/types";
 import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
 import * as spotify from "@/lib/spotifyClientUtils";
@@ -27,8 +27,8 @@ export default function Home() {
   const [users, setUsers] = useState<Users>([]);
 
   // Graph state
-  const [nodes, setNodes] = useState<Nodes>([]);
-  const [edges, setEdges] = useState<Edges>([]);
+  const [nodes, setNodes] = useState<Node[]>([]);
+  const [edges, setEdges] = useState<Edge[]>([]);
 
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);

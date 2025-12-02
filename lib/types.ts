@@ -3,7 +3,6 @@ export type Node = {
   label: string;
   fill: string;
 };
-export type Nodes = Node[];
 
 export type Edge = {
   source: string;
@@ -11,7 +10,6 @@ export type Edge = {
   id: string;
   label: string;
 };
-export type Edges = Edge[];
 
 export type User = {
   username: string;

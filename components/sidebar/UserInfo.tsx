@@ -11,7 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { SearchX, User } from "lucide-react";
+import { SearchX, UserIcon } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -28,7 +28,7 @@ import {
 import { Kbd } from "@/components/ui/kbd";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Nodes, Users } from "@/lib/types";
+import { Node, User } from "@/lib/types";
 
 export function UserInfo({
   selectedUserId,
@@ -43,17 +43,17 @@ export function UserInfo({
   updateUserStateAction: updateUserState,
 }: {
   selectedUserId: string;
-  users: Users;
-  nodes: Nodes;
+  users: User[];
+  nodes: Node[];
   graphRef: RefObject<GraphCanvasRef | null>;
   discoverAction: (username: string) => Promise<void>;
-  setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
+  setUsersAction: React.Dispatch<React.SetStateAction<User[]>>;
   setSelectedUserIdAction: (userId: string) => void;
   openAccordionAction: (id: string) => void;
   closeAccordionAction: (id: string) => void;
   updateUserStateAction: (
     username: string,
-    newState: Partial<Users[number]>,
+    newState: Partial<User>,
   ) => void;
 }) {
   return (
@@ -257,7 +257,7 @@ export function UserInfo({
         <Empty className="border border-dashed">
           <EmptyHeader>
             <EmptyMedia variant="icon">
-              <User />
+              <UserIcon />
             </EmptyMedia>
           </EmptyHeader>
           <EmptyTitle>No user selected</EmptyTitle>

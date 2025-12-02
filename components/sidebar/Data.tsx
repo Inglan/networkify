@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import * as dataUtils from "@/lib/dataUtils";
-import { Edges, Nodes, Users } from "@/lib/types";
+import { Edge, Node, Users } from "@/lib/types";
 import {
   Accordion,
   AccordionContent,
@@ -21,8 +21,8 @@ export function Data({
 }: {
   setUsersAction: (users: Users) => void;
   users: Users;
-  nodes: Nodes;
-  edges: Edges;
+  nodes: Node[];
+  edges: Edge[];
 }) {
   const saves = useSave((state) => state.save);
   const createSave = useSave((state) => state.create);

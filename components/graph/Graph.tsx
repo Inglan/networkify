@@ -2,7 +2,7 @@
 
 import { RefObject, useState } from "react";
 import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
-import { Edges, Nodes } from "@/lib/types";
+import { Edge, Node } from "@/lib/types";
 
 export function Graph({
   graphRef,
@@ -15,8 +15,8 @@ export function Graph({
 }: {
   graphRef: RefObject<GraphCanvasRef | null>;
   selectedUserId: string[];
-  nodes: Nodes;
-  edges: Edges;
+  nodes: Node[];
+  edges: Edge[];
   setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string[]>>;
   openAccordionAction: (id: string) => void;
   discoverAction: (id: string) => void;

@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Kbd } from "@/components/ui/kbd";
-import { Edges, Nodes, Users } from "@/lib/types";
+import { Edge, Node, Users } from "@/lib/types";
 import { Data } from "./Data";
 import { Header } from "./Header";
 import { Discover } from "./Discover";
@@ -35,8 +35,8 @@ export function SidebarContent({
   setAccordionValuesAction: setAccordionValues,
   setSidebarOpenAction: setSidebarOpen,
 }: {
-  nodes: Nodes;
-  edges: Edges;
+  nodes: Node[];
+  edges: Edge[];
   setTokenAction: React.Dispatch<React.SetStateAction<string>>;
   token: string;
   setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
