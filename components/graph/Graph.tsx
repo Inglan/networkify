@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject } from "react";
+import { RefObject, useState } from "react";
 import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
 import { Edges, Nodes } from "@/lib/types";
 
@@ -21,6 +21,8 @@ export function Graph({
   openAccordionAction: (id: string) => void;
   discoverAction: (id: string) => void;
 }) {
+  const [actives, setActives] = useState<string[]>([]);
+
   return (
     <GraphCanvas
       ref={graphRef}
@@ -56,7 +58,12 @@ export function Graph({
       lassoType="node"
       onLassoEnd={(nodes) => {
         setSelectedUserId(nodes);
+        setActives([]);
       }}
+      onLasso={(nodes) => {
+        setActives(nodes);
+      }}
+      actives={actives}
     />
   );
 }
