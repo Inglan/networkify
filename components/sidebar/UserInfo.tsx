@@ -29,33 +29,30 @@ import { Kbd } from "@/components/ui/kbd";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Node, User } from "@/lib/types";
+import { useGraphState } from "@/lib/state";
 
 export function UserInfo({
-  selectedUserId,
   users,
   nodes,
   graphRef,
   discoverAction: discover,
   setUsersAction: setUsers,
-  setSelectedUserIdAction: setSelectedUserId,
   openAccordionAction: openAccordion,
   closeAccordionAction: closeAccordion,
   updateUserStateAction: updateUserState,
 }: {
-  selectedUserId: string;
   users: User[];
   nodes: Node[];
   graphRef: RefObject<GraphCanvasRef | null>;
   discoverAction: (username: string) => Promise<void>;
   setUsersAction: React.Dispatch<React.SetStateAction<User[]>>;
-  setSelectedUserIdAction: (userId: string) => void;
   openAccordionAction: (id: string) => void;
   closeAccordionAction: (id: string) => void;
-  updateUserStateAction: (
-    username: string,
-    newState: Partial<User>,
-  ) => void;
+  updateUserStateAction: (username: string, newState: Partial<User>) => void;
 }) {
+  const { selected, setSelected } = useGraphState();
+  const selectedUserId = selected.length == 1 ? selected[0] : "";
+
   return (
     <>
       {selectedUserId ? (
@@ -139,7 +136,7 @@ export function UserInfo({
                 </CommandItem>
                 <CommandItem
                   onSelect={() => {
-                    setSelectedUserId("");
+                    setSelected([]);
                   }}
                 >
                   Deselect
@@ -172,7 +169,7 @@ export function UserInfo({
                   value: users.find((user) => user.username == selectedUserId)
                     ?.followers,
                   onclick: (username: string) => {
-                    setSelectedUserId(username.replace("spotify:user:", ""));
+                    setSelected([username.replace("spotify:user:", "")]);
                   },
                 },
                 {
@@ -184,7 +181,7 @@ export function UserInfo({
                       user.username.startsWith("spotify:user:"),
                     ),
                   onclick: (username: string) => {
-                    setSelectedUserId(username.replace("spotify:user:", ""));
+                    setSelected([username.replace("spotify:user:", "")]);
                   },
                 },
                 {
