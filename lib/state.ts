@@ -60,6 +60,24 @@ export const useOnboardingDialogState = create<OnboardingDialogState>()(
   ),
 );
 
+interface PreferencesState {
+  token: string;
+  setToken: (token: string) => void;
+}
+
+export const usePreferencesState = create<PreferencesState>()(
+  persist(
+    (set) => ({
+      token: "",
+      setToken: (token) => set({ token }),
+    }),
+    {
+      name: "networkify-preferences",
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+);
+
 interface GraphState {
   nodes: Node[];
   setNodes: (nodes: Node[]) => void;
