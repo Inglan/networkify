@@ -8,21 +8,17 @@ import { useGraphState } from "@/lib/state";
 export function Graph({
   graphRef,
   selectedUserId,
-  nodes,
-  edges,
   setSelectedUserIdAction: setSelectedUserId,
   openAccordionAction: openAccordion,
   discoverAction: discover,
 }: {
   graphRef: RefObject<GraphCanvasRef | null>;
   selectedUserId: string[];
-  nodes: Node[];
-  edges: Edge[];
   setSelectedUserIdAction: React.Dispatch<React.SetStateAction<string[]>>;
   openAccordionAction: (id: string) => void;
   discoverAction: (id: string) => void;
 }) {
-  const { actives, setActives } = useGraphState();
+  const { actives, setActives, nodes, edges } = useGraphState();
 
   return (
     <GraphCanvas

@@ -15,7 +15,7 @@ import { Drawer, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarContent } from "../components/sidebar/SidebarContent";
 import { Onboarding } from "../components/OnboardingDialog";
-import { useOnboardingDialogState } from "@/lib/state";
+import { useGraphState, useOnboardingDialogState } from "@/lib/state";
 
 export default function Home() {
   const graphRef = useRef<GraphCanvasRef | null>(null);
@@ -27,8 +27,9 @@ export default function Home() {
   const [users, setUsers] = useState<Users>([]);
 
   // Graph state
-  const [nodes, setNodes] = useState<Node[]>([]);
-  const [edges, setEdges] = useState<Edge[]>([]);
+  // const [nodes, setNodes] = useState<Node[]>([]);
+  // const [edges, setEdges] = useState<Edge[]>([]);
+  const { nodes, setNodes, edges, setEdges } = useGraphState();
 
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);
