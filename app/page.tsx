@@ -7,7 +7,6 @@ import { useHotkeys } from "react-hotkeys-hook";
 import clsx from "clsx";
 import { PanelBottom, PanelRight } from "lucide-react";
 import { Edge, Node, Users } from "@/lib/types";
-import * as graph from "@/lib/graphUtils";
 import * as user from "@/lib/userUtils";
 import * as spotify from "@/lib/spotifyClientUtils";
 import { Graph } from "../components/graph/Graph";
@@ -16,6 +15,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { SidebarContent } from "../components/sidebar/SidebarContent";
 import { Onboarding } from "../components/OnboardingDialog";
 import { useGraphState, useOnboardingDialogState } from "@/lib/state";
+import { toast } from "sonner";
 
 export default function Home() {
   // Mobile device detection hook
@@ -27,7 +27,8 @@ export default function Home() {
   // Graph state
   // const [nodes, setNodes] = useState<Node[]>([]);
   // const [edges, setEdges] = useState<Edge[]>([]);
-  const { nodes, setNodes, edges, setEdges, graphRef } = useGraphState();
+  const { nodes, setNodes, edges, setEdges, graphRef, update } =
+    useGraphState();
 
   // UI State
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -63,8 +64,10 @@ export default function Home() {
   };
 
   // Updates graph with latest data
-  const updateGraph = () =>
-    graph.update(nodes, setNodes, edges, setEdges, users);
+  const updateGraph = () => {
+    update(users);
+    toast.success("Graph updated");
+  };
 
   // Updates state of user by username
   const updateUserState = (
