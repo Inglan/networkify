@@ -3,6 +3,7 @@
 import { RefObject, useState } from "react";
 import { darkTheme, GraphCanvas, GraphCanvasRef } from "reagraph";
 import { Edge, Node } from "@/lib/types";
+import { useGraphState } from "@/lib/state";
 
 export function Graph({
   graphRef,
@@ -21,7 +22,7 @@ export function Graph({
   openAccordionAction: (id: string) => void;
   discoverAction: (id: string) => void;
 }) {
-  const [actives, setActives] = useState<string[]>([]);
+  const { actives, setActives } = useGraphState();
 
   return (
     <GraphCanvas
