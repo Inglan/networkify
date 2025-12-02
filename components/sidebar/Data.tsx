@@ -10,23 +10,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "../ui/input";
-import { useSave } from "@/lib/state";
+import { useGraphState, useSave } from "@/lib/state";
 import { ArchiveRestore, Trash } from "lucide-react";
 
 export function Data({
   setUsersAction: setUsers,
   users,
-  nodes,
-  edges,
 }: {
   setUsersAction: (users: Users) => void;
   users: Users;
-  nodes: Node[];
-  edges: Edge[];
 }) {
   const saves = useSave((state) => state.save);
   const createSave = useSave((state) => state.create);
   const deleteSave = useSave((state) => state.delete);
+
+  const { edges, nodes } = useGraphState();
 
   return (
     <div className="flex flex-col gap-2">

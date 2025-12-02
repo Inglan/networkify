@@ -33,7 +33,6 @@ import { useGraphState } from "@/lib/state";
 
 export function UserInfo({
   users,
-  nodes,
   discoverAction: discover,
   setUsersAction: setUsers,
   openAccordionAction: openAccordion,
@@ -41,14 +40,13 @@ export function UserInfo({
   updateUserStateAction: updateUserState,
 }: {
   users: User[];
-  nodes: Node[];
   discoverAction: (username: string) => Promise<void>;
   setUsersAction: React.Dispatch<React.SetStateAction<User[]>>;
   openAccordionAction: (id: string) => void;
   closeAccordionAction: (id: string) => void;
   updateUserStateAction: (username: string, newState: Partial<User>) => void;
 }) {
-  const { selected, setSelected, graphRef } = useGraphState();
+  const { selected, setSelected, graphRef, nodes } = useGraphState();
   const selectedUserId = selected.length == 1 ? selected[0] : "";
 
   return (

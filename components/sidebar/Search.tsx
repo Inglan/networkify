@@ -15,18 +15,16 @@ import { useGraphState } from "@/lib/state";
 
 export function Search({
   users,
-  nodes,
   selectedUserId,
   setSelectedUserIdAction: setSelectedUserId,
   openAccordionAction: openAccordion,
 }: {
   users: User[];
-  nodes: Node[];
   selectedUserId: string;
   setSelectedUserIdAction: (userId: string) => void;
   openAccordionAction: (id: string) => void;
 }) {
-  const { graphRef } = useGraphState();
+  const { graphRef, nodes } = useGraphState();
 
   return (
     <Command className="bg-transparent">

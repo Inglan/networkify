@@ -17,8 +17,6 @@ import { Search } from "./Search";
 import { useGraphState } from "@/lib/state";
 
 export function SidebarContent({
-  nodes,
-  edges,
   setTokenAction: setToken,
   token,
   setUsersAction: setUsers,
@@ -35,8 +33,6 @@ export function SidebarContent({
   setAccordionValuesAction: setAccordionValues,
   setSidebarOpenAction: setSidebarOpen,
 }: {
-  nodes: Node[];
-  edges: Edge[];
   setTokenAction: React.Dispatch<React.SetStateAction<string>>;
   token: string;
   setUsersAction: React.Dispatch<React.SetStateAction<Users>>;
@@ -86,12 +82,7 @@ export function SidebarContent({
         <AccordionItem value="Data">
           <AccordionTrigger className="px-4">Data</AccordionTrigger>
           <AccordionContent className="p-4">
-            <Data
-              edges={edges}
-              nodes={nodes}
-              setUsersAction={setUsers}
-              users={users}
-            />
+            <Data setUsersAction={setUsers} users={users} />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="search">
@@ -102,7 +93,6 @@ export function SidebarContent({
           </AccordionTrigger>
           <AccordionContent>
             <Search
-              nodes={nodes}
               openAccordionAction={openAccordion}
               selectedUserId={
                 selectedUserId.length == 1 ? selectedUserId[0] : ""
@@ -118,12 +108,7 @@ export function SidebarContent({
             <UserInfo
               closeAccordionAction={closeAccordion}
               discoverAction={discover}
-              nodes={nodes}
               openAccordionAction={openAccordion}
-              selectedUserId={
-                selectedUserId.length == 1 ? selectedUserId[0] : ""
-              }
-              setSelectedUserIdAction={(userId) => setSelectedUserId([userId])}
               setUsersAction={setUsers}
               updateUserStateAction={updateUserState}
               users={users}

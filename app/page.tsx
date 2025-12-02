@@ -127,8 +127,6 @@ export default function Home() {
               activeOperations={activeOperations}
               closeAccordionAction={closeAccordion}
               discoverAction={discover}
-              edges={edges}
-              nodes={nodes}
               openAccordionAction={openAccordion}
               selectedUserId={selectedUserId}
               setAccordionValuesAction={setAccordionValues}
