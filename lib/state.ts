@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { Edge, Node, User } from "./types";
 import { GraphCanvasRef } from "reagraph";
+import { createRef } from "react";
 
 interface SaveState {
   save: {
@@ -68,7 +69,7 @@ interface GraphState {
   setSelected: (selected: string[]) => void;
   actives: string[];
   setActives: (actives: string[]) => void;
-  graphRef: GraphCanvasRef | null;
+  graphRef: React.RefObject<GraphCanvasRef | null>;
 }
 
 export const useGraphState = create<GraphState>((set) => ({
@@ -80,7 +81,7 @@ export const useGraphState = create<GraphState>((set) => ({
   setSelected: (selected) => set({ selected }),
   actives: [],
   setActives: (actives) => set({ actives }),
-  graphRef: null,
+  graphRef: createRef(),
 }));
 
 // interface GraphState {
