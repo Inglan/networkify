@@ -88,6 +88,8 @@ interface GraphState {
   actives: string[];
   setActives: (actives: string[]) => void;
   graphRef: React.RefObject<GraphCanvasRef | null>;
+  graphKey: string;
+  setGraphKey: (key: string) => void;
   update: (users: User[]) => void;
 }
 
@@ -101,6 +103,8 @@ export const useGraphState = create<GraphState>((set, get) => ({
   actives: [],
   setActives: (actives) => set({ actives }),
   graphRef: createRef(),
+  graphKey: "",
+  setGraphKey: (key) => set({ graphKey: key }),
   update: (users) => {
     const { nodes, edges } = get();
 
