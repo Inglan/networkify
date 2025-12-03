@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useGraphState } from "@/lib/state";
 import { ExternalLink, PanelRightClose, X } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
@@ -15,6 +16,7 @@ export function Header({
   setSidebarOpenAction: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const isMobile = useIsMobile();
+  const { setGraphKey } = useGraphState();
 
   return (
     <div className="flex flex-col gap-4 p-4 sticky top-0 bg-background border-b z-30">
@@ -39,6 +41,12 @@ export function Header({
       </div>
       <Button variant="outline" onClick={updateGraph}>
         Update graph<Kbd>⌘ + R</Kbd>
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() => setGraphKey(String(Math.random()))}
+      >
+        Reset graph
       </Button>
     </div>
   );
