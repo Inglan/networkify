@@ -31,8 +31,7 @@ export default function Home() {
   // Graph state
   // const [nodes, setNodes] = useState<Node[]>([]);
   // const [edges, setEdges] = useState<Edge[]>([]);
-  const { nodes, setNodes, edges, setEdges, graphRef, update } =
-    useGraphState();
+  const { graphKey, update } = useGraphState();
 
   const { token } = usePreferencesState();
 
@@ -170,7 +169,11 @@ export default function Home() {
           </MenubarContent>
         </MenubarMenu>
       </Menubar>*/}
-      <Graph discoverAction={discover} openAccordionAction={openAccordion} />
+      <Graph
+        discoverAction={discover}
+        openAccordionAction={openAccordion}
+        key={graphKey}
+      />
       <Onboarding />
     </>
   );
